@@ -161,52 +161,36 @@
                 </div>
             </div>
         </div>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-            <path fill="rgb(25,135,84)" fill-opacity="1" d="M0,64L20,106.7C40,149,80,235,120,240C160,245,200,171,240,138.7C280,107,320,117,360,144C400,171,440,213,480,197.3C520,181,560,107,600,74.7C640,43,680,53,720,80C760,107,800,149,840,176C880,203,920,213,960,218.7C1000,224,1040,224,1080,202.7C1120,181,1160,139,1200,122.7C1240,107,1280,117,1320,144C1360,171,1400,213,1420,234.7L1440,256L1440,320L1420,320C1400,320,1360,320,1320,320C1280,320,1240,320,1200,320C1160,320,1120,320,1080,320C1040,320,1000,320,960,320C920,320,880,320,840,320C800,320,760,320,720,320C680,320,640,320,600,320C560,320,520,320,480,320C440,320,400,320,360,320C320,320,280,320,240,320C200,320,160,320,120,320C80,320,40,320,20,320L0,320Z"></path>
-        </svg>
         <!-- Akhir Peta Wilayah Desa -->
     </section>
     <!-- Akhir Profil Desa -->
     <!-- Profil Pemerintahan Desa -->
     <section id="profilPemerintahan">
         <div class="container">
-            <div class="row text-center">
-                <div class="col">
-                    <h2>Profil Pemerintahan</h2>
-                </div>
-            </div>
             <div class="row">
                 <div class="col">
                     <div class="table-responsive">
-                        <table class="table">
-                            <table class="table">
-                                <thead>
+                        <table class="table table-hover table-bordered table caption-top">
+                            <caption>Profil Pemerintahan</caption>
+                            <thead class="table-success">
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Jabatan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; ?>
+                                <?php foreach ($data as $d) : ?>
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Nama</th>
-                                        <th scope="col">Jabatan</th>
+                                        <?php if ($d['nama'] !== 'Dina Suci Noviola') : ?>
+                                            <th scope="row"><?= $i++; ?></th>
+                                            <td><?= $d['nama'] ?></td>
+                                            <td><?= $d['jabatan'] ?></td>
+                                        <?php endif; ?>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                <?php endforeach; ?>
+                            </tbody>
                         </table>
                     </div>
                 </div>
