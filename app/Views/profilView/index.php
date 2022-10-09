@@ -151,7 +151,7 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col">
-                        <h2>Peta Wilayah Desa</h2>
+                        <h2 class="text" style="color: green;">Peta Wilayah Desa</h2>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -167,11 +167,15 @@
     <!-- Profil Pemerintahan Desa -->
     <section id="profilPemerintahan">
         <div class="container">
+            <div class="row text-center mb-3">
+                <div class="col">
+                    <h2 style="color: green;">Profil Pemerintahan</h2>
+                </div>
+            </div>
             <div class="row">
                 <div class="col">
                     <div class="table-responsive">
-                        <table class="table table-hover table-bordered table caption-top">
-                            <caption>Profil Pemerintahan</caption>
+                        <table class="table table-hover table-bordered">
                             <thead class="table-success">
                                 <tr>
                                     <th scope="col">No</th>
@@ -198,6 +202,160 @@
         </div>
     </section>
     <!-- Akhir Profil Pemerintahan Desa -->
+    <!-- Statistik -->
+    <section id="statistik">
+        <div class="container">
+            <div class="row text-center mb-3">
+                <div class="col">
+                    <h2 style="color: green;">Statistik</h2>
+                </div>
+            </div>
+            <div class="row text-center mb-3">
+                <div class="col">
+                    <table class="table table-responsive table-borderless table-hover">
+                        <thead class="table-success">
+                            <th scope="col">Jenis Kelamin</th>
+                            <th scope="col">Nilai</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Laki Laki</td>
+                                <td>8496 orang</td>
+                            </tr>
+                            <tr>
+                                <td>Perempuan</td>
+                                <td>8119 orang</td>
+                            </tr>
+                            <tr>
+                                <td>Kepala Keluarga</td>
+                                <td>4002 orang</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row text-center mb-3">
+                    <div class="col">
+                        <table class="table table-responsive table-borderless table-hover">
+                            <thead class="table-success">
+                                <th scope="col">Pendidikan</th>
+                                <th scope="col">Nilai</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>SD/MI</td>
+                                    <td>392 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>SLTP/MTs</td>
+                                    <td>944 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>SLTA/MA</td>
+                                    <td>1172 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>S1/Diploma</td>
+                                    <td>1772 orang</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row text-center mb-3">
+                    <div class="col">
+                        <table class="table table-responsive table-borderless table-hover">
+                            <thead class="table-success">
+                                <th scope="col">Agama</th>
+                                <th scope="col">Nilai</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Islam</td>
+                                    <td>11630 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Katolik</td>
+                                    <td>1161 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Kristen</td>
+                                    <td>2492 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Hindu</td>
+                                    <td>832 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Budha</td>
+                                    <td>- orang</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row text-center mb-3">
+                    <div class="col">
+                        <table class="table table-responsive table-borderless table-hover">
+                            <thead class="table-success">
+                                <th scope="col">Pekerjaan</th>
+                                <th scope="col">Nilai</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Petani</td>
+                                    <td>12 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Pedagang</td>
+                                    <td>5121 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>PNS</td>
+                                    <td>815 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Tukang</td>
+                                    <td>578 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Guru</td>
+                                    <td>150 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Bidan/ Perawat</td>
+                                    <td>40 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>TNI/ Polri</td>
+                                    <td>65 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Pensiunan</td>
+                                    <td>1252 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Sopir/ Angkutan</td>
+                                    <td>36 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Buruh</td>
+                                    <td>1262 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Jasa Persewaan</td>
+                                    <td>15 orang</td>
+                                </tr>
+                                <tr>
+                                    <td>Swasta</td>
+                                    <td>789 orang</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!-- Akhir Statistik -->
 
     <script src="js/jquery-3.1.1.js"></script>
     <script src="js/jquery.easing.1.3.js"></script>
