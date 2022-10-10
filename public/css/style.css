@@ -1,14 +1,10 @@
-body {
-  height: 1000px;
-}
-
 .jumbotron {
   padding-top: 2rem;
   background-color: rgb(39, 180, 96);
 }
 
-#statistik table{
-  border-collapse:collapse;
+#statistik table {
+  border-collapse: collapse;
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
   overflow: hidden;
