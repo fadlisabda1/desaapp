@@ -9,6 +9,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Models\profilPemerintahanModel;
+use App\Models\beritaModel;
 
 /**
  * Class BaseController
@@ -36,7 +37,7 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = [];
+    protected $helpers = ['text'];
 
     /**
      * Constructor.
@@ -50,5 +51,6 @@ abstract class BaseController extends Controller
 
         // E.g.: $this->session = \Config\Services::session();
         $this->profilPemerintahanModel = new profilPemerintahanModel();
+        $this->beritaModel = new beritaModel();
     }
 }

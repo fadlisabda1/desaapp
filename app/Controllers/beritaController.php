@@ -4,9 +4,12 @@ namespace App\Controllers;
 
 class beritaController extends BaseController
 {
-    public function detail()
+    public function detail($id)
     {
-        $judul['title'] = 'Publikasi Umum | Desa Tanah Merah';
-        return view('beritaView/index', $judul);
+        $berita = [
+            'title' => 'Publikasi Umum | Desa Tanah Merah',
+            'data' => $this->beritaModel->getBerita($id)
+        ];
+        return view('beritaView/index', $berita);
     }
 }

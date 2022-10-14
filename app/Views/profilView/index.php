@@ -149,7 +149,7 @@
                         </thead>
                         <tbody>
                             <?php $i = 1; ?>
-                            <?php foreach ($data as $d) : ?>
+                            <?php foreach ($dataPemerintah as $d) : ?>
                                 <tr>
                                     <?php if ($d['nama'] !== 'Dina Suci Noviola') : ?>
                                         <th scope="row"><?= $i++; ?></th>
@@ -328,33 +328,24 @@
                 <h2 style="color: green;">Publikasi Umum</h2>
             </div>
         </div>
+
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100">
-                    <img src="gambar/fotoberitapenyerahan.jpeg" class="card-img-top" alt="fotoberita">
-                    <div class="card-body">
-                        <h5 class="card-title">Menteri Desa PDTT RI Serahkan Penghargaan Kepada Beberapa Kepala Desa</h5>
-                        <p class="card-text">Menteri Desa, Pembangunan Daerah Tertinggal dan Transmigrasi Republik Indonesia, Bpk. Dr.(HC) Drs.A.Halim Iskandar, M.Pd, didampingi Pj Bupati Kampar Dr Kamsol,MM, secara simbolis Menteri Halim Iskandar menyerahkan Penghargaan status Desa Mandiri kepada Kepala Desa Tanah Merah H. Syahrual Amri Nasution.</p>
-                        <a href="/beritaController/detail" class="btn btn-success">Detail</a>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">13 Agustus 2022 06:14:29</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="gambar/desadepan.jpeg" class="card-img-top" alt="fotoberita">
-                    <div class="card-body">
-                        <h5 class="card-title">SEJARAH DESA TANAH MERAH KECAMATAN SIAK HULU KABUPATEN KAMPAR</h5>
-                        <p class="card-text">Desa Tanah Merah adalah nama suatu wilayah di Kecamatan Siak HuluKabupaten Kampar ini yang nama Tanah Merah tersebut diambil dari salah satu namaRK (Rukun Kampung) yang saat ini menjadi salah satu wilayah dusun berbataslansung dengan Desa Baru sebagai Desa Induk. Pemekeran Desa Tanah Merah adalahusulan dari para tokoh masyarakat setempat pada tahun 1999, berdasarkan SuratKeputusan Kepala Daerah Tingkat 1 Riau Nomor 41 Tahun 1999 tentang PemekaranDesa persiapan Tanah Merah maka Desa Tanah Merah secara resmi menjadiPemerintahan Desa persiapan. Desa ...</p>
-                        <a href="/beritaController/detail" class="btn btn-success">Detail</a>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">07 Agustus 2022 05:08:35</small>
+            <?php foreach ($dataBerita as $db) : ?>
+                <?php $str = explode('|', $db['gambar']); ?>
+                <div class="col">
+                    <div class="card h-100">
+                        <img src="gambar/<?= $str[0] ?>" class="card-img-top" alt="fotoberita">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $db['judul'] ?></h5>
+                            <p class="card-text"><?= character_limiter($db['keterangan'], 50); ?></p>
+                            <a href="/beritaController/detail/<?= $db['id_berita'] ?>" class="btn btn-success">Detail</a>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted"><?= $db['created_at'] ?></small>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
     </div>

@@ -9,4 +9,5 @@ class profilPemerintahanModel extends Model
     protected $table      = 'aparat';
     protected $primaryKey = 'id_aparat';
     protected $useTimestamps = true;
+    protected $useSoftDeletes = true;
 }

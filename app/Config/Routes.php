@@ -36,7 +36,7 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'profilPemerintahanController::index');
-$routes->get('/beritaController/detail', 'beritaController::detail');
+$routes->get('/beritaController/detail/(:segment)', 'beritaController::detail/$1');
 
 /*
  * --------------------------------------------------------------------

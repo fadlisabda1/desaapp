@@ -8,7 +8,9 @@ class profilPemerintahanController extends BaseController
     {
         $profilPemerintahan = [
             'title' => 'Profil | Desa Tanah Merah',
-            'data' => $this->profilPemerintahanModel->findAll()
+            'dataPemerintah' => $this->profilPemerintahanModel->findAll(),
+            'dataBerita' => $this->beritaModel->findAll()
+
         ];
         return view('profilView/index', $profilPemerintahan);
     }
