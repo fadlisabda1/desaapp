@@ -1,6 +1,6 @@
 .jumbotron {
   padding-top: 2rem;
-  background-color: rgb(39, 180, 96);
+  background-color: rgb(25, 135, 84);
 }
 
 #statistik table {
@@ -8,4 +8,107 @@
   border-top-left-radius: 1em;
   border-top-right-radius: 1em;
   overflow: hidden;
+}
+
+section {
+  padding-top: 5rem;
+}
+
+#wisata .card-body {
+  color: pink;
+}
+
+#visimisi .list-group-item {
+  background-color: pink;
+}
+
+/* Berita Desa Section */
+.berita-box {
+  background-color: rgb(25, 135, 84);
+  border-radius: 10px;
+  height: 500px;
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.berita-box::before {
+  content: "BERITA";
+  position: absolute;
+  color: #fff;
+  font-size: 6em;
+  font-weight: bold;
+  font-style: italic;
+  top: 30px;
+  left: -100px;
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.berita-box:hover::before {
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 0.2;
+}
+
+.berita-box::after {
+  content: "DESA";
+  position: absolute;
+  color: #fff;
+  font-size: 4.3em;
+  font-weight: bold;
+  font-style: italic;
+  top: 350px;
+  left: 450px;
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.berita-box:hover::after {
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 0.2;
+}
+
+.berita-name {
+  color: #fff;
+  text-align: center;
+  font-size: 2em;
+  opacity: 0;
+  transition: 0.5s;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  transform: translate3d(0, 0, 50px);
+}
+
+.berita-box:hover .berita-name {
+  top: 20px;
+  opacity: 1;
+}
+
+.berita-detail-button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate3d(-50%, 0, 50px);
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.berita-box:hover .berita-detail-button {
+  opacity: 1;
+  bottom: 20px;
+}
+
+.berita-img {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate3d(-50%, -52%, 100px);
+  max-width: 150px;
+  transition: 0.5s;
+}
+
+.berita-box:hover .berita-img {
+  transform: translate3d(-50%, -52%, 100px) rotate(5deg) scale(1.2);
 }
