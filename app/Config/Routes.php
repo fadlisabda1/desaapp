@@ -37,7 +37,11 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'profilPemerintahanController::index');
 $routes->get('/beritaController/detail/(:segment)', 'beritaController::detail/$1');
-
+$routes->get('/peraturanDesaController', 'administrasiumum\peraturanDesaController::index');
+$routes->post('/peraturanDesaController/save', 'administrasiumum\peraturanDesaController::save');
+$routes->delete('/peraturanDesaController/delete/(:num)', 'administrasiumum\peraturanDesaController::delete/$1');
+$routes->post('/peraturanDesaController/edit', 'administrasiumum\peraturanDesaController::edit');
+$routes->post('/peraturanDesaController/update', 'administrasiumum\peraturanDesaController::update');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

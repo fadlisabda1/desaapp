@@ -1,3 +1,60 @@
+const flashData = $(".flash-data").data("flashdata");
+
+if (flashData) {
+  Swal.fire({
+    title: "Data Peraturan ",
+    text: "Berhasil " + flashData,
+    icon: "success",
+  });
+}
+
+// tombol-hapus
+$(".tombol-hapus").on("click", function (e) {
+  e.preventDefault();
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data peraturan akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $(this).submit();
+    }
+  });
+});
+
+$(function () {
+  $(".tombolTambahData").on("click", function () {
+    $("#judulModalLabel").html("Tambah Data");
+    $(".modal-footer button[type=submit]").html("Tambah Data");
+    $("#nomorTglPeraturanDesa").val("");
+    $("#tentang").val("");
+    $("#uraiansingkat").val("");
+  });
+  $(".tampilModalUbah").on("click", function () {
+    $("#judulModalLabel").html("Ubah Data");
+    $(".modal-footer button[type=submit]").html("Ubah Data");
+    $(".modal-body form").attr("action", "/peraturanDesaController/update");
+    const id = $(this).data("id");
+
+    $.ajax({
+      url: "/peraturanDesaController/edit",
+      data: { id: id },
+      method: "post",
+      dataType: "json",
+      success: function (data) {
+        $("#nomorTglPeraturanDesa").val(data.nomor_tgl_peraturan);
+        $("#tentang").val(data.tentang);
+        $("#uraiansingkat").val(data.uraiansingkat);
+        $("#id").val(data.id_peraturan_desa);
+      },
+    });
+  });
+});
+
 $(".page-scroll").on("click", function (e) {
   // ambil isi href
   var tujuan = $(this).attr("href");

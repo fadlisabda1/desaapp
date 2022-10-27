@@ -10,6 +10,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Models\profilPemerintahanModel;
 use App\Models\beritaModel;
+use App\Models\administrasiumum\peraturanDesaModel;
 
 /**
  * Class BaseController
@@ -52,5 +53,7 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
         $this->profilPemerintahanModel = new profilPemerintahanModel();
         $this->beritaModel = new beritaModel();
+        $this->peraturanDesaModel = new peraturanDesaModel();
+        session();
     }
 }

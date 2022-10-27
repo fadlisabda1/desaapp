@@ -1,5 +1,5 @@
 .jumbotron {
-  padding-top: 2rem;
+  padding-top: 4rem;
   background-color: rgb(25, 135, 84);
 }
 
@@ -11,7 +11,7 @@
 }
 
 section {
-  padding-top: 5rem;
+  padding-top: 6rem;
 }
 
 #wisata .card-body {
