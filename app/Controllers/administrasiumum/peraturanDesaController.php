@@ -13,7 +13,7 @@ class peraturanDesaController extends BaseController
             'data' => $this->peraturanDesaModel->getPeraturan(),
             'validation' => \Config\Services::validation()
         ];
-        return view('administrasiumum/index', $peraturan);
+        return view('administrasiumum/peraturanDesaView', $peraturan);
     }
 
     public function save()
@@ -38,7 +38,7 @@ class peraturanDesaController extends BaseController
                 ]
             ],
         ])) {
-            return redirect()->to(base_url('/peraturanDesaController?n=f'))->withInput();
+            return redirect()->to(base_url('/peraturanDesaController'))->withInput();
         }
         $this->peraturanDesaModel->save([
             'nomor_tgl_peraturan' => $this->request->getVar('nomorTglPeraturanDesa'),
@@ -46,14 +46,14 @@ class peraturanDesaController extends BaseController
             'uraiansingkat' => $this->request->getVar('uraiansingkat')
         ]);
         session()->setFlashData('pesan', 'ditambahkan');
-        return redirect()->to(base_url('/peraturanDesaController?n=f'));
+        return redirect()->to(base_url('/peraturanDesaController'));
     }
 
     public function delete($id)
     {
         $this->peraturanDesaModel->delete($id);
         session()->setFlashData('pesan', 'dihapus.');
-        return redirect()->to(base_url('/peraturanDesaController?n=f'));
+        return redirect()->to(base_url('/peraturanDesaController'));
     }
 
     public function edit()
@@ -62,6 +62,28 @@ class peraturanDesaController extends BaseController
     }
     public function update()
     {
+        if (!$this->validate([
+            'nomorTglPeraturanDesa' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Nomor Dan Tanggal Peraturan Desa harus di isi.'
+                ]
+            ],
+            'tentang' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => '{field} peraturan harus di isi.'
+                ]
+            ],
+            'uraiansingkat' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'uraian singkat peraturan harus di isi.'
+                ]
+            ],
+        ])) {
+            return redirect()->to(base_url('/peraturanDesaController'))->withInput();
+        }
         $this->peraturanDesaModel->save([
             'id_peraturan_desa' => $_POST['id'],
             'nomor_tgl_peraturan' => $this->request->getVar('nomorTglPeraturanDesa'),
@@ -69,6 +91,6 @@ class peraturanDesaController extends BaseController
             'uraiansingkat' => $this->request->getVar('uraiansingkat')
         ]);
         session()->setFlashData('pesan', 'diubah.');
-        return redirect()->to(base_url('/peraturanDesaController?n=f'));
+        return redirect()->to(base_url('/peraturanDesaController'));
     }
 }

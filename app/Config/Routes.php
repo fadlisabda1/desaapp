@@ -35,13 +35,21 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+//profil
 $routes->get('/', 'profilPemerintahanController::index');
 $routes->get('/beritaController/detail/(:segment)', 'beritaController::detail/$1');
+//peraturan desa 
 $routes->get('/peraturanDesaController', 'administrasiumum\peraturanDesaController::index');
 $routes->post('/peraturanDesaController/save', 'administrasiumum\peraturanDesaController::save');
 $routes->delete('/peraturanDesaController/delete/(:num)', 'administrasiumum\peraturanDesaController::delete/$1');
 $routes->post('/peraturanDesaController/edit', 'administrasiumum\peraturanDesaController::edit');
 $routes->post('/peraturanDesaController/update', 'administrasiumum\peraturanDesaController::update');
+//Inventaris dan Kekayaan Desa
+$routes->get('/inventarisKekayaanDesaController', 'administrasiumum\inventarisKekayaanDesaController::index');
+$routes->post('/inventarisKekayaanDesaController/save', 'administrasiumum\inventarisKekayaanDesaController::save');
+$routes->delete('/inventarisKekayaanDesaController/delete/(:num)', 'administrasiumum\inventarisKekayaanDesaController::delete/$1');
+$routes->post('/inventarisKekayaanDesaController/edit', 'administrasiumum\inventarisKekayaanDesaController::edit');
+$routes->post('/inventarisKekayaanDesaController/update', 'administrasiumum\inventarisKekayaanDesaController::update');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

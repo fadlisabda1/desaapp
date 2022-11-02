@@ -30,26 +30,25 @@ $(function () {
   $(".tombolTambahData").on("click", function () {
     $("#judulModalLabel").html("Tambah Data");
     $(".modal-footer button[type=submit]").html("Tambah Data");
-    $("#nomorTglPeraturanDesa").val("");
-    $("#tentang").val("");
-    $("#uraiansingkat").val("");
   });
   $(".tampilModalUbah").on("click", function () {
     $("#judulModalLabel").html("Ubah Data");
     $(".modal-footer button[type=submit]").html("Ubah Data");
-    $(".modal-body form").attr("action", "/peraturanDesaController/update");
+    const namaController = $(this).data("namacontroller");
+    $(".modal-body form").attr("action", namaController + "/update");
     const id = $(this).data("id");
 
     $.ajax({
-      url: "/peraturanDesaController/edit",
+      url: "/" + namaController + "/edit",
       data: { id: id },
       method: "post",
       dataType: "json",
       success: function (data) {
-        $("#nomorTglPeraturanDesa").val(data.nomor_tgl_peraturan);
-        $("#tentang").val(data.tentang);
-        $("#uraiansingkat").val(data.uraiansingkat);
-        $("#id").val(data.id_peraturan_desa);
+        var inputPeraturan = document.getElementsByClassName("inputPeraturan");
+        const isi = Object.values(data);
+        for (let i = 0; i < inputPeraturan.length; i++) {
+          $(inputPeraturan[i]).val(isi[i]);
+        }
       },
     });
   });
