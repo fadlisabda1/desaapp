@@ -1,3 +1,14 @@
+$(document).ready(function () {
+  $("#sample_table").DataTable({
+    order: [],
+    serverSide: true,
+    ajax: {
+      url: "peraturanDesaController/ambilData",
+      type: "POST",
+    },
+  });
+});
+
 const flashData = $(".flash-data").data("flashdata");
 
 if (flashData) {

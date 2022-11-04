@@ -23,7 +23,7 @@
             <div class="col">
                 <div class="card text-bg-success">
                     <img src="gambar/desadepan.jpeg" class="card-img-top" alt="desadepan">
-                    <div class="card-body" style="color: pink;">
+                    <div class="card-body" style="color: white;">
                         <h5 class="card-title">Sejarah Desa Tanah Merah</h5>
                         <p class="card-text">Desa Tanah Merah adalah nama suatu wilayah di Kecamatan Siak Hulu
                             Kabupaten Kampar ini yang nama Tanah Merah tersebut diambil dari salah satu nama
@@ -52,7 +52,7 @@
             <div class="row mt-5">
                 <div class="col-md-6 mb-3">
                     <div class="card text-bg-success">
-                        <div class="card-body" style="color: pink;">
+                        <div class="card-body" style="color: white;">
                             <h2>Visi</h2>
                             <p class="card-text" data-aos="fade-right">Terwujudnya pelayanan public yang transparan, akuntabilitas menuju Masyarakat Desa Tanah Merah yang maju, aman, dan sejahterah.</p>
                         </div>
@@ -61,7 +61,7 @@
                 <div class="col-md-6">
                     <div class="card text-bg-success">
                         <div class="card-body">
-                            <h2 style="color: pink;">Misi</h2>
+                            <h2 style="color: white;">Misi</h2>
                             <ol class="list-group list-group-numbered" data-aos="fade-left" data-aos-delay="200">
                                 <li class="list-group-item">
                                     <p class="card-text">Melanjutkan program-program Pemerintah Desa Tanah Merah periode lalu, sebagai mana tercantum dalam Dokumen RPJMDes Desa Tanah Merah.</p>

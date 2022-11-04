@@ -4,16 +4,29 @@ namespace App\Controllers\administrasiumum;
 
 use App\Controllers\BaseController;
 
+use monken\TablesIgniter;
+
 class peraturanDesaController extends BaseController
 {
     public function index()
     {
         $peraturan = [
             'title' => 'Administrasi Umum | Peraturan Desa',
-            'data' => $this->peraturanDesaModel->getPeraturan(),
+            // 'data' => $this->peraturanDesaModel->getPeraturan(),
             'validation' => \Config\Services::validation()
         ];
         return view('administrasiumum/peraturanDesaView', $peraturan);
+    }
+
+    public function ambilData()
+    {
+        $data_table = new TablesIgniter();
+        $data_table->setTable($this->peraturanDesaModel->getPeraturan())
+            ->setDefaultOrder('id_peraturan_desa', 'ESC')
+            ->setSearch(['nomor_tgl_peraturan', 'tentang'])
+            ->setOrder(['id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat'])
+            ->setOutput(["id_peraturan_desa", "nomor_tgl_peraturan", "tentang", "uraiansingkat"]);
+        return $data_table->getDatatable();
     }
 
     public function save()

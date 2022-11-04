@@ -1,0 +1,19 @@
+<tbody>
+                <?php $i = 1; ?>
+                <?php foreach ($data as $d) : ?>
+                    <tr>
+                        <th scope="row"><?= $i++; ?></th>
+                        <td><?= $d['nomor_tgl_peraturan']; ?></td>
+                        <td><?= $d['tentang']; ?></td>
+                        <td><?= $d['uraiansingkat']; ?></td>
+                        <td>
+                            <a href="/peraturanDesaController/edit/<?= $d['id_peraturan_desa']; ?>" class="btn btn-warning mb-1 tampilModalUbah" data-bs-toggle="modal" data-bs-target="#formModal" data-id="<?= $d['id_peraturan_desa']; ?>" data-namacontroller="<?= class_basename(service('router')->controllerName()) ?>">Edit</a>
+                            <form action="/peraturanDesaController/delete/<?= $d['id_peraturan_desa']; ?>" method="post" class="d-inline tombol-hapus" id="myCheck">
+                                <?= csrf_field(); ?>
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>

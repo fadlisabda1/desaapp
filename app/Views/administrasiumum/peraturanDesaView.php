@@ -21,35 +21,15 @@
     </button>
     <a class="btn" style="color:black;background-color: rgb(249,163,60);" href="">Print</a>
     <div class="table-responsive mt-2">
-        <table class="table table-bordered table-hover">
+        <table id="sample_table" class="table table-bordered table-hover">
             <thead class="table-light">
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
                     <th scope="col">Tentang</th>
                     <th scope="col">Uraian Singkat</th>
-                    <th scope="col">Tindakan</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php $i = 1; ?>
-                <?php foreach ($data as $d) : ?>
-                    <tr>
-                        <th scope="row"><?= $i++; ?></th>
-                        <td><?= $d['nomor_tgl_peraturan']; ?></td>
-                        <td><?= $d['tentang']; ?></td>
-                        <td><?= $d['uraiansingkat']; ?></td>
-                        <td>
-                            <a href="/peraturanDesaController/edit/<?= $d['id_peraturan_desa']; ?>" class="btn btn-warning mb-1 tampilModalUbah" data-bs-toggle="modal" data-bs-target="#formModal" data-id="<?= $d['id_peraturan_desa']; ?>" data-namacontroller="<?= class_basename(service('router')->controllerName()) ?>">Edit</a>
-                            <form action="/peraturanDesaController/delete/<?= $d['id_peraturan_desa']; ?>" method="post" class="d-inline tombol-hapus" id="myCheck">
-                                <?= csrf_field(); ?>
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit" class="btn btn-danger">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
         </table>
     </div>
 </div>

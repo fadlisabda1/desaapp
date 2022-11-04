@@ -15,11 +15,13 @@ section {
 }
 
 #wisata .card-body {
-  color: pink;
+  color: white;
 }
 
 #visimisi .list-group-item {
-  background-color: pink;
+  background-color: transparent;
+  border: hidden;
+  color: white;
 }
 
 /* Berita Desa Section */

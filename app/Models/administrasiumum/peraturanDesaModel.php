@@ -14,7 +14,7 @@ class peraturanDesaModel extends Model
     public function getPeraturan($id = false)
     {
         if ($id == false) {
-            return $this->findAll();
+            return $this->db->table('peraturan_desa');
         }
         return $this->where(['id_peraturan_desa' => $id])->first();
     }
