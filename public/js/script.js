@@ -7,17 +7,50 @@ $(document).ready(function () {
       type: "POST",
     },
   });
-});
-
-const flashData = $(".flash-data").data("flashdata");
-
-if (flashData) {
-  Swal.fire({
-    title: "Data Peraturan ",
-    text: "Berhasil " + flashData,
-    icon: "success",
+  $(".tombolTambahData").click(function () {
+    $("#user_form").val("");
+    $(".modal-title").text("Add Data");
+    $("#nomorTglPeraturanDesa_error").text("");
+    $("#tentang_error").text("");
+    $("#uraiansingkat_error").text("");
+    $("#action").val("Add");
+    $("#submit_button").val("Add");
+    $("#formModal").modal("show");
   });
-}
+  $("#user_form").on("submit", function (event) {
+    event.preventDefault();
+    $.ajax({
+      url: "peraturanDesaController/action",
+      method: "POST",
+      data: $(this).serialize(),
+      dataType: "JSON",
+      beforeSend: function () {
+        $("#submit_button").val("loading...");
+        $("#submit_button").attr("disabled", "disabled");
+      },
+      success: function (data) {
+        $("#submit_button").val("Tambah");
+        $("#submit_button").attr("disabled", false);
+        if (data.error == "yes") {
+          $("#nomorTglPeraturanDesa_error").text(data.nomorTglPeraturanDesa_error);
+          $("#tentang_error").text(data.tentang_error);
+          $("#uraiansingkat_error").text(data.uraiansingkat_error);
+        } else {
+          $("#formModal").modal("hide");
+          const flashData = data.message;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Peraturan ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table").DataTable().ajax.reload();
+        }
+      },
+    });
+  });
+});
 
 // tombol-hapus
 $(".tombol-hapus").on("click", function (e) {
@@ -34,34 +67,6 @@ $(".tombol-hapus").on("click", function (e) {
     if (result.isConfirmed) {
       $(this).submit();
     }
-  });
-});
-
-$(function () {
-  $(".tombolTambahData").on("click", function () {
-    $("#judulModalLabel").html("Tambah Data");
-    $(".modal-footer button[type=submit]").html("Tambah Data");
-  });
-  $(".tampilModalUbah").on("click", function () {
-    $("#judulModalLabel").html("Ubah Data");
-    $(".modal-footer button[type=submit]").html("Ubah Data");
-    const namaController = $(this).data("namacontroller");
-    $(".modal-body form").attr("action", namaController + "/update");
-    const id = $(this).data("id");
-
-    $.ajax({
-      url: "/" + namaController + "/edit",
-      data: { id: id },
-      method: "post",
-      dataType: "json",
-      success: function (data) {
-        var inputPeraturan = document.getElementsByClassName("inputPeraturan");
-        const isi = Object.values(data);
-        for (let i = 0; i < inputPeraturan.length; i++) {
-          $(inputPeraturan[i]).val(isi[i]);
-        }
-      },
-    });
   });
 });
 

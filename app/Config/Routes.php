@@ -41,7 +41,7 @@ $routes->get('/beritaController/detail/(:segment)', 'beritaController::detail/$1
 //peraturan desa 
 $routes->get('/peraturanDesaController', 'administrasiumum\peraturanDesaController::index');
 $routes->post('/peraturanDesaController/ambilData', 'administrasiumum\peraturanDesaController::ambilData');
-$routes->post('/peraturanDesaController/save', 'administrasiumum\peraturanDesaController::save');
+$routes->post('/peraturanDesaController/action', 'administrasiumum\peraturanDesaController::action');
 $routes->delete('/peraturanDesaController/delete/(:num)', 'administrasiumum\peraturanDesaController::delete/$1');
 $routes->post('/peraturanDesaController/edit', 'administrasiumum\peraturanDesaController::edit');
 $routes->post('/peraturanDesaController/update', 'administrasiumum\peraturanDesaController::update');

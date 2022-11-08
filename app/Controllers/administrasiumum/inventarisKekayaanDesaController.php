@@ -59,7 +59,6 @@ class inventarisKekayaanDesaController extends BaseController
             'sumber_pembiayaan' => $this->request->getVar('sumber_pembiayaan'),
             'perkiraan_biaya' => $this->request->getVar('perkiraan_biaya')
         ]);
-        session()->setFlashData('pesan', 'ditambahkan');
         return redirect()->to(base_url('/inventarisKekayaanDesaController'));
     }
 
