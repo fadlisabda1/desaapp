@@ -25,7 +25,7 @@ class peraturanDesaController extends BaseController
             ->setDefaultOrder('id_peraturan_desa', 'ESC')
             ->setSearch(['nomor_tgl_peraturan', 'tentang'])
             ->setOrder(['id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat'])
-            ->setOutput(["id_peraturan_desa", "nomor_tgl_peraturan", "tentang", "uraiansingkat"]);
+            ->setOutput(["id_peraturan_desa", "nomor_tgl_peraturan", "tentang", "uraiansingkat", $this->peraturanDesaModel->button()]);
         return $data_table->getDatatable();
     }
 
@@ -67,6 +67,17 @@ class peraturanDesaController extends BaseController
                     session()->setFlashData('pesan', 'ditambahkan');
                     $message = session()->getFlashdata('pesan');
                 }
+                if ($this->request->getVar('action') == 'Edit') {
+                    $id = $this->request->getVar('hidden_id');
+                    $data = [
+                        'nomor_tgl_peraturan' => $this->request->getVar('nomorTglPeraturanDesa'),
+                        'tentang' => $this->request->getVar('tentang'),
+                        'uraiansingkat' => $this->request->getVar('uraiansingkat')
+                    ];
+                    $this->peraturanDesaModel->update($id, $data);
+                    session()->setFlashData('pesan', 'diubah');
+                    $message = session()->getFlashdata('pesan');
+                }
             }
             $output = [
                 'nomorTglPeraturanDesa_error' => $nomorTglPeraturanDesa_error,
@@ -82,46 +93,18 @@ class peraturanDesaController extends BaseController
 
     public function delete($id)
     {
+        $peraturan = [
+            'title' => 'Administrasi Umum | Peraturan Desa'
+        ];
         $this->peraturanDesaModel->delete($id);
-        session()->setFlashData('pesan', 'dihapus.');
-        return redirect()->to(base_url('/peraturanDesaController'));
+        return view('administrasiumum/peraturanDesaView', $peraturan);
     }
 
     public function edit()
     {
-        echo json_encode($this->peraturanDesaModel->getPeraturan($_POST['id']));
-    }
-    public function update()
-    {
-        if (!$this->validate([
-            'nomorTglPeraturanDesa' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'Nomor Dan Tanggal Peraturan Desa harus di isi.'
-                ]
-            ],
-            'tentang' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} peraturan harus di isi.'
-                ]
-            ],
-            'uraiansingkat' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => 'uraian singkat peraturan harus di isi.'
-                ]
-            ],
-        ])) {
-            return redirect()->to(base_url('/peraturanDesaController'))->withInput();
+        if ($this->request->getVar('id')) {
+            $peraturan_data = $this->peraturanDesaModel->where('id_peraturan_desa', $this->request->getVar('id'))->first();
+            echo json_encode($peraturan_data);
         }
-        $this->peraturanDesaModel->save([
-            'id_peraturan_desa' => $_POST['id'],
-            'nomor_tgl_peraturan' => $this->request->getVar('nomorTglPeraturanDesa'),
-            'tentang' => $this->request->getVar('tentang'),
-            'uraiansingkat' => $this->request->getVar('uraiansingkat')
-        ]);
-        session()->setFlashData('pesan', 'diubah.');
-        return redirect()->to(base_url('/peraturanDesaController'));
     }
 }

@@ -18,4 +18,15 @@ class peraturanDesaModel extends Model
         }
         return $this->where(['id_peraturan_desa' => $id])->first();
     }
+
+    public function button()
+    {
+        $aksi_button = function ($row) {
+            return '
+            <button type="button" name="edit" class="btn btn-warning btn-sm edit" data-id="' . $row["id_peraturan_desa"] . '">Edit</button>&nbsp
+            <a href="peraturanDesaController/delete/' . $row["id_peraturan_desa"] . '" class="btn btn-danger btn-sm tombol-hapus">Hapus</a>
+            ';
+        };
+        return $aksi_button;
+    }
 }

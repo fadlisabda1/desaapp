@@ -52,9 +52,32 @@ $(document).ready(function () {
   });
 });
 
-// tombol-hapus
-$(".tombol-hapus").on("click", function (e) {
+$(document).on("click", ".edit", function () {
+  let id = $(this).data("id");
+  $.ajax({
+    url: "peraturanDesaController/edit",
+    method: "POST",
+    data: { id: id },
+    dataType: "JSON",
+    success: function (data) {
+      $("#nomorTglPeraturanDesa").val(data.nomor_tgl_peraturan);
+      $("#tentang").val(data.tentang);
+      $("#uraiansingkat").val(data.uraiansingkat);
+      $(".modal-header").text("Edit Data");
+      $("#nomorTglPeraturanDesa_error").text("");
+      $("#tentang_error").text("");
+      $("#uraiansingkat_error").text("");
+      $("#action").val("Edit");
+      $("#submit_button").val("Edit");
+      $("#formModal").modal("show");
+      $("#hidden_id").val(id);
+    },
+  });
+});
+
+$(".tombol-hapus").click(function () {
   e.preventDefault();
+  const href = $(this).attr("href");
   Swal.fire({
     title: "Apakah anda yakin",
     text: "data peraturan akan dihapus",
@@ -64,8 +87,8 @@ $(".tombol-hapus").on("click", function (e) {
     cancelButtonColor: "#d33",
     confirmButtonText: "Hapus Data!",
   }).then((result) => {
-    if (result.isConfirmed) {
-      $(this).submit();
+    if (result.value) {
+      document.location.href = href;
     }
   });
 });

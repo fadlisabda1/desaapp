@@ -1,6 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 <div class="container" style="margin-top: 90px;">
+    <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>"></div>
     <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
         Tambah
     </button>

@@ -42,9 +42,8 @@ $routes->get('/beritaController/detail/(:segment)', 'beritaController::detail/$1
 $routes->get('/peraturanDesaController', 'administrasiumum\peraturanDesaController::index');
 $routes->post('/peraturanDesaController/ambilData', 'administrasiumum\peraturanDesaController::ambilData');
 $routes->post('/peraturanDesaController/action', 'administrasiumum\peraturanDesaController::action');
-$routes->delete('/peraturanDesaController/delete/(:num)', 'administrasiumum\peraturanDesaController::delete/$1');
+$routes->get('/peraturanDesaController/delete/(:num)', 'administrasiumum\peraturanDesaController::delete/$1');
 $routes->post('/peraturanDesaController/edit', 'administrasiumum\peraturanDesaController::edit');
-$routes->post('/peraturanDesaController/update', 'administrasiumum\peraturanDesaController::update');
 //Inventaris dan Kekayaan Desa
 $routes->get('/inventarisKekayaanDesaController', 'administrasiumum\inventarisKekayaanDesaController::index');
 $routes->post('/inventarisKekayaanDesaController/save', 'administrasiumum\inventarisKekayaanDesaController::save');
