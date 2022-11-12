@@ -24,7 +24,11 @@ class peraturanDesaModel extends Model
         $aksi_button = function ($row) {
             return '
             <button type="button" name="edit" class="btn btn-warning btn-sm edit" data-id="' . $row["id_peraturan_desa"] . '">Edit</button>&nbsp
-            <a href="peraturanDesaController/delete/' . $row["id_peraturan_desa"] . '" class="btn btn-danger btn-sm tombol-hapus">Hapus</a>
+            <form action="peraturanDesaController/delete/.'$row["id_peraturan_desa"]'" method="post" class="d-inline tombol-hapus">
+                '.csrf_field().'
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
             ';
         };
         return $aksi_button;

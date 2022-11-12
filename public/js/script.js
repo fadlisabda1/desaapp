@@ -77,7 +77,6 @@ $(document).on("click", ".edit", function () {
 
 $(".tombol-hapus").click(function () {
   e.preventDefault();
-  const href = $(this).attr("href");
   Swal.fire({
     title: "Apakah anda yakin",
     text: "data peraturan akan dihapus",
@@ -87,8 +86,8 @@ $(".tombol-hapus").click(function () {
     cancelButtonColor: "#d33",
     confirmButtonText: "Hapus Data!",
   }).then((result) => {
-    if (result.value) {
-      document.location.href = href;
+    if (result.isConfirmed) {
+      $(this).submit();
     }
   });
 });
