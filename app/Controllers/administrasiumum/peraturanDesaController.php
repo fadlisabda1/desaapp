@@ -25,7 +25,7 @@ class peraturanDesaController extends BaseController
             ->setDefaultOrder('id_peraturan_desa', 'ESC')
             ->setSearch(['nomor_tgl_peraturan', 'tentang'])
             ->setOrder(['id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat'])
-            ->setOutput(["id_peraturan_desa", "nomor_tgl_peraturan", "tentang", "uraiansingkat", $this->peraturanDesaModel->button()]);
+            ->setOutput(['id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat', $this->peraturanDesaModel->button()]);
         return $data_table->getDatatable();
     }
 
@@ -91,13 +91,14 @@ class peraturanDesaController extends BaseController
         }
     }
 
-    public function delete($id)
+    public function delete()
     {
-        $peraturan = [
-            'title' => 'Administrasi Umum | Peraturan Desa'
-        ];
-        $this->peraturanDesaModel->delete($id);
-        return view('administrasiumum/peraturanDesaView', $peraturan);
+        if ($this->request->getVar('id')) {
+            $id = $this->request->getVar('id');
+            $this->peraturanDesaModel->delete($id);
+            session()->setFlashData('pesan', 'dihapus.');
+            echo session()->getFlashdata('pesan');
+        }
     }
 
     public function edit()

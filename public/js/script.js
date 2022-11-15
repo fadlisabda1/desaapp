@@ -75,8 +75,8 @@ $(document).on("click", ".edit", function () {
   });
 });
 
-$(".tombol-hapus").click(function () {
-  e.preventDefault();
+$(document).on("click", ".delete", function () {
+  let id = $(this).data("id");
   Swal.fire({
     title: "Apakah anda yakin",
     text: "data peraturan akan dihapus",
@@ -87,7 +87,25 @@ $(".tombol-hapus").click(function () {
     confirmButtonText: "Hapus Data!",
   }).then((result) => {
     if (result.isConfirmed) {
-      $(this).submit();
+      $.ajax({
+        type: "POST",
+        data: {
+          id: id,
+          _method: "DELETE",
+        },
+        url: "peraturanDesaController/delete",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Mahasiswa ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table").DataTable().ajax.reload();
+        },
+      });
     }
   });
 });
