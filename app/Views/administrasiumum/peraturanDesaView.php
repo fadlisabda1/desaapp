@@ -1,22 +1,26 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 <div class="container" style="margin-top: 90px;">
+    <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>"></div>
     <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
         Tambah
     </button>
     <a class="btn" style="color:black;background-color: rgb(249,163,60);" href="">Print</a>
     <div class="table-responsive mt-2">
-        <table id="sample_table" class="table table-bordered table-hover">
-            <thead class="table-light">
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
-                    <th scope="col">Tentang</th>
-                    <th scope="col">Uraian Singkat</th>
-                    <th scope="col">Tindakan</th>
-                </tr>
-            </thead>
-        </table>
+        <form action="<?= base_url('peraturanDesaController/ceklisDeleteButton'); ?>" method="POST">
+            <table id="sample_table" class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col"><button type="submit" name="ceklisDeleteButton" class="btn btn-danger btn-sm ceklisDeleteButton">Delete All</button></th>
+                        <th scope="col">No</th>
+                        <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
+                        <th scope="col">Tentang</th>
+                        <th scope="col">Uraian Singkat</th>
+                        <th scope="col">Tindakan</th>
+                    </tr>
+                </thead>
+            </table>
+        </form>
     </div>
 </div>
 <!-- Modal -->

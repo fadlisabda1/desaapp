@@ -11,13 +11,24 @@ class peraturanDesaModel extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
     protected $allowedFields = ['nomor_tgl_peraturan', 'tentang', 'uraiansingkat'];
-    public function getPeraturan($id = false)
+    public function getDataNull()
     {
-        if ($id == false) {
+        return $this->db->table('peraturan_desa')->where('deleted_at', NULL);
+    }
 
-            return $this->db->table('peraturan_desa')->where('deleted_at', NULL);
-        }
-        return $this->where(['id_peraturan_desa' => $id])->first();
+    public function getDataAll()
+    {
+        return $this->findAll();
+    }
+
+    public function ceklisDeleteButton()
+    {
+        $ceklis_button = function ($row) {
+            return '
+            <input type="checkbox" class="text-center" name="checkbox_value[]" value="' . $row["id_peraturan_desa"] . '">
+            ';
+        };
+        return $ceklis_button;
     }
 
     public function button()

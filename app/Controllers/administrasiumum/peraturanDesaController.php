@@ -12,7 +12,6 @@ class peraturanDesaController extends BaseController
     {
         $peraturan = [
             'title' => 'Administrasi Umum | Peraturan Desa',
-            // 'data' => $this->peraturanDesaModel->getPeraturan(),
             'validation' => \Config\Services::validation()
         ];
         return view('administrasiumum/peraturanDesaView', $peraturan);
@@ -21,11 +20,11 @@ class peraturanDesaController extends BaseController
     public function ambilData()
     {
         $data_table = new TablesIgniter();
-        $data_table->setTable($this->peraturanDesaModel->getPeraturan())
+        $data_table->setTable($this->peraturanDesaModel->getDataNull())
             ->setDefaultOrder('id_peraturan_desa', 'ESC')
             ->setSearch(['nomor_tgl_peraturan', 'tentang'])
             ->setOrder(['id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat'])
-            ->setOutput(['id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat', $this->peraturanDesaModel->button()]);
+            ->setOutput([$this->peraturanDesaModel->ceklisButtonDelete(), 'id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat', $this->peraturanDesaModel->button()]);
         return $data_table->getDatatable();
     }
 
@@ -106,6 +105,18 @@ class peraturanDesaController extends BaseController
         if ($this->request->getVar('id')) {
             $peraturan_data = $this->peraturanDesaModel->where('id_peraturan_desa', $this->request->getVar('id'))->first();
             echo json_encode($peraturan_data);
+        }
+    }
+
+    public function ceklisDeleteButton()
+    {
+        if (isset($_POST['ceklisDeleteButton'])) {
+            if (!empty($_POST['checkbox_value'])) {
+                
+            } else {
+                session()->setFlashData('pesan', 'dihapus.');
+                redirect()->to(base_url('/peraturanDesaController'));
+            }
         }
     }
 }
