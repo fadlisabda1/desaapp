@@ -41,4 +41,10 @@ class peraturanDesaModel extends Model
         };
         return $aksi_button;
     }
+
+    public function checkboxDelete($arrCeklisId)
+    {
+        $hapus = $this->whereIn('id_peraturan_desa', $arrCeklisId);
+        return $this->delete($hapus);
+    }
 }

@@ -110,33 +110,16 @@ $(document).on("click", ".delete", function () {
   });
 });
 
-$(".ceklisDeleteButton").on("click", function (e) {
-  e.preventDefault();
-  Swal.fire({
-    title: "Apakah anda yakin",
-    text: "data mahasiswa akan dihapus",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Hapus Data!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      document.location.href = href;
-    }
+$(document).on("click", ".ceklisDeleteButton", function () {
+  let id = $(this).data("id");
+  $.ajax({
+    url: "peraturanDesaController/ceklisDeleteButton",
+    method: "POST",
+    data: { id: id },
+    dataType: "JSON",
+    success: function (data) {},
   });
 });
-
-// $(document).on("click", ".ceklisDeleteButton", function () {
-//   let id = $(this).data("id");
-//   $.ajax({
-//     url: "peraturanDesaController/ceklisDeleteButton",
-//     method: "POST",
-//     data: { id: id },
-//     dataType: "JSON",
-//     success: function (data) {},
-//   });
-// });
 
 $(".page-scroll").on("click", function (e) {
   // ambil isi href

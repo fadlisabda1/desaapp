@@ -7,20 +7,18 @@
     </button>
     <a class="btn" style="color:black;background-color: rgb(249,163,60);" href="">Print</a>
     <div class="table-responsive mt-2">
-        <form action="<?= base_url('peraturanDesaController/ceklisDeleteButton'); ?>" method="POST">
-            <table id="sample_table" class="table table-bordered table-hover">
-                <thead class="table-light">
-                    <tr>
-                        <th scope="col"><button type="submit" name="ceklisDeleteButton" class="btn btn-danger btn-sm ceklisDeleteButton">Delete All</button></th>
-                        <th scope="col">No</th>
-                        <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
-                        <th scope="col">Tentang</th>
-                        <th scope="col">Uraian Singkat</th>
-                        <th scope="col">Tindakan</th>
-                    </tr>
-                </thead>
-            </table>
-        </form>
+        <table id="sample_table" class="table table-bordered table-hover">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col"><button type="submit" name="ceklisDeleteButton" class="btn btn-danger btn-sm ceklisDeleteButton">Delete All</button></th>
+                    <th scope="col">No</th>
+                    <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
+                    <th scope="col">Tentang</th>
+                    <th scope="col">Uraian Singkat</th>
+                    <th scope="col">Tindakan</th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
 <!-- Modal -->

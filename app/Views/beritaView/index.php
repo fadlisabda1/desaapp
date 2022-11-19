@@ -32,7 +32,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title"><?= $data['judul']; ?></h5>
-                    <p class="card-text"><?= $data['keterangan']; ?></p>
+                    <p class="card-text" style="text-align: justify;"><?= $data['keterangan']; ?></p>
                     <p class="card-text"><small class="text-muted"><?= $data['created_at']; ?></small></p>
                     <a href="/" class="btn btn-success">Kembali ke profil desa</a>
                 </div>

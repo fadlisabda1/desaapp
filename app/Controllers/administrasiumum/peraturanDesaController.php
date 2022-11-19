@@ -24,7 +24,7 @@ class peraturanDesaController extends BaseController
             ->setDefaultOrder('id_peraturan_desa', 'ESC')
             ->setSearch(['nomor_tgl_peraturan', 'tentang'])
             ->setOrder(['id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat'])
-            ->setOutput([$this->peraturanDesaModel->ceklisButtonDelete(), 'id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat', $this->peraturanDesaModel->button()]);
+            ->setOutput([$this->peraturanDesaModel->ceklisDeleteButton(), 'id_peraturan_desa', 'nomor_tgl_peraturan', 'tentang', 'uraiansingkat', $this->peraturanDesaModel->button()]);
         return $data_table->getDatatable();
     }
 
@@ -90,16 +90,6 @@ class peraturanDesaController extends BaseController
         }
     }
 
-    public function delete()
-    {
-        if ($this->request->getVar('id')) {
-            $id = $this->request->getVar('id');
-            $this->peraturanDesaModel->delete($id);
-            session()->setFlashData('pesan', 'dihapus.');
-            echo session()->getFlashdata('pesan');
-        }
-    }
-
     public function edit()
     {
         if ($this->request->getVar('id')) {
@@ -112,9 +102,16 @@ class peraturanDesaController extends BaseController
     {
         if (isset($_POST['ceklisDeleteButton'])) {
             if (!empty($_POST['checkbox_value'])) {
-                
-            } else {
+                $arrCeklis = $_POST['checkbox_value'];
+                $arrCeklisId = [];
+                foreach ($arrCeklis as $idValue) {
+                    array_push($arrCeklisId, $idValue);
+                }
+                $this->peraturanDesaModel->checkboxDelete($arrCeklisId);
                 session()->setFlashData('pesan', 'dihapus.');
+                redirect()->to(base_url('/peraturanDesaController'));
+            } else {
+                session()->setFlashData('pesan', 'gagal dihapus.');
                 redirect()->to(base_url('/peraturanDesaController'));
             }
         }
