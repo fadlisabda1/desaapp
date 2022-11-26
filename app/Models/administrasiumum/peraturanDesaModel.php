@@ -21,11 +21,11 @@ class peraturanDesaModel extends Model
         return $this->findAll();
     }
 
-    public function ceklisDeleteButton()
+    public function ceklisDelete()
     {
         $ceklis_button = function ($row) {
             return '
-            <input type="checkbox" class="text-center" name="checkbox_value[]" value="' . $row["id_peraturan_desa"] . '">
+            <input type="checkbox" name="checkbox_value[]" value="' . $row['id_peraturan_desa'] . '">
             ';
         };
         return $ceklis_button;
@@ -36,15 +36,14 @@ class peraturanDesaModel extends Model
         $aksi_button = function ($row) {
             return '
             <button type="button" name="edit" class="btn btn-warning btn-sm edit" data-id="' . $row["id_peraturan_desa"] . '">Edit</button>&nbsp;
-            <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $row["id_peraturan_desa"] . '">Delete</button>
+            <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $row["id_peraturan_desa"] . '">Delete</button>&nbsp;<button type="button" class="btn btn-danger btn-sm deleteAllButton">Delete All</button>&nbsp;<button type="button" onclick="selects()" class="btn btn-danger btn-sm">Ceklis All</button>
             ';
         };
         return $aksi_button;
     }
 
-    public function checkboxDelete($arrCeklisId)
+    public function checkboxDelete($id)
     {
-        $hapus = $this->whereIn('id_peraturan_desa', $arrCeklisId);
-        return $this->delete($hapus);
+        return $this->whereIn('id_peraturan_desa', $id)->delete();
     }
 }

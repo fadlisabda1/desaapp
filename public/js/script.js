@@ -98,7 +98,7 @@ $(document).on("click", ".delete", function () {
           const flashData = data;
           if (flashData) {
             Swal.fire({
-              title: "Data Mahasiswa ",
+              title: "Data Peraturan ",
               text: "Berhasil " + flashData,
               icon: "success",
             });
@@ -110,16 +110,51 @@ $(document).on("click", ".delete", function () {
   });
 });
 
-$(document).on("click", ".ceklisDeleteButton", function () {
-  let id = $(this).data("id");
-  $.ajax({
-    url: "peraturanDesaController/ceklisDeleteButton",
-    method: "POST",
-    data: { id: id },
-    dataType: "JSON",
-    success: function (data) {},
+$(document).on("click", ".deleteAllButton", function () {
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data peraturan akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let checkboxes = document.querySelectorAll('input[name="checkbox_value[]"]:checked');
+      var vals = [];
+      for (var i = 0, n = checkboxes.length; i < n; i++) {
+        vals.push(checkboxes[i].value);
+      }
+      $.ajax({
+        type: "POST",
+        data: {
+          id: vals,
+          _method: "DELETE",
+        },
+        url: "peraturanDesaController/ceklisDeleteButton",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Peraturan ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table").DataTable().ajax.reload();
+        },
+      });
+    }
   });
 });
+
+function selects() {
+  var ele = document.getElementsByName("checkbox_value[]");
+  for (var i = 0; i < ele.length; i++) {
+    if (ele[i]) ele[i].checked = true;
+  }
+}
 
 $(".page-scroll").on("click", function (e) {
   // ambil isi href
