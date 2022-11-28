@@ -8,16 +8,16 @@ $(document).ready(function () {
     },
   });
   $(".tombolTambahData").click(function () {
-    $("#user_form").val("");
+    $("#peraturan_form").val("");
     $(".modal-title").text("Add Data");
     $("#nomorTglPeraturanDesa_error").text("");
     $("#tentang_error").text("");
     $("#uraiansingkat_error").text("");
+    $("#formModal").modal("show");
     $("#action").val("Add");
     $("#submit_button").val("Add");
-    $("#formModal").modal("show");
   });
-  $("#user_form").on("submit", function (event) {
+  $("#peraturan_form").on("submit", function (event) {
     event.preventDefault();
     $.ajax({
       url: "peraturanDesaController/action",
@@ -29,7 +29,7 @@ $(document).ready(function () {
         $("#submit_button").attr("disabled", "disabled");
       },
       success: function (data) {
-        $("#submit_button").val("Tambah");
+        $("#submit_button").val("Add");
         $("#submit_button").attr("disabled", false);
         if (data.error == "yes") {
           $("#nomorTglPeraturanDesa_error").text(data.nomorTglPeraturanDesa_error);
@@ -160,7 +160,7 @@ $(".page-scroll").on("click", function (e) {
   // ambil isi href
   var tujuan = $(this).attr("href");
   // tangkap elemen yang bersangkutan
-  var elemenTujuan = $(tujuan);
+  var elemenTujuan = $(tujuan.replace("/", ""));
   // pindahkan scroll
   $("html").animate(
     {

@@ -2,7 +2,7 @@
 
 <?= $this->section('content'); ?>
 <!-- Jumbotron -->
-<section class="jumbotron mt-5 text-center">
+<section class="jumbotron text-center" id="Home">
     <img src="gambar/fotokades.jpeg" alt="kades" width="200" class="rounded-circle img-thumbnail" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Foto Kepala Desa Tanah Merah" />
     <h1 class="display-4" style="color: yellow;">Selamat Datang</h1>
     <p class="lead" style="color: yellow;"></p>

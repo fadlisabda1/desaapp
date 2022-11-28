@@ -1,6 +1,6 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
-<div class="container" style="margin-top: 90px;">
+<div class="container" style="margin-top: 10px;">
     <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
         Tambah
     </button>
@@ -9,7 +9,7 @@
         <table id="sample_table" class="table table-bordered table-hover">
             <thead class="table-light">
                 <tr>
-                    <th scope="col">Delete All</th>
+                    <th scope="col">Ceklis</th>
                     <th scope="col">No</th>
                     <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
                     <th scope="col">Tentang</th>
@@ -29,7 +29,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" id="user_form">
+                <form method="post" id="peraturan_form">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="id" id="id">
                     <div class="mb-3">

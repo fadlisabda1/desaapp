@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 
 <?= $this->section('content'); ?>
-<div class="container" style="margin-top: 100px;">
+<div class="container">
     <div class="row text-center mb-3">
         <div class="col">
             <h2 style="color: green;">Publikasi Umum Detail</h2>
