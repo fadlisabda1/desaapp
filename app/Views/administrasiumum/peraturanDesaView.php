@@ -4,7 +4,6 @@
     <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
         Tambah
     </button>
-    <a class="btn" style="color:black;background-color: rgb(249,163,60);" href="peraturanDesaController/cetak" target="_blank">Print</a>
     <div class="table-responsive mt-2">
         <table id="sample_table" class="table table-bordered table-hover">
             <thead class="table-light">

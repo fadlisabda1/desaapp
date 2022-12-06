@@ -45,7 +45,6 @@ $routes->post('/peraturanDesaController/action', 'administrasiumum\peraturanDesa
 $routes->delete('/peraturanDesaController/delete', 'administrasiumum\peraturanDesaController::delete');
 $routes->delete('/peraturanDesaController/ceklisDeleteButton', 'administrasiumum\peraturanDesaController::ceklisDeleteButton');
 $routes->post('/peraturanDesaController/edit', 'administrasiumum\peraturanDesaController::edit');
-$routes->get('/peraturanDesaController/cetak', 'administrasiumum\peraturanDesaController::cetak');
 //Inventaris dan Kekayaan Desa
 $routes->get('/inventarisKekayaanDesaController', 'administrasiumum\inventarisKekayaanDesaController::index');
 $routes->post('/inventarisKekayaanDesaController/save', 'administrasiumum\inventarisKekayaanDesaController::save');

@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 
 use monken\TablesIgniter;
 
-use \Dompdf\Dompdf;
 
 class peraturanDesaController extends BaseController
 {
@@ -116,20 +115,5 @@ class peraturanDesaController extends BaseController
         $this->peraturanDesaModel->checkboxDelete($id);
         session()->setFlashData('pesan', 'dihapus.');
         echo session()->getFlashdata('pesan');
-    }
-
-    public function cetak()
-    {
-        $dompdf = new Dompdf();
-        $cetak = [
-            'data' => $this->peraturanDesaModel->getDataAll()
-        ];
-        $html = view('cetakView/index', $cetak);
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'landscape');
-        $dompdf->render();
-        $dompdf->stream('dataperaturan.pdf', array(
-            "Attachment" => false
-        ));
     }
 }
