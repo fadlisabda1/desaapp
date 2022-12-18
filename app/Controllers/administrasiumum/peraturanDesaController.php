@@ -15,7 +15,7 @@ class peraturanDesaController extends BaseController
             'title' => 'Administrasi Umum | Peraturan Desa',
             'validation' => \Config\Services::validation()
         ];
-        return view('administrasiumum/peraturanDesaView', $peraturan);
+        return view('administrasiumum/peraturanDesaView2', $peraturan);
     }
 
     public function ambilData()

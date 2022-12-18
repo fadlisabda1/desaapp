@@ -36,14 +36,8 @@
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="/#wisata">Wisata</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                        Administrasi Umum
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/peraturanDesaController">Peraturan Desa</a></li>
-                        <li><a class="dropdown-item" href="/inventarisKekayaanDesaController">Inventaris dan <br>Kekayaan Desa</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="/">Administrasi Desa</a>
                 </li>
             </ul>
         </div>

@@ -506,7 +506,7 @@
     <footer class="bg-success text-center pb-5" style="color: yellow;">
         <p>
             <i class="bi bi-c-circle-fill"></i>
-            Copyright 2022|Built With <i class="bi bi-heart-fill"></i> By <a href="https://github.com/fadlisabda?tab=repositories" target="_blank" class="fw-bold text-decoration-none" style="color: yellow;">Fhadly Sabda Dinov</a>
+            Copyright <?= date('Y'); ?>|Built With <i class="bi bi-heart-fill"></i> By <a href="https://github.com/fadlisabda?tab=repositories" target="_blank" class="fw-bold text-decoration-none" style="color: yellow;">Fhadly Sabda Dinov</a>
             <br>
             <b>Kasi Pelayanan : 082285847330</b>
         </p>

@@ -35,11 +35,17 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-//profil
-$routes->get('/', 'profilPemerintahanController::index');
+//random
+$routes->get('/', 'administrasiumum\peraturanDesaController::index');
+$routes->get('/login', 'homeController::login');
+$routes->get('/register', 'homeController::register');
+$routes->get('/profil', 'profilPemerintahanController::index');
 $routes->get('/beritaController/detail/(:segment)', 'beritaController::detail/$1');
+$routes->get('/admin', 'adminController::index', ['filter' => 'role:admin']);
+$routes->get('/admin/index', 'adminController::index', ['filter' => 'role:admin']);
+$routes->get('/admin/(:num)', 'adminController::detail/$1', ['filter' => 'role:admin']);
+$routes->get('/user', 'userController::index');
 //peraturan desa 
-$routes->get('/peraturanDesaController', 'administrasiumum\peraturanDesaController::index');
 $routes->post('/peraturanDesaController/ambilData', 'administrasiumum\peraturanDesaController::ambilData');
 $routes->post('/peraturanDesaController/action', 'administrasiumum\peraturanDesaController::action');
 $routes->delete('/peraturanDesaController/delete', 'administrasiumum\peraturanDesaController::delete');
