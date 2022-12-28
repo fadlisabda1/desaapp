@@ -1,78 +1,82 @@
 <?= $this->extend('auth/templates/index'); ?>
 <?= $this->section('content'); ?>
-<div class="container">
 
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
-
-        <div class="col-md-6">
-
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4"><?= lang('Auth.loginTitle') ?></h1>
-                                </div>
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header">
+                                <h3 class="text-center font-weight-light my-4"><?= lang('Auth.loginTitle') ?></h3>
+                            </div>
+                            <div class="card-body">
                                 <?= view('Myth\Auth\Views\_message_block') ?>
-                                <form action="<?= route_to('login') ?>" method="post" class="user">
+                                <form action="<?= route_to('login') ?>" method="post">
                                     <?= csrf_field() ?>
                                     <?php if ($config->validFields === ['email']) : ?>
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.email') ?>">
+                                        <div class="form-floating mb-3">
+                                            <input class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" type="email" id="login" />
+                                            <label for="login"><?= lang('Auth.email') ?></label>
                                             <div class="invalid-feedback">
                                                 <?= session('errors.login') ?>
                                             </div>
                                         </div>
                                     <?php else : ?>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control form-control-user <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" placeholder="<?= lang('Auth.emailOrUsername') ?>">
+                                        <div class="form-floating mb-3">
+                                            <input type="text" class="form-control <?php if (session('errors.login')) : ?>is-invalid<?php endif ?>" name="login" id="login">
+                                            <label for="login"><?= lang('Auth.emailOrUsername') ?></label>
                                             <div class="invalid-feedback">
                                                 <?= session('errors.login') ?>
                                             </div>
                                         </div>
                                     <?php endif; ?>
-                                    <div class="form-group">
-                                        <input type="password" name="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.password') ?>">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" name="password" id="password" type="password" />
+                                        <label for="password"><?= lang('Auth.password') ?></label>
                                         <div class="invalid-feedback">
                                             <?= session('errors.password') ?>
                                         </div>
                                     </div>
                                     <?php if ($config->allowRemembering) : ?>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" name="remembering" <?php if (old('remember')) : ?> checked <?php endif ?>>
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" id="inputRememberPassword" name="remember" type="checkbox" <?php if (old('remember')) : ?> checked <?php endif ?> />
+                                            <label class="form-check-label" for="inputRememberPassword"><?= lang('Auth.rememberMe') ?></label>
                                         </div>
                                     <?php endif; ?>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        <?= lang('Auth.loginAction') ?>
-                                    </button>
+                                    <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        <?php if ($config->activeResetter) : ?>
+                                            <a class="small text-success" href="<?= route_to('forgot') ?>"><?= lang('Auth.forgotYourPassword') ?></a>
+                                        <?php endif; ?>
+                                        <button class="btn btn-success" href="/"><?= lang('Auth.loginAction') ?></button>
+                                    </div>
                                 </form>
-                                <hr>
-                                <?php if ($config->activeResetter) : ?>
-                                    <div class="text-center">
-                                        <p><a href="<?= route_to('forgot') ?>"><?= lang('Auth.forgotYourPassword') ?></a></p>
-                                    </div>
-                                <?php endif; ?>
-                                <?php if ($config->allowRegistration) : ?>
-                                    <div class="text-center">
-                                        <p><a href="<?= route_to('register') ?>"><?= lang('Auth.needAnAccount') ?></a></p>
-                                    </div>
-                                <?php endif; ?>
                             </div>
+                            <?php if ($config->allowRegistration) : ?>
+                                <div class="card-footer text-center py-3">
+                                    <div class="small"><a class="text-success" href="<?= route_to('register') ?>"><?= lang('Auth.needAnAccount') ?></a></div>
+                                </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
-
+        </main>
     </div>
-
+    <div id="layoutAuthentication_footer">
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 </div>
 <?= $this->endSection(); ?>

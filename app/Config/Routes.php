@@ -39,6 +39,8 @@ $routes->set404Override();
 $routes->get('/', 'administrasiumum\peraturanDesaController::index');
 $routes->get('/login', 'homeController::login');
 $routes->get('/register', 'homeController::register');
+$routes->get('/forgot', 'homeController::forgot');
+$routes->get('/reset-password', 'homeController::reset');
 $routes->get('/profil', 'profilPemerintahanController::index');
 $routes->get('/beritaController/detail/(:segment)', 'beritaController::detail/$1');
 $routes->get('/admin', 'adminController::index', ['filter' => 'role:admin']);

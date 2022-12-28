@@ -1,52 +1,69 @@
 <?= $this->extend('auth/templates/index'); ?>
 <?= $this->section('content'); ?>
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card o-hidden border-0 shadow-lg my-5">
-                <div class="card-body p-0">
-                    <!-- Nested Row within Card Body -->
-                    <div class="row">
-                        <div class="col-lg">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4"><?= lang('Auth.register') ?></h1>
-                                </div>
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header">
+                                <h3 class="text-center font-weight-light my-4"><?= lang('Auth.register') ?></h3>
+                            </div>
+                            <div class="card-body">
                                 <?= view('Myth\Auth\Views\_message_block') ?>
                                 <form class="user" action="<?= url_to('register') ?>" method="post">
                                     <?= csrf_field() ?>
-                                    <div class="form-group">
-                                        <input type="email" class="form-control form-control-user <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" placeholder="<?= lang('Auth.email') ?>" value="<?= old('email') ?>">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control <?php if (session('errors.email')) : ?>is-invalid<?php endif ?>" name="email" aria-describedby="emailHelp" id="inputEmail" type="email" value="<?= old('email') ?>" />
                                         <small id="emailHelp" class="form-text text-muted"><?= lang('Auth.weNeverShare') ?></small>
+                                        <label for="inputEmail"><?= lang('Auth.email') ?></label>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" class="form-control form-control-user <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" placeholder="<?= lang('Auth.username') ?>" value="<?= old('username') ?>">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control <?php if (session('errors.username')) : ?>is-invalid<?php endif ?>" name="username" id="inputUsername" type="text" value="<?= old('username') ?>" />
+                                        <label for="inputUsername"><?= lang('Auth.username') ?></label>
                                     </div>
-                                    <div class="form-group row">
-                                        <div class="col-sm-6 mb-3 mb-sm-0">
-                                            <input type="password" class="form-control form-control-user <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" name="password" placeholder="<?= lang('Auth.password') ?>" autocomplete="off">
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3 mb-md-0">
+                                                <input class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" id="inputPassword" type="password" name="password" autocomplete="off" />
+                                                <label for="inputPassword"><?= lang('Auth.password') ?></label>
+                                            </div>
                                         </div>
-                                        <div class="col-sm-6">
-                                            <input type="password" name="pass_confirm" class="form-control form-control-user <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" placeholder="<?= lang('Auth.repeatPassword') ?>" autocomplete="off">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3 mb-md-0">
+                                                <input class="form-control <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" id="inputPasswordConfirm" name="pass_confirm" type="password" autocomplete="off" />
+                                                <label for="inputPasswordConfirm"><?= lang('Auth.repeatPassword') ?></label>
+                                            </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary btn-user btn-block">
-                                        <?= lang('Auth.register') ?>
-                                    </button>
+                                    <div class="mt-4 mb-0">
+                                        <div class="d-grid"><button type="submit" class="btn btn-success btn-block"><?= lang('Auth.register') ?></button></div>
+                                    </div>
                                 </form>
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="<?= url_to('login') ?>"><?= lang('Auth.alreadyRegistered') ?><?= lang('Auth.signIn') ?></a>
-                                </div>
+                            </div>
+                            <div class="card-footer text-center py-3">
+                                <div class="small"><a class="text-success" href="<?= url_to('login') ?>"><?= lang('Auth.alreadyRegistered') ?><?= lang('Auth.signIn') ?></a></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2022</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </div>
 <?= $this->endSection(); ?>

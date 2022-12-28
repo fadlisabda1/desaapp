@@ -24,4 +24,18 @@ class homeController extends BaseController
         ];
         return view('auth/register', $data);
     }
+    public function forgot()
+    {
+        $data = [
+            'title' => 'Forgot Password | Desa Tanah Merah'
+        ];
+        return view('auth/forgot', $data);
+    }
+    public function reset()
+    {
+        $data = [
+            'title' => 'Reset Password | Desa Tanah Merah'
+        ];
+        return view('auth/reset', $data);
+    }
 }

@@ -1,22 +1,26 @@
-<?= $this->extend('layout/template'); ?>
-<?= $this->section('content'); ?>
-<div class="container" style="margin-top: 10px;">
-    <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
-        Tambah
-    </button>
-    <div class="table-responsive mt-2">
-        <table id="sample_table" class="table table-bordered table-hover">
-            <thead class="table-light">
-                <tr>
-                    <th scope="col">Ceklis</th>
-                    <th scope="col">No</th>
-                    <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
-                    <th scope="col">Tentang</th>
-                    <th scope="col">Uraian Singkat</th>
-                    <th scope="col">Tindakan</th>
-                </tr>
-            </thead>
-        </table>
+<?= $this->extend('administrasiumum/templates/index'); ?>
+<?= $this->section('page-content'); ?>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
+            Tambah
+        </button>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive mt-2">
+            <table id="sample_table" class="table table-bordered table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Ceklis</th>
+                        <th scope="col">No</th>
+                        <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
+                        <th scope="col">Tentang</th>
+                        <th scope="col">Uraian Singkat</th>
+                        <th scope="col">Tindakan</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
 <!-- Modal -->
