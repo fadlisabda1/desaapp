@@ -1,6 +1,6 @@
 <?= $this->extend('administrasiumum/templates/index'); ?>
 <?= $this->section('page-content'); ?>
-<div class="card shadow mb-4">
+<div class="card shadow mb-4 mt-4">
     <div class="card-header py-3">
         <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
             Tambah

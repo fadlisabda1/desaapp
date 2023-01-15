@@ -109,6 +109,112 @@ $(document).on("click", ".edit", function () {
   });
 });
 
+function previewImg() {
+  const user_image = document.querySelector("#user_image");
+  const imgPreview = document.querySelector(".img-preview");
+
+  const fileUserImage = new FileReader();
+  fileUserImage.readAsDataURL(user_image.files[0]);
+
+  fileUserImage.onload = function (e) {
+    imgPreview.src = e.target.result;
+  };
+}
+
+$("#user_form").on("submit", function (event) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    url: "user/action",
+    processData: false,
+    contentType: false,
+    method: "POST",
+    data: formData,
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Edit");
+      $("#submit_button").attr("disabled", false);
+      if (data.error == "yes") {
+        $("#email_error").text(data.email_error);
+        $("#username_error").text(data.username_error);
+        $("#user_image_error").text(data.user_image_error);
+      } else {
+        $("#formModal").modal("hide");
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data User ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+        window.location.reload();
+      }
+    },
+  });
+});
+
+$(document).on("click", ".editUser", function () {
+  let id = $(this).data("id").replace(/\D/g, "");
+  $.ajax({
+    url: "user/edit",
+    method: "POST",
+    data: { id: id },
+    dataType: "JSON",
+    success: function (data) {
+      $("#email").val(data.email);
+      $("#username").val(data.username);
+      $("#fullname").val(data.fullname);
+      $(".modal-header").text("Edit Data");
+      $("#email_error").text("");
+      $("#username_error").text("");
+      $("#user_image_error").text("");
+      $("#formModal").modal("show");
+      $("#hidden_id").val(id);
+    },
+  });
+});
+
+$(document).on("click", ".deleteUser", function () {
+  let id = $(this).data("id");
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data user akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: "POST",
+        data: {
+          id: id,
+          _method: "DELETE",
+        },
+        url: "adminController/delete",
+        success: function (data) {
+          console.log(data);
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data User ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          window.location.reload();
+        },
+      });
+    }
+  });
+});
+
 $(document).on("click", ".delete", function () {
   let id = $(this).data("id");
   Swal.fire({

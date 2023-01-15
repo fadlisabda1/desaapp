@@ -20,7 +20,7 @@
                                     <li class="list-group-item"><?= $user->fullname; ?></li>
                                 <?php endif; ?>
                                 <li class="list-group-item"><?= $user->email ?></li>
-                                <li class="list-group-item"><span class="badge badge-<?= ($user->name == 'admin' ? 'success' : 'warning') ?>"><?= $user->name ?></span></li>
+                                <li class="list-group-item"><span class="badge bg-<?= ($user->name == 'admin' ? 'success' : 'warning') ?>"><?= $user->name ?></span></li>
                                 <li class="list-group-item"><small><a href="<?= base_url('admin') ?>
                                 ">&laquo; back to user list</a></small></li>
                             </ul>

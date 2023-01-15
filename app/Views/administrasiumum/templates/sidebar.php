@@ -1,93 +1,55 @@
-<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
-
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fa-solid fa-tree-city"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3"></div>
-    </a>
-
-    <?php if (in_groups('admin')) : ?>
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            User Management
-        </div>
-
-        <!-- Nav Item - User list -->
-        <li class="nav-item">
-            <a class="nav-link" href="<?= base_url('admin'); ?>">
-                <i class="fa-solid fa-eyes"></i>
-                <span>User List</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-    <?php endif; ?>
-
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Profile
-    </div>
-
-    <!-- Nav Item - Profil Desa -->
-    <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('profil'); ?>">
-            <i class="fa-solid fa-user"></i>
-            <span>Profil Desa</span></a>
-    </li>
-
-    <!-- Nav Item - My Profile -->
-    <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('user'); ?>">
-            <i class="fa-solid fa-eye"></i>
-            <span>My Profile</span></a>
-    </li>
-
-    <!-- Nav Item - Edit Profile -->
-    <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fa-solid fa-user-pen"></i>
-            <span>Edit Profile</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <div class="sidebar-heading">
-        Administrasi Desa
-    </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fa-solid fa-list"></i>
-            <span>Administrasi Umum</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/">Peraturan Desa</a>
-                <a class="collapse-item" href="cards.html">Inventaris dan Kekayaan <br> Desa</a>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    <?php if (in_groups('admin')) : ?>
+                        <div class="sb-sidenav-menu-heading">User Management</div>
+                        <a class="nav-link" href="<?= base_url('admin'); ?>">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-list"></i></div>
+                            User List
+                        </a>
+                    <?php endif; ?>
+                    <div class="sb-sidenav-menu-heading">Profile</div>
+                    <a class="nav-link" href="<?= base_url('profil'); ?>">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-tree-city"></i></div>
+                        Profile Desa
+                    </a>
+                    <a class="nav-link" href="<?= base_url('user'); ?>">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
+                        My Profile
+                    </a>
+                    <?php if ($title == 'My Profile') : ?>
+                        <a role="link" aria-disabled="true" name="edit" class="nav-link btn editUser" data-id="' . <?= user()->id ?> . '">
+                            <div class="sb-nav-link-icon"><i class="fa-solid fa-user-pen"></i></div>Edit Profile
+                        </a>
+                    <?php endif; ?>
+                    <div class="sb-sidenav-menu-heading">Administrasi Desa</div>
+                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
+                        Administrasi Umum
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                    </a>
+                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
+                            <a class="nav-link" href="/">Peraturan Desa</a>
+                            <a class="nav-link" href="layout-sidenav-light.html">Inventaris dan Kekayaan Desa</a>
+                        </nav>
+                    </div>
+                    <a class="nav-link" href="<?= base_url('logout'); ?>">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+                        Logout
+                    </a>
+                </div>
             </div>
-        </div>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Nav Item - Logout -->
-    <li class="nav-item">
-        <a class="nav-link" href="<?= base_url('logout'); ?>">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Logout</span></a>
-    </li>
-
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            <div class="sb-sidenav-footer">
+                <div class="small">Logged in as:</div>
+                <?php if (in_groups('admin')) : ?>
+                    <?= 'admin'; ?>
+                <?php else : ?>
+                    <?= 'user'; ?>
+                <?php endif; ?>
+            </div>
+        </nav>
     </div>
-
-</ul>
+</div>

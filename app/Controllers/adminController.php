@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Controllers\BaseController;
+
 class adminController extends BaseController
 {
     protected $db, $builder;
@@ -36,5 +38,27 @@ class adminController extends BaseController
         $query = $this->builder->get();
         $data['user'] = $query->getRow();
         return view('admin/detail', $data);
+    }
+    public function edit()
+    {
+        if ($this->request->getVar('id')) {
+            $peraturan_data = $this->peraturanDesaModel->where('id_peraturan_desa', $this->request->getVar('id'))->first();
+            echo json_encode($peraturan_data);
+        }
+    }
+    public function delete()
+    {
+        if ($this->request->getVar('id')) {
+            $id = $this->request->getVar('id');
+            $user = $this->builder->getWhere(['id' => $id]);
+            foreach ($user->getResult() as $userr) {
+                if ($userr->user_image != 'default.svg') {
+                    unlink('gambar/' . $userr->user_image);
+                }
+            }
+            $this->builder->delete(['id' => $id]);
+            session()->setFlashData('pesan', 'dihapus.');
+            echo session()->getFlashdata('pesan');
+        }
     }
 }

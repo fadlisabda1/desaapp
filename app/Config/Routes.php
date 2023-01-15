@@ -46,7 +46,10 @@ $routes->get('/beritaController/detail/(:segment)', 'beritaController::detail/$1
 $routes->get('/admin', 'adminController::index', ['filter' => 'role:admin']);
 $routes->get('/admin/index', 'adminController::index', ['filter' => 'role:admin']);
 $routes->get('/admin/(:num)', 'adminController::detail/$1', ['filter' => 'role:admin']);
-$routes->get('/user', 'userController::index');
+$routes->match(['post', 'get'], '/user', 'userController::index');
+$routes->post('/user/edit', 'userController::edit');
+$routes->post('/user/action', 'userController::action');
+$routes->delete('/adminController/delete', 'adminController::delete');
 //peraturan desa 
 $routes->post('/peraturanDesaController/ambilData', 'administrasiumum\peraturanDesaController::ambilData');
 $routes->post('/peraturanDesaController/action', 'administrasiumum\peraturanDesaController::action');
