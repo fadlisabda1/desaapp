@@ -21,6 +21,7 @@ class adminController extends BaseController
         $this->builder->select('users.id as userid,username,email,name');
         $this->builder->join('auth_groups_users', 'auth_groups_users.user_id = users.id');
         $this->builder->join('auth_groups', 'auth_groups.id = auth_groups_users.group_id');
+        $this->builder->where('deleted_at', NULL);
         $query = $this->builder->get();
         $data['users'] = $query->getResult();
         return view('admin/index', $data);
@@ -60,5 +61,13 @@ class adminController extends BaseController
             session()->setFlashData('pesan', 'dihapus.');
             echo session()->getFlashdata('pesan');
         }
+    }
+
+    public function ceklisDeleteButton()
+    {
+        $id = $this->request->getVar('id');
+        $this->userModel->checkboxDelete($id);
+        session()->setFlashData('pesan', 'dihapus.');
+        echo session()->getFlashdata('pesan');
     }
 }

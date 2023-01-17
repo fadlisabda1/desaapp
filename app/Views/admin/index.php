@@ -2,35 +2,40 @@
 <?= $this->section('page-content'); ?>
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">User List</h1>
-    <div class="row">
-        <div class="col-lg-8">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Username</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $i = 1; ?>
-                    <?php foreach ($users as $user) : ?>
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered border-dark caption-top">
+                    <caption>User List</caption>
+                    <thead>
                         <tr>
-                            <th scope="row"><?= $i++; ?></th>
-                            <td><?= $user->username; ?></td>
-                            <td><?= $user->email; ?></td>
-                            <td><?= $user->name; ?></td>
-                            <td>
-                                <a href="<?= base_url('admin/' . $user->userid) ?>" class="btn btn-info">Detail</a>
-                                <button type="button" class="btn btn-danger deleteUser" data-id="<?= $user->userid; ?>">Delete</button>
-                            </td>
+                            <th scope="col">Ceklis</th>
+                            <th scope="col">No</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Action</th>
                         </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; ?>
+                        <?php foreach ($users as $user) : ?>
+                            <tr>
+                                <td><input type="checkbox" name="checkbox_value[]" value="<?= $user->userid; ?>"></td>
+                                <th scope="row"><?= $i++; ?></th>
+                                <td><?= $user->username; ?></td>
+                                <td><?= $user->email; ?></td>
+                                <td><?= $user->name; ?></td>
+                                <td>
+                                    <a href="<?= base_url('admin/' . $user->userid) ?>" class="btn btn-info">Detail</a>
+                                    <button type="button" class="btn btn-danger deleteUser" data-id="<?= $user->userid; ?>">Delete</button>
+                                    <button type="button" class="btn btn-danger deleteAllUser">Delete All</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

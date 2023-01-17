@@ -50,6 +50,7 @@ $routes->match(['post', 'get'], '/user', 'userController::index');
 $routes->post('/user/edit', 'userController::edit');
 $routes->post('/user/action', 'userController::action');
 $routes->delete('/adminController/delete', 'adminController::delete');
+$routes->delete('/adminController/ceklisDeleteButton', 'adminController::ceklisDeleteButton');
 //peraturan desa 
 $routes->post('/peraturanDesaController/ambilData', 'administrasiumum\peraturanDesaController::ambilData');
 $routes->post('/peraturanDesaController/action', 'administrasiumum\peraturanDesaController::action');

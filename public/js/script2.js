@@ -289,6 +289,45 @@ $(document).on("click", ".deleteAllButton", function () {
   });
 });
 
+$(document).on("click", ".deleteAllUser", function () {
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data user akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let checkboxes = document.querySelectorAll('input[name="checkbox_value[]"]:checked');
+      var vals = [];
+      for (var i = 0, n = checkboxes.length; i < n; i++) {
+        vals.push(checkboxes[i].value);
+      }
+      $.ajax({
+        type: "POST",
+        data: {
+          id: vals,
+          _method: "DELETE",
+        },
+        url: "adminController/ceklisDeleteButton",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data User ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          window.location.reload();
+        },
+      });
+    }
+  });
+});
+
 function selects() {
   var ele = document.getElementsByName("checkbox_value[]");
   for (var i = 0; i < ele.length; i++) {

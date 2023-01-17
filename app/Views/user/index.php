@@ -2,10 +2,10 @@
 <?= $this->section('page-content'); ?>
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">My Profile</h1>
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card mb-3" style="max-width: 540px;">
+    <h1 class="h3 mb-4 text-gray-800 text-center">My Profile</h1>
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
                         <img src="<?= base_url('/gambar/' . user()->user_image); ?>" class="img-fluid rounded-start" alt="<?= user()->username ?>">
@@ -59,7 +59,7 @@
                         <label for="user_image" class="form-label userImageLabel">User Image</label>
                         <input type="file" class="form-control" name="user_image" id="user_image" onchange="previewImg()">
                         <span id="user_image_error" class="text-danger"></span>
-                        <img src="<?= base_url('/gambar/' . user()->user_image); ?>" class="img-fluid img-preview">
+                        <img src="<?= base_url('/gambar/' . user()->user_image); ?>" class="img-fluid img-preview mt-2">
                     </div>
             </div>
             <div class="modal-footer">
