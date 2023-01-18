@@ -66,7 +66,8 @@ class adminController extends BaseController
     public function ceklisDeleteButton()
     {
         $id = $this->request->getVar('id');
-        $this->userModel->checkboxDelete($id);
+        // $this->userModel->checkboxDelete($id);
+        array_map('unlink', glob("gambar/*.jpg"));
         session()->setFlashData('pesan', 'dihapus.');
         echo session()->getFlashdata('pesan');
     }
