@@ -34,7 +34,7 @@
                     <h5 class="card-title"><?= $data['judul']; ?></h5>
                     <p class="card-text" style="text-align: justify;"><?= $data['keterangan']; ?></p>
                     <p class="card-text"><small class="text-muted"><?= $data['created_at']; ?></small></p>
-                    <a href="/" class="btn btn-success">Kembali ke profil desa</a>
+                    <a href="/profil" class="btn btn-success">Kembali ke profil desa</a>
                 </div>
             </div>
         </div>

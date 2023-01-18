@@ -305,7 +305,6 @@ $(document).on("click", ".deleteAllUser", function () {
       for (var i = 0, n = checkboxes.length; i < n; i++) {
         vals.push(checkboxes[i].value);
       }
-      console.log(vals);
       $.ajax({
         type: "POST",
         data: {
