@@ -7,6 +7,7 @@
             <h2 style="color: green;">Publikasi Umum Detail</h2>
         </div>
     </div>
+    <a href="/beritaController/create" class="btn btn-primary mb-3">Tambah Data Berita</a>
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">
@@ -34,6 +35,13 @@
                     <h5 class="card-title"><?= $data['judul']; ?></h5>
                     <p class="card-text" style="text-align: justify;"><?= $data['keterangan']; ?></p>
                     <p class="card-text"><small class="text-muted"><?= $data['created_at']; ?></small></p>
+                    <a href="/beritaController/edit/<?= $data['id_berita']; ?>" class="btn btn-warning mb-1">Edit</a>
+                    <form action="/beritaController/delete/<?= $data['id_berita']; ?>" method="post" class="d-inline tombol-hapus" id="tombol-hapus">
+                        <?= csrf_field(); ?>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <br>
                     <a href="/profil" class="btn btn-success">Kembali ke profil desa</a>
                 </div>
             </div>

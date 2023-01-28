@@ -1,11 +1,13 @@
 <?= $this->extend('administrasiumum/templates/index'); ?>
 <?= $this->section('page-content'); ?>
 <div class="card shadow mb-4 mt-4">
-    <div class="card-header py-3">
-        <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
-            Tambah
-        </button>
-    </div>
+    <?php if (in_groups('admin')) : ?>
+        <div class="card-header py-3">
+            <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
+                Tambah
+            </button>
+        </div>
+    <?php endif; ?>
     <div class="card-body">
         <div class="table-responsive mt-2">
             <table id="sample_table" class="table table-bordered table-hover">
@@ -16,7 +18,9 @@
                         <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
                         <th scope="col">Tentang</th>
                         <th scope="col">Uraian Singkat</th>
-                        <th scope="col">Tindakan</th>
+                        <?php if (in_groups('admin')) : ?>
+                            <th scope="col">Tindakan</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
             </table>

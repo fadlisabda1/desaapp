@@ -39,6 +39,10 @@
                                             <?= session('errors.password') ?>
                                         </div>
                                     </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" id="showPasswordd" type="checkbox" onclick="showPassword()" />
+                                        <label class="form-check-label" for="showPasswordd">Show Password</label>
+                                    </div>
                                     <?php if ($config->allowRemembering) : ?>
                                         <div class="form-check mb-3">
                                             <input class="form-check-input" id="inputRememberPassword" name="remember" type="checkbox" <?php if (old('remember')) : ?> checked <?php endif ?> />

@@ -30,18 +30,22 @@
                                         <label for="inputEmail"><?= lang('Auth.email') ?></label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" id="inputPassword" name="password" type="password" />
+                                        <input class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" id="password" name="password" type="password" />
                                         <div class="invalid-feedback">
                                             <?= session('errors.password') ?>
                                         </div>
-                                        <label for="inputPassword"><?= lang('Auth.newPassword') ?></label>
+                                        <label for="password"><?= lang('Auth.newPassword') ?></label>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input class="form-control <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" id="inputPass_Confirm" name="pass_confirm" type="password" />
+                                        <input class="form-control <?php if (session('errors.pass_confirm')) : ?>is-invalid<?php endif ?>" id="inputPasswordConfirm" name="pass_confirm" type="password" />
                                         <div class="invalid-feedback">
                                             <?= session('errors.pass_confirm') ?>
                                         </div>
-                                        <label for="inputPass_Confirm"><?= lang('Auth.newPasswordRepeat') ?></label>
+                                        <label for="inputPasswordConfirm"><?= lang('Auth.newPasswordRepeat') ?></label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" id="showPasswordd" type="checkbox" onclick="showPassword()" />
+                                        <label class="form-check-label" for="showPasswordd">Show Password</label>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                         <a class="small text-success" href="<?= url_to('login') ?>"><?= lang('Auth.alreadyRegistered') ?><?= lang('Auth.signIn') ?></a>

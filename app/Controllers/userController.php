@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
-
 class userController extends BaseController
 {
     public function index()

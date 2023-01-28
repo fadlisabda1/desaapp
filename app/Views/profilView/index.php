@@ -328,7 +328,10 @@
                     <h2 style="color: green;">Arahkan Mouse Ke Gambar</h2>
                 </div>
             </div>
-
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>">
+                </div>
+            <?php endif; ?>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <?php foreach ($dataBerita as $db) : ?>
                     <?php $str = explode('|', $db['gambar']); ?>

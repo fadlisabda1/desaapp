@@ -144,6 +144,34 @@ $(document).on("click", ".delete", function () {
   });
 });
 
+const flashData = $(".flash-data").data("flashdata");
+console.log(flashData);
+
+if (flashData) {
+  Swal.fire({
+    title: "Data Berita ",
+    text: "Berhasil " + flashData,
+    icon: "success",
+  });
+}
+
+$(document).on("click", ".tombol-hapus", function (e) {
+  e.preventDefault();
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data peraturan akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById("tombol-hapus").submit();
+    }
+  });
+});
+
 $(document).on("click", ".deleteAllButton", function () {
   Swal.fire({
     title: "Apakah anda yakin",
@@ -194,7 +222,8 @@ $(".page-scroll").on("click", function (e) {
   // ambil isi href
   var tujuan = $(this).attr("href");
   // tangkap elemen yang bersangkutan
-  var elemenTujuan = $(tujuan.replace("/", ""));
+  var elemenTujuan = $(tujuan.replace("/profil", ""));
+  console.log(elemenTujuan);
   // pindahkan scroll
   $("html").animate(
     {
@@ -250,3 +279,15 @@ VanillaTilt.init(document.querySelectorAll(".berita-box"), {
 
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
+
+function previewImg() {
+  const gambar = document.querySelector("#gambar");
+  const imgPreview = document.querySelector(".img-preview");
+
+  const fileGambar = new FileReader();
+  fileGambar.readAsDataURL(gambar.files[0]);
+
+  fileGambar.onload = function (e) {
+    imgPreview.src = e.target.result;
+  };
+}

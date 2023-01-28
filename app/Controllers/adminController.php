@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\BaseController;
-
 class adminController extends BaseController
 {
     protected $db, $builder;

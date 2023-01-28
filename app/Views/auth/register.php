@@ -26,8 +26,8 @@
                                     <div class="row mb-3">
                                         <div class="col-md-6">
                                             <div class="form-floating mb-3 mb-md-0">
-                                                <input class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" id="inputPassword" type="password" name="password" autocomplete="off" />
-                                                <label for="inputPassword"><?= lang('Auth.password') ?></label>
+                                                <input class="form-control <?php if (session('errors.password')) : ?>is-invalid<?php endif ?>" id="password" type="password" name="password" autocomplete="off" />
+                                                <label for="password"><?= lang('Auth.password') ?></label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -36,6 +36,10 @@
                                                 <label for="inputPasswordConfirm"><?= lang('Auth.repeatPassword') ?></label>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" id="showPasswordd" type="checkbox" onclick="showPassword()" />
+                                        <label class="form-check-label" for="showPasswordd">Show Password</label>
                                     </div>
                                     <div class="mt-4 mb-0">
                                         <div class="d-grid"><button type="submit" class="btn btn-success btn-block"><?= lang('Auth.register') ?></button></div>
