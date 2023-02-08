@@ -1,6 +1,7 @@
 $(document).ready(function () {
   $("#sample_table").DataTable({
     dom: "Bfrtip",
+    lengthMenu: [5, 10, 20, 50, 100, 200, 500],
     buttons: [
       "pageLength",
       {

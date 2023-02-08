@@ -105,10 +105,12 @@ class beritaController extends BaseController
         $fileGambar = $this->request->getFile('gambar');
         if ($fileGambar->getError() == 4) {
             $namaGambar = $this->request->getVar('gambarLama');
-        } else {
+        } else if ($fileGambar->getName() != 'default.svg') {
             $namaGambar = $fileGambar->getRandomName();
             $fileGambar->move('gambar', $namaGambar);
             unlink('gambar/' . $this->request->getVar('gambarLama'));
+        } else {
+            $namaGambar = $fileGambar->getRandomName();
         }
         $this->beritaModel->save([
             'id_berita' => $id,

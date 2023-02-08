@@ -7,7 +7,6 @@
             <h2 style="color: green;">Publikasi Umum Detail</h2>
         </div>
     </div>
-    <a href="/beritaController/create" class="btn btn-primary mb-3">Tambah Data Berita</a>
     <div class="card mb-3">
         <div class="row g-0">
             <div class="col-md-4">

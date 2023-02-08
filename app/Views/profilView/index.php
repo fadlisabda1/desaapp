@@ -328,6 +328,9 @@
                     <h2 style="color: green;">Arahkan Mouse Ke Gambar</h2>
                 </div>
             </div>
+            <?php if (in_groups('admin')) : ?>
+                <a href="/beritaController/create" class="btn btn-primary mb-3">Tambah Data Berita</a>
+            <?php endif; ?>
             <?php if (session()->getFlashdata('pesan')) : ?>
                 <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>">
                 </div>
