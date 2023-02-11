@@ -37,24 +37,22 @@ class beritaController extends BaseController
                 'errors' => [
                     'required' => '{field} berita harus di isi.'
                 ]
-            ],
-            'gambar' => [
-                'rules' => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar',
-                    'is_image' => 'Yang anda pilih bukan gambar',
-                    'mime_in' => 'Yang anda pilih bukan gambar'
-                ]
             ]
         ])) {
             return redirect()->to('/beritaController/create')->withInput();
         }
-        $fileGambar = $this->request->getFile('gambar');
-        if ($fileGambar->getError() == 4) {
-            $namaGambar = 'default.svg';
-        } else {
-            $namaGambar = $fileGambar->getRandomName();
-            $fileGambar->move('gambar', $namaGambar);
+        $files = $this->request->getFiles();
+        $namaGambar = $files['file_upload'][0]->getName();
+        $i = 0;
+        foreach ($files['file_upload'] as $file) {
+            if ($file->getError() === 0) {
+                $file->move('gambar', str_replace(' ', '', $file->getName()));
+                if ($i !== 0) {
+                    $namaGambar .= '|';
+                    $namaGambar .= $file->getName();
+                }
+            }
+            $i++;
         }
         $this->beritaModel->save([
             'judul' => $this->request->getVar('judul'),
@@ -90,27 +88,30 @@ class beritaController extends BaseController
                 'errors' => [
                     'required' => '{field} berita harus di isi.'
                 ]
-            ],
-            'gambar' => [
-                'rules' => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]',
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar',
-                    'is_image' => 'Yang anda pilih bukan gambar',
-                    'mime_in' => 'Yang anda pilih bukan gambar'
-                ]
             ]
         ])) {
             return redirect()->to('/beritaController/edit/' . $this->request->getVar('id_berita'))->withInput();
         }
-        $fileGambar = $this->request->getFile('gambar');
-        if ($fileGambar->getError() == 4) {
-            $namaGambar = $this->request->getVar('gambarLama');
-        } else if ($fileGambar->getName() != 'default.svg') {
-            $namaGambar = $fileGambar->getRandomName();
-            $fileGambar->move('gambar', $namaGambar);
-            unlink('gambar/' . $this->request->getVar('gambarLama'));
-        } else {
-            $namaGambar = $fileGambar->getRandomName();
+        $files = $this->request->getFiles();
+        $namaGambar = $files['file_upload'][0]->getName();
+        $i = 0;
+        foreach ($files['file_upload'] as $file) {
+            if ($file->getError() == 4) {
+                $namaGambar = $this->request->getVar('gambarLama');
+            } else {
+                $file->move('gambar', str_replace(' ', '', $file->getName()));
+                if ($i !== 0) {
+                    $namaGambar .= '|';
+                    $namaGambar .= $file->getName();
+                }
+            }
+            $i++;
+        }
+        if ($this->request->getVar('filelama') != '') {
+            $str = explode('|', $this->request->getVar('gambarLama'));
+            for ($j = 0; $j < count($str); $j++) {
+                unlink('gambar/' . $str[$j]);
+            }
         }
         $this->beritaModel->save([
             'id_berita' => $id,
@@ -124,10 +125,12 @@ class beritaController extends BaseController
 
     public function delete($id)
     {
-        $berita = $this->beritaModel->find($id);
+        $str = explode('|', $this->beritaModel->getBerita($id)['gambar']);
 
-        if ($berita['gambar'] != 'default.svg') {
-            unlink('gambar/' . $berita['gambar']);
+        for ($i = 0; $i < count($str); $i++) {
+            if (file_exists('gambar/' . $str[$i]) && $str[$i] != '') {
+                unlink('gambar/' . $str[$i]);
+            }
         }
         $this->beritaModel->delete($id);
         session()->setFlashData('pesan', 'Dihapus');
