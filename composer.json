@@ -11,7 +11,8 @@
     "fakerphp/faker": "^1.20",
     "mpdf/mpdf": "^8.1",
     "dompdf/dompdf": "^2.0",
-    "myth/auth": "^1.2"
+    "myth/auth": "^1.2",
+    "ckeditor/ckeditor": "^4.20"
   },
   "require-dev": {
     "mikey179/vfsstream": "^1.6",

@@ -28,6 +28,9 @@
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Tambah Data</button>
+        <script>
+            CKEDITOR.replace('keterangan');
+        </script>
 </div>
 </form>
 </div>
