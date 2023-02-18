@@ -149,7 +149,7 @@ console.log(flashData);
 
 if (flashData) {
   Swal.fire({
-    title: "Data Berita ",
+    title: "Data",
     text: "Berhasil " + flashData,
     icon: "success",
   });

@@ -19,13 +19,8 @@
             </div>
         </div>
         <div class="mb-3">
-            <img src="/gambar/default.svg" class="img-fluid img-thumbnail img-preview" width="100">
-            <br>
-            <label class="form-label labelGambar" for="gambar">Pilih Gambar</label>
-            <input type="file" class="form-control <?= ($validation->hasError('gambar')) ? 'is-invalid' : ''; ?>" id="gambar" name="file_upload[]" onchange="previewImg()" multiple="true">
-            <div class="invalid-feedback">
-                <?= $validation->getError('gambar'); ?>
-            </div>
+            <label class="form-label" for="gambar">Pilih Gambar</label>
+            <input type="file" class="form-control <?= ($validation->hasError('gambar')) ? 'is-invalid' : ''; ?>" id="gambar" name="file_upload[]" multiple="true">
         </div>
         <button type="submit" class="btn btn-primary">Tambah Data</button>
         <script>

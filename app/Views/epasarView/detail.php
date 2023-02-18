@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row text-center mb-3">
         <div class="col">
-            <h2 style="color: green;">Publikasi Umum Detail</h2>
+            <h2 style="color: green;">Barang Detail</h2>
         </div>
     </div>
     <div class="card mb-3">
@@ -14,11 +14,9 @@
                     <div class="carousel-inner">
                         <?php $str = explode('|', $data['gambar']); ?>
                         <?php for ($i = 0; $i < count($str); $i++) : ?>
-                            <?php if (!empty($data['gambar'])) : ?>
-                                <div class="carousel-item active">
-                                    <img src="<?= base_url('gambar/' . $str[$i]); ?>" class="d-block w-100" alt="fotoberita">
-                                </div>
-                            <?php endif; ?>
+                            <div class="carousel-item active">
+                                <img src="<?= base_url('gambar/' . $str[$i]); ?>" class="d-block w-100" alt="fotobarang">
+                            </div>
                         <?php endfor; ?>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -33,11 +31,12 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title"><?= $data['judul']; ?></h5>
-                    <p class="card-text" style="text-align: justify;"><?= $data['keterangan']; ?></p>
+                    <h5 class="card-title"><?= $data['nama']; ?></h5>
+                    <p class="card-text" style="text-align: justify;"><?= $data['harga']; ?>/tabung</p>
+                    <p class="card-text" style="text-align: justify;">Stok Tersedia : <?= $data['stok']; ?></p>
                     <p class="card-text"><small class="text-muted"><?= $data['created_at']; ?></small></p>
-                    <a href="/beritaController/edit/<?= $data['id_berita']; ?>" class="btn btn-warning mb-1">Edit</a>
-                    <form action="/beritaController/delete/<?= $data['id_berita']; ?>" method="post" class="d-inline tombol-hapus" id="tombol-hapus">
+                    <a href="/epasarController/edit/<?= $data['id_barang']; ?>" class="btn btn-warning mb-1">Edit</a>
+                    <form action="/epasarController/delete/<?= $data['id_barang']; ?>" method="post" class="d-inline tombol-hapus" id="tombol-hapus">
                         <?= csrf_field(); ?>
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="btn btn-danger">Delete</button>

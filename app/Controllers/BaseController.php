@@ -10,6 +10,7 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Models\profilPemerintahanModel;
 use App\Models\beritaModel;
+use App\Models\epasarModel;
 use App\Models\userrModel;
 use App\Models\administrasiumum\peraturanDesaModel;
 use App\Models\administrasiumum\inventarisKekayaanModel;
@@ -55,6 +56,7 @@ abstract class BaseController extends Controller
         // E.g.: $this->session = \Config\Services::session();
         $this->profilPemerintahanModel = new profilPemerintahanModel();
         $this->beritaModel = new beritaModel();
+        $this->epasarModel = new epasarModel();
         $this->peraturanDesaModel = new peraturanDesaModel();
         $this->inventarisKekayaanModel = new inventarisKekayaanModel();
         $this->userModel = new userrModel();

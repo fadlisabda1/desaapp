@@ -342,7 +342,7 @@
                         <div class="berita-box">
                             <h4 class="berita-name">Publikasi Umum</h4>
                             <img src="gambar/<?= $str[0] ?>" alt="fotoberita" class="berita-img" />
-                            <a href="/beritaController/detail/<?= $db['id_berita'] ?>" class="btn btn-light berita-detail-button">Show Details</a>
+                            <a href=" /beritaController/detail/<?= $db['id_berita'] ?>" class="btn btn-light berita-detail-button">Show Details</a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -503,11 +503,43 @@
                 </div>
             </div>
         </div>
+    </section>
+    <!-- Akhir Potensi Dan Fasilitas Desa -->
+    <!-- epasar -->
+    <section id="epasar">
+        <div class="container">
+            <div class="row text-center mb-3">
+                <div class="col">
+                    <h2 style="color: green;">E-Pasar</h2>
+                </div>
+            </div>
+            <a href="/epasarController/create" class="btn btn-primary mb-3">Tambah Barang</a>
+            <?php if (session()->getFlashdata('pesan')) : ?>
+                <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>">
+                </div>
+            <?php endif; ?>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <?php foreach ($barang as $br) : ?>
+                    <div class="col">
+                        <div class="card">
+                            <?php $str = explode('|', $br['gambar']); ?>
+                            <img src="gambar/<?= $str[0] ?>" class="card-img-top img-fluid" alt="fotoepasar">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $br['nama'] ?></h5>
+                                <p class="card-text"><?= $br['harga'] ?>/tabung</p>
+                                <p class="card-text">Stok Tersedia : <?= $br['stok'] ?></p>
+                                <a href="/epasarController/detail/<?= $br['id_barang'] ?>" class="btn btn-success">Show Details</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="rgb(25,135,84)" fill-opacity="1" d="M0,128L34.3,112C68.6,96,137,64,206,96C274.3,128,343,224,411,218.7C480,213,549,107,617,101.3C685.7,96,754,192,823,208C891.4,224,960,160,1029,154.7C1097.1,149,1166,203,1234,208C1302.9,213,1371,171,1406,149.3L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
         </svg>
     </section>
-    <!-- Akhir Potensi Dan Fasilitas Desa -->
+    <!-- Akhir Epasar -->
     <!-- Footer -->
     <footer class="bg-success text-center pb-5" style="color: yellow;">
         <p>

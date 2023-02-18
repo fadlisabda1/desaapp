@@ -37,6 +37,9 @@
                     <a class="nav-link page-scroll" href="/profil#wisata">Wisata</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link page-scroll" href="/profil#epasar">E-Pasar</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link page-scroll" href="/">Administrasi Desa</a>
                 </li>
             </ul>

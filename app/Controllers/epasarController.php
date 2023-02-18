@@ -2,44 +2,44 @@
 
 namespace App\Controllers;
 
-class beritaController extends BaseController
+class epasarController extends BaseController
 {
     public function detail($id)
     {
         $berita = [
-            'title' => 'Detail Berita | Desa Tanah Merah',
-            'data' => $this->beritaModel->getBerita($id)
+            'title' => 'Detail Barang | Desa Tanah Merah',
+            'data' => $this->epasarModel->getEpasar($id)
         ];
-        return view('beritaView/detail', $berita);
+        return view('epasarView/detail', $berita);
     }
 
     public function create()
     {
         $data = [
-            'title' => 'Form Tambah Data Berita',
+            'title' => 'Form Tambah Data Barang',
             'validation' => \Config\Services::validation()
         ];
 
-        return view('beritaView/create', $data);
+        return view('epasarView/create', $data);
     }
 
     public function save()
     {
         if (!$this->validate([
-            'judul' => [
+            'nama' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} berita harus di isi.'
+                    'required' => '{field} barang harus di isi.'
                 ]
             ],
-            'keterangan' => [
+            'harga' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} berita harus di isi.'
+                    'required' => '{field} barang harus di isi.'
                 ]
-            ]
+            ],
         ])) {
-            return redirect()->to('/beritaController/create')->withInput();
+            return redirect()->to('/epasarController/create')->withInput();
         }
         $files = $this->request->getFiles();
         $namaGambar = $files['file_upload'][0]->getName();
@@ -54,43 +54,44 @@ class beritaController extends BaseController
             }
             $i++;
         }
-        $this->beritaModel->save([
-            'judul' => $this->request->getVar('judul'),
-            'keterangan' => $this->request->getVar('keterangan'),
-            'gambar' => $namaGambar
+        $this->epasarModel->save([
+            'nama' => $this->request->getVar('nama'),
+            'stok' => $this->request->getVar('stok'),
+            'gambar' => $namaGambar,
+            'harga' => $this->request->getVar('harga')
         ]);
         session()->setFlashData('pesan', 'Ditambahkan.');
-        return redirect()->to('/profil#publikasiumum');
+        return redirect()->to('/profil#epasar');
     }
 
     public function edit($id)
     {
         $data = [
-            'title' => 'Form Ubah Data Berita',
+            'title' => 'Form Ubah Data Barang',
             'validation' => \Config\Services::validation(),
-            'berita' => $this->beritaModel->getBerita($id)
+            'barang' => $this->epasarModel->getEpasar($id)
         ];
 
-        return view('beritaView/edit', $data);
+        return view('epasarView/edit', $data);
     }
 
     public function update($id)
     {
         if (!$this->validate([
-            'judul' => [
+            'nama' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} berita harus di isi.'
+                    'required' => '{field} barang harus di isi.'
                 ]
             ],
-            'keterangan' => [
+            'harga' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} berita harus di isi.'
+                    'required' => '{field} barang harus di isi.'
                 ]
-            ]
+            ],
         ])) {
-            return redirect()->to('/beritaController/edit/' . $this->request->getVar('id_berita'))->withInput();
+            return redirect()->to('/epasarController/edit/' . $this->request->getVar('id_barang'))->withInput();
         }
         $files = $this->request->getFiles();
         $namaGambar = $files['file_upload'][0]->getName();
@@ -113,27 +114,27 @@ class beritaController extends BaseController
                 unlink('gambar/' . $str[$j]);
             }
         }
-        $this->beritaModel->save([
-            'id_berita' => $id,
-            'judul' => $this->request->getVar('judul'),
-            'keterangan' => $this->request->getVar('keterangan'),
-            'gambar' => $namaGambar
+        $this->epasarModel->save([
+            'id_barang' => $id,
+            'stok' => $this->request->getVar('stok'),
+            'gambar' => $namaGambar,
+            'harga' => $this->request->getVar('harga')
         ]);
         session()->setFlashData('pesan', 'Diubah.');
-        return redirect()->to('/profil#publikasiumum');
+        return redirect()->to('/profil#epasar');
     }
 
     public function delete($id)
     {
-        $str = explode('|', $this->beritaModel->getBerita($id)['gambar']);
+        $str = explode('|', $this->epasarModel->getEpasar($id)['gambar']);
 
         for ($i = 0; $i < count($str); $i++) {
             if (file_exists('gambar/' . $str[$i]) && $str[$i] != '') {
                 unlink('gambar/' . $str[$i]);
             }
         }
-        $this->beritaModel->delete($id);
+        $this->epasarModel->delete($id);
         session()->setFlashData('pesan', 'Dihapus');
-        return redirect()->to('/profil#publikasiumum');
+        return redirect()->to('/profil#epasar');
     }
 }
