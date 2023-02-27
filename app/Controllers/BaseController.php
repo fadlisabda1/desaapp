@@ -11,6 +11,7 @@ use Psr\Log\LoggerInterface;
 use App\Models\profilPemerintahanModel;
 use App\Models\beritaModel;
 use App\Models\epasarModel;
+use App\Models\transaksiModel;
 use App\Models\userrModel;
 use App\Models\administrasiumum\peraturanDesaModel;
 use App\Models\administrasiumum\inventarisKekayaanModel;
@@ -57,6 +58,7 @@ abstract class BaseController extends Controller
         $this->profilPemerintahanModel = new profilPemerintahanModel();
         $this->beritaModel = new beritaModel();
         $this->epasarModel = new epasarModel();
+        $this->transaksiModel = new transaksiModel();
         $this->peraturanDesaModel = new peraturanDesaModel();
         $this->inventarisKekayaanModel = new inventarisKekayaanModel();
         $this->userModel = new userrModel();

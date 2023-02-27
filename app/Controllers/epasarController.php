@@ -57,7 +57,7 @@ class epasarController extends BaseController
         $this->epasarModel->save([
             'nama' => $this->request->getVar('nama'),
             'stok' => $this->request->getVar('stok'),
-            'gambar' => $namaGambar,
+            'gambar' => ($file->getError() === 4) ?  null : str_replace(' ', '', $namaGambar),
             'harga' => $this->request->getVar('harga')
         ]);
         session()->setFlashData('pesan', 'Ditambahkan.');
@@ -108,7 +108,7 @@ class epasarController extends BaseController
             }
             $i++;
         }
-        if ($this->request->getVar('gambarLama') != '') {
+        if ($this->request->getVar('gambarLama') != '' && $file->getError() != 4) {
             $str = explode('|', $this->request->getVar('gambarLama'));
             for ($j = 0; $j < count($str); $j++) {
                 unlink('gambar/' . $str[$j]);
@@ -116,8 +116,9 @@ class epasarController extends BaseController
         }
         $this->epasarModel->save([
             'id_barang' => $id,
+            'nama' => $this->request->getVar('nama'),
             'stok' => $this->request->getVar('stok'),
-            'gambar' => $namaGambar,
+            'gambar' => ($files['file_upload'][0]->getError() == 4) ? $namaGambar : str_replace(' ', '', $namaGambar),
             'harga' => $this->request->getVar('harga')
         ]);
         session()->setFlashData('pesan', 'Diubah.');

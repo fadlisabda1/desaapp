@@ -513,11 +513,14 @@
                     <h2 style="color: green;">E-Pasar</h2>
                 </div>
             </div>
-            <a href="/epasarController/create" class="btn btn-primary mb-3">Tambah Barang</a>
+            <?php if (in_groups('admin')) : ?>
+                <a href="/epasarController/create" class="btn btn-primary mb-3">Tambah Barang</a>
+            <?php endif; ?>
             <?php if (session()->getFlashdata('pesan')) : ?>
                 <div class="flash-data" data-flashdata="<?= session()->getFlashdata('pesan'); ?>">
                 </div>
             <?php endif; ?>
+            <a href="/transaksiController/index" class="btn btn-primary mb-3">Transaksi Detail</a>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <?php foreach ($barang as $br) : ?>
                     <div class="col">
@@ -526,9 +529,14 @@
                             <img src="gambar/<?= $str[0] ?>" class="card-img-top img-fluid" alt="fotoepasar">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $br['nama'] ?></h5>
-                                <p class="card-text"><?= $br['harga'] ?>/tabung</p>
+                                <p class="card-text"><?= $br['harga'] ?>/Jumlah Barang</p>
                                 <p class="card-text">Stok Tersedia : <?= $br['stok'] ?></p>
-                                <a href="/epasarController/detail/<?= $br['id_barang'] ?>" class="btn btn-success">Show Details</a>
+                                <?php if (in_groups('admin')) : ?>
+                                    <a href="/epasarController/detail/<?= $br['id_barang'] ?>" class="btn btn-primary">Show Details</a>
+                                <?php endif; ?>
+                                <?php if (in_groups('user')) : ?>
+                                    <a href="/transaksiController/create/<?= $br['id_barang'] ?>" class="btn btn-primary">Booking</a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

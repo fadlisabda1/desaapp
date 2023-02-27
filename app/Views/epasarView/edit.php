@@ -8,7 +8,7 @@
         <input type="hidden" name="gambarLama" value="<?= $barang['gambar']; ?>">
         <div class="mb-3">
             <label for="nama" class="form-label">Nama Barang</label>
-            <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" autofocus value="<?= (old('nama')) ? old('nama') : $barang['nama'] ?>">
+            <input type="text" class="form-control <?= ($validation->hasError('nama')) ? 'is-invalid' : ''; ?>" id="nama" name="nama" value="<?= (old('nama')) ? old('nama') : $barang['nama'] ?>">
             <div class="invalid-feedback">
                 <?= $validation->getError('nama'); ?>
             </div>

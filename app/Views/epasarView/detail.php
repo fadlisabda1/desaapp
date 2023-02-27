@@ -32,7 +32,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title"><?= $data['nama']; ?></h5>
-                    <p class="card-text" style="text-align: justify;"><?= $data['harga']; ?>/tabung</p>
+                    <p class="card-text" style="text-align: justify;"><?= $data['harga']; ?>/Jumlah Barang</p>
                     <p class="card-text" style="text-align: justify;">Stok Tersedia : <?= $data['stok']; ?></p>
                     <p class="card-text"><small class="text-muted"><?= $data['created_at']; ?></small></p>
                     <a href="/epasarController/edit/<?= $data['id_barang']; ?>" class="btn btn-warning mb-1">Edit</a>
@@ -41,8 +41,6 @@
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                    <br>
-                    <a href="/profil" class="btn btn-success">Kembali ke profil desa</a>
                 </div>
             </div>
         </div>

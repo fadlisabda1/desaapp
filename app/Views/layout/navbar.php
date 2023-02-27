@@ -42,6 +42,9 @@
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="/">Administrasi Desa</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="<?= base_url('logout'); ?>">Logout</a>
+                </li>
             </ul>
         </div>
     </div>

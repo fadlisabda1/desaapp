@@ -57,7 +57,7 @@ class beritaController extends BaseController
         $this->beritaModel->save([
             'judul' => $this->request->getVar('judul'),
             'keterangan' => $this->request->getVar('keterangan'),
-            'gambar' => $namaGambar
+            'gambar' => ($file->getError() === 4) ?  null : str_replace(' ', '', $namaGambar)
         ]);
         session()->setFlashData('pesan', 'Ditambahkan.');
         return redirect()->to('/profil#publikasiumum');
@@ -107,7 +107,7 @@ class beritaController extends BaseController
             }
             $i++;
         }
-        if ($this->request->getVar('gambarLama') != '') {
+        if ($this->request->getVar('gambarLama') != '' && $file->getError() != 4) {
             $str = explode('|', $this->request->getVar('gambarLama'));
             for ($j = 0; $j < count($str); $j++) {
                 unlink('gambar/' . $str[$j]);
@@ -117,7 +117,7 @@ class beritaController extends BaseController
             'id_berita' => $id,
             'judul' => $this->request->getVar('judul'),
             'keterangan' => $this->request->getVar('keterangan'),
-            'gambar' => $namaGambar
+            'gambar' => ($files['file_upload'][0]->getError() == 4) ? $namaGambar : str_replace(' ', '', $namaGambar)
         ]);
         session()->setFlashData('pesan', 'Diubah.');
         return redirect()->to('/profil#publikasiumum');
