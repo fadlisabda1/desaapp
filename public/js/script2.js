@@ -7,31 +7,31 @@ $(document).ready(function () {
       {
         extend: "copyHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3],
         },
       },
       {
         extend: "csvHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3],
         },
       },
       {
         extend: "excelHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3],
         },
       },
       {
         extend: "pdfHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3],
         },
       },
       {
         extend: "print",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3],
         },
       },
     ],
@@ -42,48 +42,153 @@ $(document).ready(function () {
       type: "POST",
     },
   });
-  $(".tombolTambahData").click(function () {
-    $("#peraturan_form").val("");
-    $(".modal-title").text("Add Data");
-    $("#nomorTglPeraturanDesa_error").text("");
-    $("#tentang_error").text("");
-    $("#uraiansingkat_error").text("");
-    $("#formModal").modal("show");
-    $("#action").val("Add");
-    $("#submit_button").val("Add");
+  $("#sample_table2").DataTable({
+    dom: "Bfrtip",
+    lengthMenu: [5, 10, 20, 50, 100, 200, 500],
+    buttons: [
+      "pageLength",
+      {
+        extend: "copyHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6],
+        },
+      },
+      {
+        extend: "csvHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6],
+        },
+      },
+      {
+        extend: "excelHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6],
+        },
+      },
+      {
+        extend: "pdfHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6],
+        },
+      },
+      {
+        extend: "print",
+        exportOptions: {
+          columns: true,
+        },
+      },
+    ],
+    order: [],
+    serverSide: true,
+    ajax: {
+      url: "ambilData",
+      type: "POST",
+    },
   });
-  $("#peraturan_form").on("submit", function (event) {
-    event.preventDefault();
-    $.ajax({
-      url: "peraturanDesaController/action",
-      method: "POST",
-      data: $(this).serialize(),
-      dataType: "JSON",
-      beforeSend: function () {
-        $("#submit_button").val("loading...");
-        $("#submit_button").attr("disabled", "disabled");
-      },
-      success: function (data) {
-        $("#submit_button").val("Add");
-        $("#submit_button").attr("disabled", false);
-        if (data.error == "yes") {
-          $("#nomorTglPeraturanDesa_error").text(data.nomorTglPeraturanDesa_error);
-          $("#tentang_error").text(data.tentang_error);
-          $("#uraiansingkat_error").text(data.uraiansingkat_error);
-        } else {
-          $("#formModal").modal("hide");
-          const flashData = data.message;
-          if (flashData) {
-            Swal.fire({
-              title: "Data Peraturan ",
-              text: "Berhasil " + flashData,
-              icon: "success",
-            });
-          }
-          $("#sample_table").DataTable().ajax.reload();
+});
+
+$(".tombolTambahData").click(function () {
+  $("#peraturan_form").val("");
+  $("#nomorTglPeraturanDesa").val("");
+  $("#tentang").val("");
+  $("#uraiansingkat").val("");
+  $(".modal-title").text("Add Data");
+  $("#nomorTglPeraturanDesa_error").text("");
+  $("#tentang_error").text("");
+  $("#uraiansingkat_error").text("");
+  $("#formModal").modal("show");
+  $("#action").val("Add");
+  $("#submit_button").val("Add");
+});
+$("#peraturan_form").on("submit", function (event) {
+  event.preventDefault();
+  $.ajax({
+    url: "peraturanDesaController/action",
+    method: "POST",
+    data: $(this).serialize(),
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      if (data.error == "yes") {
+        $("#nomorTglPeraturanDesa_error").text(data.nomorTglPeraturanDesa_error);
+        $("#tentang_error").text(data.tentang_error);
+        $("#uraiansingkat_error").text(data.uraiansingkat_error);
+      } else {
+        $("#formModal").modal("hide");
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Peraturan ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
         }
-      },
-    });
+        $("#sample_table").DataTable().ajax.reload();
+      }
+    },
+  });
+});
+
+$(".tombolTambahData2").click(function () {
+  $("#inventarisKekayaan_form").val("");
+  $("#jenisbarang").val("");
+  $("#lokasi").val("");
+  $("#jumlah").val("");
+  $("#sumberpembiayaan").val("");
+  $('input[id="baik"]').prop('checked', true);
+  $("#akhir").prop('selectedIndex',0);
+  $("#perkiraanbiaya").val("");
+  $("#ket").val("");
+  $(".modal-title").text("Add Data");
+  $("#jenisbarang_error").text("");
+  $("#lokasi_error").text("");
+  $("#jumlah_error").text("");
+  $("#sumberpembiayaan_error").text("");
+  $("#perkiraanbiaya_error").text("");
+  $("#ket_error").text("");
+  $("#formModal").modal("show");
+  $("#action").val("Add");
+  $("#submit_button").val("Add");
+});
+$("#inventarisKekayaan_form").on("submit", function (event) {
+  event.preventDefault();
+  $.ajax({
+    url: "action",
+    method: "POST",
+    data: $(this).serialize(),
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      if (data.error == "yes") {
+        $("#jenisbarang_error").text(data.jenisbarang_error);
+        $("#lokasi_error").text(data.lokasi_error);
+        $("#jumlah_error").text(data.jumlah_error);
+        $("#sumberpembiayaan_error").text(data.sumberpembiayaan_error);
+        $("#perkiraanbiaya_error").text(data.perkiraanbiaya_error);
+        $("#ket_error").text(data.ket_error);
+      } else {
+        $("#formModal").modal("hide");
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Inventaris Kekayaan",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+        $("#sample_table2").DataTable().ajax.reload();
+      }
+    },
   });
 });
 
@@ -102,6 +207,37 @@ $(document).on("click", ".edit", function () {
       $("#nomorTglPeraturanDesa_error").text("");
       $("#tentang_error").text("");
       $("#uraiansingkat_error").text("");
+      $("#action").val("Edit");
+      $("#submit_button").val("Edit");
+      $("#formModal").modal("show");
+      $("#hidden_id").val(id);
+    },
+  });
+});
+
+$(document).on("click", ".edit2", function () {
+  let id = $(this).data("id");
+  $.ajax({
+    url: "edit",
+    method: "POST",
+    data: { id: id },
+    dataType: "JSON",
+    success: function (data) {
+      $("#jenisbarang").val(data.jenis_barang);
+      $("#lokasi").val(data.lokasi);
+      $("#jumlah").val(data.jumlah);
+      $("#sumberpembiayaan").val(data.sumber_pembiayaan);
+      $("input[name=awal][value=" + data.keadaan_barang_bangunan_awal_tahun + "]").prop('checked', true);
+      $("#akhir").val(data.keadaan_barang_bangunan_akhir_tahun);
+      $("#perkiraanbiaya").val(data.perkiraan_biaya);
+      $("#ket").val(data.ket);
+      $(".modal-header").text("Edit Data");
+      $("#jenisbarang_error").text("");
+      $("#lokasi_error").text("");
+      $("#jumlah_error").text("");
+      $("#sumberpembiayaan_error").text("");
+      $("#perkiraanbiaya_error").text("");
+      $("#ket_error").text("");
       $("#action").val("Edit");
       $("#submit_button").val("Edit");
       $("#formModal").modal("show");
@@ -251,6 +387,45 @@ $(document).on("click", ".delete", function () {
   });
 });
 
+$(document).on("click", ".delete2", function () {
+  let penyebabdihapus = prompt("Kenapa Dihapus ?");
+  if(penyebabdihapus!=null){
+    let id = $(this).data("id");
+    Swal.fire({
+      title: "Apakah anda yakin",
+      text: "data inventaris kekayaan akan dihapus",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Hapus Data!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          type: "POST",
+          data: {
+            id: id,
+            penyebabdihapus: penyebabdihapus,
+            _method: "DELETE",
+          },
+          url: "delete",
+          success: function (data) {
+            const flashData = data;
+            if (flashData) {
+              Swal.fire({
+                title: "Data Inventaris Kekayaan ",
+                text: "Berhasil " + flashData,
+                icon: "success",
+              });
+            }
+            $("#sample_table2").DataTable().ajax.reload();
+          },
+        });
+      }
+    });
+  }
+});
+
 $(document).on("click", ".deleteAllButton", function () {
   Swal.fire({
     title: "Apakah anda yakin",
@@ -284,6 +459,45 @@ $(document).on("click", ".deleteAllButton", function () {
             });
           }
           $("#sample_table").DataTable().ajax.reload();
+        },
+      });
+    }
+  });
+});
+
+$(document).on("click", ".deleteAllButton2", function () {
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data inventaris kekayaan akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let checkboxes = document.querySelectorAll('input[name="checkbox_value[]"]:checked');
+      var vals = [];
+      for (var i = 0, n = checkboxes.length; i < n; i++) {
+        vals.push(checkboxes[i].value);
+      }
+      $.ajax({
+        type: "POST",
+        data: {
+          id: vals,
+          _method: "DELETE",
+        },
+        url: "ceklisDeleteButton",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Inventaris Kekayaan ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table2").DataTable().ajax.reload();
         },
       });
     }

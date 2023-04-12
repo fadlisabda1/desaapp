@@ -41,48 +41,48 @@ $(document).ready(function () {
       type: "POST",
     },
   });
-  $(".tombolTambahData").click(function () {
-    $("#peraturan_form").val("");
-    $(".modal-title").text("Add Data");
-    $("#nomorTglPeraturanDesa_error").text("");
-    $("#tentang_error").text("");
-    $("#uraiansingkat_error").text("");
-    $("#formModal").modal("show");
-    $("#action").val("Add");
-    $("#submit_button").val("Add");
-  });
-  $("#peraturan_form").on("submit", function (event) {
-    event.preventDefault();
-    $.ajax({
-      url: "peraturanDesaController/action",
-      method: "POST",
-      data: $(this).serialize(),
-      dataType: "JSON",
-      beforeSend: function () {
-        $("#submit_button").val("loading...");
-        $("#submit_button").attr("disabled", "disabled");
-      },
-      success: function (data) {
-        $("#submit_button").val("Add");
-        $("#submit_button").attr("disabled", false);
-        if (data.error == "yes") {
-          $("#nomorTglPeraturanDesa_error").text(data.nomorTglPeraturanDesa_error);
-          $("#tentang_error").text(data.tentang_error);
-          $("#uraiansingkat_error").text(data.uraiansingkat_error);
-        } else {
-          $("#formModal").modal("hide");
-          const flashData = data.message;
-          if (flashData) {
-            Swal.fire({
-              title: "Data Peraturan ",
-              text: "Berhasil " + flashData,
-              icon: "success",
-            });
-          }
-          $("#sample_table").DataTable().ajax.reload();
+});
+$(".tombolTambahData").click(function () {
+  $("#peraturan_form").val("");
+  $(".modal-title").text("Add Data");
+  $("#nomorTglPeraturanDesa_error").text("");
+  $("#tentang_error").text("");
+  $("#uraiansingkat_error").text("");
+  $("#formModal").modal("show");
+  $("#action").val("Add");
+  $("#submit_button").val("Add");
+});
+$("#peraturan_form").on("submit", function (event) {
+  event.preventDefault();
+  $.ajax({
+    url: "peraturanDesaController/action",
+    method: "POST",
+    data: $(this).serialize(),
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      if (data.error == "yes") {
+        $("#nomorTglPeraturanDesa_error").text(data.nomorTglPeraturanDesa_error);
+        $("#tentang_error").text(data.tentang_error);
+        $("#uraiansingkat_error").text(data.uraiansingkat_error);
+      } else {
+        $("#formModal").modal("hide");
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Peraturan ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
         }
-      },
-    });
+        $("#sample_table").DataTable().ajax.reload();
+      }
+    },
   });
 });
 
@@ -157,9 +157,10 @@ if (flashData) {
 
 $(document).on("click", ".tombol-hapus", function (e) {
   e.preventDefault();
+  const href = $(this).attr('href');
   Swal.fire({
     title: "Apakah anda yakin",
-    text: "data peraturan akan dihapus",
+    text: "data akan dihapus",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
@@ -167,7 +168,7 @@ $(document).on("click", ".tombol-hapus", function (e) {
     confirmButtonText: "Hapus Data!",
   }).then((result) => {
     if (result.isConfirmed) {
-      document.getElementById("tombol-hapus").submit();
+      document.location.href = href;
     }
   });
 });

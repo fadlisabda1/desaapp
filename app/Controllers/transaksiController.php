@@ -68,13 +68,6 @@ class transaksiController extends BaseController
                 $hasil += $dt['saldo'];
             }
         }
-        $sql1 = "UPDATE transaksi SET saldo = " . $hasil . " WHERE username = 'admin'";
-        $this->db->query($sql1);
-        if ($this->db->transStatus() === false) {
-            $this->db->transRollback();
-        } else {
-            $this->db->transCommit();
-        }
         session()->setFlashData('pesan', 'Ditambahkan.');
         return redirect()->to('/transaksiController/index');
     }
@@ -117,27 +110,15 @@ class transaksiController extends BaseController
             'nohp' => $this->request->getVar('nohp'),
             'pembayaran' => $this->request->getVar('pembayaran')
         ]);
-        $hasil = 0;
-        foreach ($this->transaksiModel->getTransaksi() as $dt) {
-            if ($dt['username'] != 'admin') {
-                $hasil += $dt['saldo'];
-            }
-        }
-        $sql1 = "UPDATE transaksi SET saldo = " . $hasil . " WHERE username = 'admin'";
-        $this->db->query($sql1);
-        if ($this->db->transStatus() === false) {
-            $this->db->transRollback();
-        } else {
-            $this->db->transCommit();
-        }
         session()->setFlashData('pesan', 'Diubah.');
         return redirect()->to('/transaksiController/index');
     }
 
     public function delete($id)
     {
+        $hasil = $this->transaksiModel->getAdmin("admin")['saldo'] += $this->transaksiModel->getTransaksi($id)['saldo'];
         $this->db->transBegin();
-        $sql1 = "UPDATE transaksi SET saldo = saldo - " . $this->transaksiModel->getTransaksi($id)['saldo'] . " WHERE username = 'admin'";
+        $sql1 = "UPDATE transaksi SET saldo = " . $hasil . " WHERE username = 'admin'";
         $this->db->query($sql1);
         $sql2 = "UPDATE epasar SET stok = stok - " . $this->transaksiModel->getTransaksi($id)['jumlahbarang'] . " WHERE id_barang = " . "'" . $this->transaksiModel->getTransaksi($id)['id_barang'] . "'";
         $this->db->query($sql2);

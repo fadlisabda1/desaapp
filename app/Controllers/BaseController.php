@@ -8,6 +8,7 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+//model
 use App\Models\profilPemerintahanModel;
 use App\Models\beritaModel;
 use App\Models\epasarModel;
@@ -15,6 +16,7 @@ use App\Models\transaksiModel;
 use App\Models\userrModel;
 use App\Models\administrasiumum\peraturanDesaModel;
 use App\Models\administrasiumum\inventarisKekayaanModel;
+use App\Models\pelayanandesa\layananUmumModel;
 
 /**
  * Class BaseController
@@ -61,6 +63,7 @@ abstract class BaseController extends Controller
         $this->transaksiModel = new transaksiModel();
         $this->peraturanDesaModel = new peraturanDesaModel();
         $this->inventarisKekayaanModel = new inventarisKekayaanModel();
+        $this->layananUmumModel = new layananUmumModel();
         $this->userModel = new userrModel();
         session();
     }

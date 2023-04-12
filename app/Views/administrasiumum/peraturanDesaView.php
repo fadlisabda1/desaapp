@@ -14,7 +14,6 @@
                 <thead class="table-light">
                     <tr>
                         <th scope="col">Ceklis</th>
-                        <th scope="col">No</th>
                         <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
                         <th scope="col">Tentang</th>
                         <th scope="col">Uraian Singkat</th>

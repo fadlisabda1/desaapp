@@ -10,6 +10,7 @@ class profilPemerintahanController extends BaseController
             'title' => 'Profil | Desa Tanah Merah',
             'dataPemerintah' => $this->profilPemerintahanModel->findAll(),
             'dataBerita' => $this->beritaModel->findAll(),
+            'dataLayananUmum' => $this->layananUmumModel->findAll(),
             'barang' => $this->epasarModel->getEpasar()
         ];
         return view('profilView/index', $profilPemerintahan);

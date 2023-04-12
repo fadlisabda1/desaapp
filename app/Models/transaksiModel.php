@@ -18,4 +18,8 @@ class transaksiModel extends Model
         }
         return $this->where(['id_transaksi' => $id])->first();
     }
+    public function getAdmin($username = false)
+    {
+        return $this->where(['username' => $username])->first();
+    }
 }
