@@ -10,13 +10,12 @@
     <?php endif; ?>
     <div class="card-body">
         <div class="table-responsive mt-2">
-            <table id="sample_table" class="table table-bordered table-hover">
+            <table id="sample_table3" class="table table-bordered table-hover">
                 <thead class="table-light">
                     <tr>
                         <th scope="col">Ceklis</th>
-                        <th scope="col">Nomor Dan Tgl Peraturan Desa</th>
-                        <th scope="col">Tentang</th>
-                        <th scope="col">Uraian Singkat</th>
+                        <th scope="col">Judul</th>
+                        <th scope="col">Keterangan</th>
                         <?php if (in_groups('admin')) : ?>
                             <th scope="col">Tindakan</th>
                         <?php endif; ?>
@@ -35,23 +34,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" id="peraturan_form">
+                <form method="post" id="layananumum_form">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="id" id="id">
                     <div class="mb-3">
-                        <label for="nomorTglPeraturanDesa" class="form-label">Nomor Dan Tgl Peraturan Desa</label>
-                        <input type="text" class="form-control" id="nomorTglPeraturanDesa" name="nomorTglPeraturanDesa">
-                        <span id="nomorTglPeraturanDesa_error" class="text-danger"></span>
+                        <label for="judul" class="form-label">Judul</label>
+                        <input type="text" class="form-control" id="judul" name="judul">
+                        <span id="judul_error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="tentang" class="form-label">Tentang</label>
-                        <input type="text" class="form-control" id="tentang" name="tentang">
-                        <span id="tentang_error" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3">
-                        <label for="uraiansingkat" class="form-label">Uraian Singkat</label>
-                        <input type="text" class="form-control" id="uraiansingkat" name="uraiansingkat">
-                        <span id="uraiansingkat_error" class="text-danger"></span>
+                        <label for="keterangan" class="form-label">keterangan</label>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan">
+                        <span id="keterangan_error" class="text-danger"></span>
                     </div>
             </div>
             <div class="modal-footer">

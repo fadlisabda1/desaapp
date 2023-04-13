@@ -23,11 +23,11 @@
 <body class="sb-nav-fixed">
 
     <!-- Sidebar -->
-    <?= $this->include('administrasiumum/templates/sidebar'); ?>
+    <?= $this->include('templates/sidebar'); ?>
     <!-- End of Sidebar -->
 
     <!-- Topbar -->
-    <?= $this->include('administrasiumum/templates/topbar'); ?>
+    <?= $this->include('templates/topbar'); ?>
     <!-- End of Topbar -->
 
     <!-- Begin Page Content -->

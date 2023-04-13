@@ -85,6 +85,93 @@ $(document).ready(function () {
       type: "POST",
     },
   });
+  $("#sample_table3").DataTable({
+    dom: "Bfrtip",
+    lengthMenu: [5, 10, 20, 50, 100, 200, 500],
+    buttons: [
+      "pageLength",
+      {
+        extend: "copyHtml5",
+        exportOptions: {
+          columns: [1, 2],
+        },
+      },
+      {
+        extend: "csvHtml5",
+        exportOptions: {
+          columns: [1, 2],
+        },
+      },
+      {
+        extend: "excelHtml5",
+        exportOptions: {
+          columns: [1, 2],
+        },
+      },
+      {
+        extend: "pdfHtml5",
+        exportOptions: {
+          columns: [1, 2],
+        },
+      },
+      {
+        extend: "print",
+        exportOptions: {
+          columns: [1,2],
+        },
+      },
+    ],
+    order: [],
+    serverSide: true,
+    ajax: {
+      url: "ambilData",
+      type: "POST",
+    },
+  });
+});
+
+$(".tombolTambahData").click(function () {
+  $("#judul_form").val("");
+  $("#keterangan").val("");
+  $("#tentang").val("");
+  $(".modal-title").text("Add Data");
+  $("#judul_error").text("");
+  $("#keterangan_error").text("");
+  $("#formModal").modal("show");
+  $("#action").val("Add");
+  $("#submit_button").val("Add");
+});
+$("#layananumum_form").on("submit", function (event) {
+  event.preventDefault();
+  $.ajax({
+    url: "action",
+    method: "POST",
+    data: $(this).serialize(),
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      if (data.error == "yes") {
+        $("#judul_error").text(data.judul_error);
+        $("#keterangan_error").text(data.keterangan_error);
+      } else {
+        $("#formModal").modal("hide");
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Layanan Umum ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+        $("#sample_table3").DataTable().ajax.reload();
+      }
+    },
+  });
 });
 
 $(".tombolTambahData").click(function () {
@@ -238,6 +325,27 @@ $(document).on("click", ".edit2", function () {
       $("#sumberpembiayaan_error").text("");
       $("#perkiraanbiaya_error").text("");
       $("#ket_error").text("");
+      $("#action").val("Edit");
+      $("#submit_button").val("Edit");
+      $("#formModal").modal("show");
+      $("#hidden_id").val(id);
+    },
+  });
+});
+
+$(document).on("click", ".edit3", function () {
+  let id = $(this).data("id");
+  $.ajax({
+    url: "edit",
+    method: "POST",
+    data: { id: id },
+    dataType: "JSON",
+    success: function (data) {
+      $("#judul").val(data.judul);
+      $("#keterangan").val(data.keterangan);
+      $(".modal-header").text("Edit Data");
+      $("#judul_error").text("");
+      $("#keterangan_error").text("");
       $("#action").val("Edit");
       $("#submit_button").val("Edit");
       $("#formModal").modal("show");
@@ -426,6 +534,41 @@ $(document).on("click", ".delete2", function () {
   }
 });
 
+$(document).on("click", ".delete3", function () {
+  let id = $(this).data("id");
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data layanan umum akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: "POST",
+        data: {
+          id: id,
+          _method: "DELETE",
+        },
+        url: "delete",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Layanan Umum ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table3").DataTable().ajax.reload();
+        },
+      });
+    }
+  });
+});
+
 $(document).on("click", ".deleteAllButton", function () {
   Swal.fire({
     title: "Apakah anda yakin",
@@ -498,6 +641,45 @@ $(document).on("click", ".deleteAllButton2", function () {
             });
           }
           $("#sample_table2").DataTable().ajax.reload();
+        },
+      });
+    }
+  });
+});
+
+$(document).on("click", ".deleteAllButton3", function () {
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data layanan umum akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let checkboxes = document.querySelectorAll('input[name="checkbox_value[]"]:checked');
+      var vals = [];
+      for (var i = 0, n = checkboxes.length; i < n; i++) {
+        vals.push(checkboxes[i].value);
+      }
+      $.ajax({
+        type: "POST",
+        data: {
+          id: vals,
+          _method: "DELETE",
+        },
+        url: "ceklisDeleteButton",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Layanan Umum ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table3").DataTable().ajax.reload();
         },
       });
     }

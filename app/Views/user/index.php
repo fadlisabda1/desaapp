@@ -1,4 +1,4 @@
-<?= $this->extend('administrasiumum/templates/index'); ?>
+<?= $this->extend('templates/index'); ?>
 <?= $this->section('page-content'); ?>
 <div class="container-fluid">
     <!-- Page Heading -->

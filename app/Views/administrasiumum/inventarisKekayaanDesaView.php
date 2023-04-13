@@ -1,4 +1,4 @@
-<?= $this->extend('administrasiumum/templates/index'); ?>
+<?= $this->extend('templates/index'); ?>
 <?= $this->section('page-content'); ?>
 <div class="card shadow mb-4 mt-4">
     <?php if (in_groups('admin')) : ?>

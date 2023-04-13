@@ -36,6 +36,11 @@
                             <a class="nav-link" href="/inventarisKekayaanDesaController/index">Inventaris dan Kekayaan Desa</a>
                         </nav>
                     </div>
+                    <div class="sb-sidenav-menu-heading">Pelayanan Desa</div>
+                    <a class="nav-link" href="/layananUmumController/index">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
+                        Layanan Umum
+                    </a>
                     <a class="nav-link" href="<?= base_url('logout'); ?>">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
                         Logout

@@ -90,11 +90,12 @@ $routes->post('/inventarisKekayaanDesaController/edit', 'administrasiumum\invent
 $routes->delete('/inventarisKekayaanDesaController/delete', 'administrasiumum\inventarisKekayaanDesaController::delete');
 $routes->delete('/inventarisKekayaanDesaController/ceklisDeleteButton', 'administrasiumum\inventarisKekayaanDesaController::ceklisDeleteButton');
 // pelayanan desa
-$routes->get('/layananUmumController/create', 'pelayanandesa\layananUmumController::create');
-$routes->post('/layananUmumController/save', 'pelayanandesa\layananUmumController::save');
-$routes->get('/layananUmumController/edit/(:segment)', 'pelayanandesa\layananUmumController::edit/$1');
-$routes->post('/layananUmumController/update/(:segment)', 'pelayanandesa\layananUmumController::update/$1');
-$routes->get('/layananUmumController/delete/(:num)', 'pelayanandesa\layananUmumController::delete/$1');
+$routes->get('/layananUmumController/index', 'pelayanandesa\layananUmumController::index');
+$routes->post('/layananUmumController/ambilData', 'pelayanandesa\layananUmumController::ambilData');
+$routes->post('/layananUmumController/action', 'pelayanandesa\layananUmumController::action');
+$routes->post('/layananUmumController/edit', 'pelayanandesa\layananUmumController::edit');
+$routes->delete('/layananUmumController/delete', 'pelayanandesa\layananUmumController::delete');
+$routes->delete('/layananUmumController/ceklisDeleteButton', 'pelayanandesa\layananUmumController::ceklisDeleteButton');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

@@ -31,9 +31,6 @@
                     <a class="nav-link page-scroll" href="/profil#publikasiumum">Publikasi Umum</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="/profil#bankdatadesa">Syarat Pengurusan Kantor</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link page-scroll" href="/profil#wisata">Wisata</a>
                 </li>
                 <li class="nav-item">
