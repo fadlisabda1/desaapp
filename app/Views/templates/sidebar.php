@@ -41,6 +41,11 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
                         Layanan Umum
                     </a>
+                    <div class="sb-sidenav-menu-heading">Perpajakan Desa</div>
+                    <a class="nav-link" href="/penerimaanPbbController/index">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
+                        Penerimaaan Harian Pajak Bumi Dan Bangunan
+                    </a>
                     <a class="nav-link" href="<?= base_url('logout'); ?>">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
                         Logout

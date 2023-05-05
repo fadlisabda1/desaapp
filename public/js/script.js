@@ -157,7 +157,6 @@ if (flashData) {
 
 $(document).on("click", ".tombol-hapus", function (e) {
   e.preventDefault();
-  const href = $(this).attr('href');
   Swal.fire({
     title: "Apakah anda yakin",
     text: "data akan dihapus",
@@ -168,7 +167,7 @@ $(document).on("click", ".tombol-hapus", function (e) {
     confirmButtonText: "Hapus Data!",
   }).then((result) => {
     if (result.isConfirmed) {
-      document.location.href = href;
+      document.getElementById("tombol-hapus").submit();
     }
   });
 });

@@ -12,6 +12,11 @@ class inventarisKekayaanModel extends Model
     protected $useSoftDeletes = true;
     protected $allowedFields = ['jenis_barang', 'lokasi', 'jumlah', 'sumber_pembiayaan', 'keadaan_barang_bangunan_awal_tahun', 'keadaan_barang_bangunan_akhir_tahun', 'perkiraan_biaya', 'ket'];
 
+    public function getDataNull()
+    {
+        return $this->db->table('inventaris_kekayaan_desa')->where('deleted_at', NULL);
+    }
+
     public function getDataAll()
     {
         return $this->db->table('inventaris_kekayaan_desa');

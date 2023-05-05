@@ -96,6 +96,13 @@ $routes->post('/layananUmumController/action', 'pelayanandesa\layananUmumControl
 $routes->post('/layananUmumController/edit', 'pelayanandesa\layananUmumController::edit');
 $routes->delete('/layananUmumController/delete', 'pelayanandesa\layananUmumController::delete');
 $routes->delete('/layananUmumController/ceklisDeleteButton', 'pelayanandesa\layananUmumController::ceklisDeleteButton');
+//perpajakan
+$routes->get('/penerimaanPbbController/index', 'perpajakan\penerimaanPbbController::index');
+$routes->post('/penerimaanPbbController/ambilData', 'perpajakan\penerimaanPbbController::ambilData');
+$routes->post('/penerimaanPbbController/action', 'perpajakan\penerimaanPbbController::action');
+$routes->post('/penerimaanPbbController/edit', 'perpajakan\penerimaanPbbController::edit');
+$routes->delete('/penerimaanPbbController/delete', 'perpajakan\penerimaanPbbController::delete');
+$routes->delete('/penerimaanPbbController/ceklisDeleteButton', 'perpajakan\penerimaanPbbController::ceklisDeleteButton');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

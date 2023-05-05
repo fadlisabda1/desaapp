@@ -108,7 +108,7 @@ class epasarController extends BaseController
             }
             $i++;
         }
-        if ($this->request->getVar('gambarLama') != '' && $file->getError() != 4) {
+        if ($this->request->getVar('gambarLama') != null && $file->getError() != 4) {
             $str = explode('|', $this->request->getVar('gambarLama'));
             for ($j = 0; $j < count($str); $j++) {
                 unlink('gambar/' . $str[$j]);
@@ -130,7 +130,7 @@ class epasarController extends BaseController
         $str = explode('|', $this->epasarModel->getEpasar($id)['gambar']);
 
         for ($i = 0; $i < count($str); $i++) {
-            if (file_exists('gambar/' . $str[$i]) && $str[$i] != '') {
+            if ($str[$i] != null) {
                 unlink('gambar/' . $str[$i]);
             }
         }

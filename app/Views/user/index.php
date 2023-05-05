@@ -57,7 +57,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="user_image" class="form-label userImageLabel">User Image</label>
-                        <input type="file" class="form-control" name="user_image" id="user_image" onchange="previewImg()">
+                        <input type="file" class="form-control" name="user_image" id="gambar" onchange="previewImg()">
                         <span id="user_image_error" class="text-danger"></span>
                         <img src="<?= base_url('/gambar/' . user()->user_image); ?>" class="img-fluid img-preview mt-2">
                     </div>

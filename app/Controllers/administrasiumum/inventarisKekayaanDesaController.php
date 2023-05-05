@@ -24,7 +24,7 @@ class inventarisKekayaanDesaController extends BaseController
     public function ambilData()
     {
         $data_table = new TablesIgniter();
-        $data_table->setTable($this->inventarisKekayaanModel->getDataAll())
+        $data_table->setTable($this->inventarisKekayaanModel->getDataNull())
             ->setDefaultOrder('id_inventaris_kekayaan_desa', 'ESC')
             ->setSearch(['jenis_barang', 'lokasi', 'sumber_pembiayaan'])
             ->setOrder(['jenis_barang', 'lokasi', 'jumlah', 'sumber_pembiayaan', 'keadaan_barang_bangunan_awal_tahun', 'keadaan_barang_bangunan_akhir_tahun', 'perkiraan_biaya', 'ket', 'deleted_at'])
@@ -124,10 +124,10 @@ class inventarisKekayaanDesaController extends BaseController
 
     public function edit()
     {
-        if ($this->request->getVar('id')) {
-            $inventarisKekayaan_data = $this->inventarisKekayaanModel->where('id_inventaris_kekayaan_desa', $this->request->getVar('id'))->first();
-            echo json_encode($inventarisKekayaan_data);
-        }
+        // if ($this->request->getVar('id')) {
+        $inventarisKekayaan_data = $this->inventarisKekayaanModel->where('id_inventaris_kekayaan_desa', $this->request->getVar('id'))->first();
+        echo json_encode($inventarisKekayaan_data);
+        // }
     }
 
     public function delete()

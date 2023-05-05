@@ -117,7 +117,7 @@ $(document).ready(function () {
       {
         extend: "print",
         exportOptions: {
-          columns: [1,2],
+          columns: [1, 2],
         },
       },
     ],
@@ -128,10 +128,120 @@ $(document).ready(function () {
       type: "POST",
     },
   });
+
+  $("#sample_table4").DataTable({
+    dom: "Bfrtip",
+    lengthMenu: [5, 10, 20, 50, 100, 200, 500],
+    buttons: [
+      "pageLength",
+      {
+        extend: "copyHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4],
+        },
+      },
+      {
+        extend: "csvHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4],
+        },
+      },
+      {
+        extend: "excelHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4],
+        },
+      },
+      {
+        extend: "pdfHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4],
+        },
+      },
+      {
+        extend: "print",
+        exportOptions: {
+          columns: [1, 2, 3, 4],
+        },
+      },
+    ],
+    order: [],
+    serverSide: true,
+    columnDefs: [
+      {
+        targets: 5,
+        render: function (data) {
+          return "<img width=300 src=" + window.location.origin + "/gambar/buktipembayaran/" + data + ">";
+        },
+      },
+    ],
+    ajax: {
+      url: "ambilData",
+      type: "POST",
+    },
+  });
 });
 
 $(".tombolTambahData").click(function () {
-  $("#judul_form").val("");
+  $("#perpajakan_form").val("");
+  $("#nop").val("");
+  $("#nama").val("");
+  $("#tahun").val("");
+  $("#totalyangdibayar").val("");
+  $(".tampilangambar").attr("src", "");
+  $("#gambar").val("");
+  $(".modal-title").text("Add Data");
+  $("#nop_error").text("");
+  $("#nama_error").text("");
+  $("#tahun_error").text("");
+  $("#totalyangdibayar_error").text("");
+  $("#gambar_error").text("");
+  $("#formModal").modal("show");
+  $("#action").val("Add");
+  $("#submit_button").val("Add");
+});
+$("#perpajakan_form").on("submit", function (event) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    url: "action",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    data: formData,
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      if (data.error == "yes") {
+        $("#nop_error").text(data.nop_error);
+        $("#nama_error").text(data.nama_error);
+        $("#tahun_error").text(data.tahun_error);
+        $("#totalyangdibayar_error").text(data.totalyangdibayar_error);
+        $("#gambar_error").text(data.gambar_error);
+      } else {
+        $("#formModal").modal("hide");
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Perpajakan ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+        $("#sample_table4").DataTable().ajax.reload();
+      }
+    },
+  });
+});
+
+$(".tombolTambahData").click(function () {
+  $("#layananumum_form").val("");
+  $("#judul").val("");
   $("#keterangan").val("");
   $("#tentang").val("");
   $(".modal-title").text("Add Data");
@@ -227,8 +337,8 @@ $(".tombolTambahData2").click(function () {
   $("#lokasi").val("");
   $("#jumlah").val("");
   $("#sumberpembiayaan").val("");
-  $('input[id="baik"]').prop('checked', true);
-  $("#akhir").prop('selectedIndex',0);
+  $('input[id="baik"]').prop("checked", true);
+  $("#akhir").prop("selectedIndex", 0);
   $("#perkiraanbiaya").val("");
   $("#ket").val("");
   $(".modal-title").text("Add Data");
@@ -314,7 +424,7 @@ $(document).on("click", ".edit2", function () {
       $("#lokasi").val(data.lokasi);
       $("#jumlah").val(data.jumlah);
       $("#sumberpembiayaan").val(data.sumber_pembiayaan);
-      $("input[name=awal][value=" + data.keadaan_barang_bangunan_awal_tahun + "]").prop('checked', true);
+      $("input[name=awal][value=" + data.keadaan_barang_bangunan_awal_tahun + "]").prop("checked", true);
       $("#akhir").val(data.keadaan_barang_bangunan_akhir_tahun);
       $("#perkiraanbiaya").val(data.perkiraan_biaya);
       $("#ket").val(data.ket);
@@ -354,14 +464,42 @@ $(document).on("click", ".edit3", function () {
   });
 });
 
+$(document).on("click", ".edit4", function () {
+  let id = $(this).data("id");
+  $.ajax({
+    url: "edit",
+    method: "POST",
+    data: { id: id },
+    dataType: "JSON",
+    success: function (data) {
+      $(".tampilangambar").attr("src", window.location.origin + "/gambar/buktipembayaran/" + data.gambar);
+      $("#gambar_lama").val(data.gambar);
+      $("#nop").val(data.nomor_objek_pajak);
+      $("#nama").val(data.nama_wajib_pajak);
+      $("#tahun").val(data.tahun);
+      $("#totalyangdibayar").val(data.total_pbb_dibayar);
+      $(".modal-header").text("Edit Data");
+      $("#nop_error").text("");
+      $("#nama_error").text("");
+      $("#tahun_error").text("");
+      $("#totalyangdibayar_error").text("");
+      $("#gambar_error").text("");
+      $("#action").val("Edit");
+      $("#submit_button").val("Edit");
+      $("#formModal").modal("show");
+      $("#id").val(id);
+    },
+  });
+});
+
 function previewImg() {
-  const user_image = document.querySelector("#user_image");
+  const gambar = document.querySelector("#gambar");
   const imgPreview = document.querySelector(".img-preview");
 
-  const fileUserImage = new FileReader();
-  fileUserImage.readAsDataURL(user_image.files[0]);
+  const fileGambar = new FileReader();
+  fileGambar.readAsDataURL(gambar.files[0]);
 
-  fileUserImage.onload = function (e) {
+  fileGambar.onload = function (e) {
     imgPreview.src = e.target.result;
   };
 }
@@ -497,7 +635,7 @@ $(document).on("click", ".delete", function () {
 
 $(document).on("click", ".delete2", function () {
   let penyebabdihapus = prompt("Kenapa Dihapus ?");
-  if(penyebabdihapus!=null){
+  if (penyebabdihapus != null) {
     let id = $(this).data("id");
     Swal.fire({
       title: "Apakah anda yakin",
@@ -563,6 +701,41 @@ $(document).on("click", ".delete3", function () {
             });
           }
           $("#sample_table3").DataTable().ajax.reload();
+        },
+      });
+    }
+  });
+});
+
+$(document).on("click", ".delete4", function () {
+  let id = $(this).data("id");
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data perpajakan akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: "POST",
+        data: {
+          id: id,
+          _method: "DELETE",
+        },
+        url: "delete",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Perpajakan ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table4").DataTable().ajax.reload();
         },
       });
     }
@@ -680,6 +853,45 @@ $(document).on("click", ".deleteAllButton3", function () {
             });
           }
           $("#sample_table3").DataTable().ajax.reload();
+        },
+      });
+    }
+  });
+});
+
+$(document).on("click", ".deleteAllButton4", function () {
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data perpajakan akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let checkboxes = document.querySelectorAll('input[name="checkbox_value[]"]:checked');
+      var vals = [];
+      for (var i = 0, n = checkboxes.length; i < n; i++) {
+        vals.push(checkboxes[i].value);
+      }
+      $.ajax({
+        type: "POST",
+        data: {
+          id: vals,
+          _method: "DELETE",
+        },
+        url: "ceklisDeleteButton",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Perpajakan ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table4").DataTable().ajax.reload();
         },
       });
     }

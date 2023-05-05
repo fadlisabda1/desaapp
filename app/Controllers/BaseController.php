@@ -17,6 +17,7 @@ use App\Models\userrModel;
 use App\Models\administrasiumum\peraturanDesaModel;
 use App\Models\administrasiumum\inventarisKekayaanModel;
 use App\Models\pelayanandesa\layananUmumModel;
+use App\Models\perpajakan\penerimaanPbbModel;
 
 /**
  * Class BaseController
@@ -65,6 +66,7 @@ abstract class BaseController extends Controller
         $this->inventarisKekayaanModel = new inventarisKekayaanModel();
         $this->layananUmumModel = new layananUmumModel();
         $this->userModel = new userrModel();
+        $this->penerimaanPbbModel = new penerimaanPbbModel();
         session();
     }
 }

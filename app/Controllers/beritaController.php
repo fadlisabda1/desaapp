@@ -107,7 +107,7 @@ class beritaController extends BaseController
             }
             $i++;
         }
-        if ($this->request->getVar('gambarLama') != '' && $file->getError() != 4) {
+        if ($this->request->getVar('gambarLama') != null && $file->getError() != 4 && file_exists('/xampp/htdocs/desaapp/public/gambar/buktipembayaran' . $this->request->getVar('gambarLama'))) {
             $str = explode('|', $this->request->getVar('gambarLama'));
             for ($j = 0; $j < count($str); $j++) {
                 unlink('gambar/' . $str[$j]);
@@ -128,7 +128,7 @@ class beritaController extends BaseController
         $str = explode('|', $this->beritaModel->getBerita($id)['gambar']);
 
         for ($i = 0; $i < count($str); $i++) {
-            if (file_exists('gambar/' . $str[$i]) && $str[$i] != '') {
+            if (file_exists('gambar/' . $str[$i]) && $str[$i] != null) {
                 unlink('gambar/' . $str[$i]);
             }
         }
