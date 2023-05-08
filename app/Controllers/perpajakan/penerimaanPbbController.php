@@ -143,6 +143,19 @@ class penerimaanPbbController extends BaseController
         }
     }
 
+    public function deleteUser()
+    {
+        if ($this->request->getVar('id')) {
+            $id = $this->request->getVar('id');
+            $gambar = $this->penerimaanPbbModel->getData($id)['gambar'];
+            if (file_exists('gambar/buktipembayaran/' . $gambar)) {
+                unlink('gambar/buktipembayaran/' . $gambar);
+            }
+            session()->setFlashData('pesan', "dihapus.");
+            echo session()->getFlashdata('pesan');
+        }
+    }
+
     public function ceklisDeleteButton()
     {
         $id = $this->request->getVar('id');

@@ -102,6 +102,7 @@ $routes->post('/penerimaanPbbController/ambilData', 'perpajakan\penerimaanPbbCon
 $routes->post('/penerimaanPbbController/action', 'perpajakan\penerimaanPbbController::action');
 $routes->post('/penerimaanPbbController/edit', 'perpajakan\penerimaanPbbController::edit');
 $routes->delete('/penerimaanPbbController/delete', 'perpajakan\penerimaanPbbController::delete');
+$routes->delete('/penerimaanPbbController/deleteUser', 'perpajakan\penerimaanPbbController::deleteUser');
 $routes->delete('/penerimaanPbbController/ceklisDeleteButton', 'perpajakan\penerimaanPbbController::ceklisDeleteButton');
 /*
  * --------------------------------------------------------------------

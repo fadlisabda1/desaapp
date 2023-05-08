@@ -34,9 +34,13 @@ class penerimaanPbbModel extends Model
     public function button()
     {
         $aksi_button = function ($row) {
+            if (in_groups('user')) {
+                return '<button type="button" name="edit" class="btn btn-warning btn-sm edit4" data-id="' . $row["id_pbb"] . '">Edit</button>&nbsp
+                <button type="button" class="btn btn-danger btn-sm delete4user" data-id="' . $row["id_pbb"] . '">Delete</button>&nbsp;
+                ';
+            }
             if (in_groups('admin')) {
-                return '
-                <button type="button" name="edit" class="btn btn-warning btn-sm edit4" data-id="' . $row["id_pbb"] . '">Edit</button>&nbsp;
+                return '<button type="button" name="edit" class="btn btn-warning btn-sm edit4" data-id="' . $row["id_pbb"] . '">Edit</button>&nbsp
                 <button type="button" class="btn btn-danger btn-sm delete4" data-id="' . $row["id_pbb"] . '">Delete</button>&nbsp;<button type="button" class="btn btn-danger btn-sm deleteAllButton4">Delete All</button>&nbsp;<button type="button" onclick="selects()" class="btn btn-primary btn-sm">Ceklis All</button>
                 ';
             }

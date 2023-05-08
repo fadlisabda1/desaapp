@@ -742,6 +742,41 @@ $(document).on("click", ".delete4", function () {
   });
 });
 
+$(document).on("click", ".delete4user", function () {
+  let id = $(this).data("id");
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data perpajakan akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: "POST",
+        data: {
+          id: id,
+          _method: "DELETE",
+        },
+        url: "deleteUser",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Perpajakan ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          window.location.reload();
+        },
+      });
+    }
+  });
+});
+
 $(document).on("click", ".deleteAllButton", function () {
   Swal.fire({
     title: "Apakah anda yakin",

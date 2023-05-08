@@ -19,9 +19,7 @@
                         <th scope="col">Tahun</th>
                         <th scope="col">Total pbb yang dibayar</th>
                         <th scope="col">Gambar</th>
-                        <?php if (in_groups('admin')) : ?>
-                            <th scope="col">Tindakan</th>
-                        <?php endif; ?>
+                        <th scope="col">Tindakan</th>
                     </tr>
                 </thead>
             </table>
