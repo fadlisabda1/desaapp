@@ -18,7 +18,7 @@
                         <th scope="col">Nama Wajib Pajak</th>
                         <th scope="col">Tahun</th>
                         <th scope="col">Total pbb yang dibayar</th>
-                        <th scope="col">Gambar</th>
+                        <th scope="col">Bukti Bayar</th>
                         <th scope="col">Tindakan</th>
                     </tr>
                 </thead>
@@ -37,7 +37,6 @@
             <div class="modal-body">
                 <form method="post" id="perpajakan_form" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
-                    <input type="hidden" name="id" id="id">
                     <input type="hidden" name="gambar_lama" id="gambar_lama">
                     <div class="mb-3">
                         <label for="nop" class="form-label">Nomor Objek Pajak</label>
@@ -45,7 +44,7 @@
                         <span id="nop_error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama Wajib Pajak</label>
+                        <label for="nama" class="form-label">Username Atau Email</label>
                         <input type="text" class="form-control" id="nama" name="nama">
                         <span id="nama_error" class="text-danger"></span>
                     </div>

@@ -83,7 +83,7 @@ class penerimaanPbbController extends BaseController
                     $message = session()->getFlashdata('pesan');
                 }
                 if ($this->request->getVar('action') == 'Edit') {
-                    $id = $this->request->getVar('id');
+                    $id = $this->request->getVar('hidden_id');
                     $fileImage = $this->request->getFile('gambar');
 
                     if ($fileImage->getError() == 4) {

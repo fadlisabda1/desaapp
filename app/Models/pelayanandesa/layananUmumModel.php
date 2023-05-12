@@ -10,14 +10,17 @@ class layananUmumModel extends Model
     protected $primaryKey = 'id_layananumum';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['judul', 'keterangan', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['judul', 'nohp', 'usernameoremail', 'file', 'created_at', 'updated_at', 'deleted_at'];
     public function getDataNull()
     {
         return $this->db->table('layananumum')->where('deleted_at', NULL);
     }
-    public function getDataAll()
+    public function getData($id = false)
     {
-        return $this->findAll();
+        if ($id == false) {
+            return $this->findAll();
+        }
+        return $this->where(['id_layananumum' => $id])->first();
     }
     public function ceklisDelete()
     {
@@ -31,6 +34,11 @@ class layananUmumModel extends Model
     public function button()
     {
         $aksi_button = function ($row) {
+            if (in_groups('user') && user()->username == $row["usernameoremail"]) {
+                return '<button type="button" name="edit" class="btn btn-warning btn-sm edit3" data-id="' . $row["id_layananumum"] . '">Edit</button>&nbsp;
+                <button type="button" class="btn btn-danger btn-sm delete3" data-id="' . $row["id_layananumum"] . '">Delete</button>&nbsp;
+                ';
+            }
             if (in_groups('admin')) {
                 return '
                 <button type="button" name="edit" class="btn btn-warning btn-sm edit3" data-id="' . $row["id_layananumum"] . '">Edit</button>&nbsp;

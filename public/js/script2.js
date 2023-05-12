@@ -123,6 +123,21 @@ $(document).ready(function () {
     ],
     order: [],
     serverSide: true,
+    columnDefs: [
+      {
+        targets: 4,
+        render: function (data) {
+          let str = data.split("|");
+          let hasil = "";
+          for (let i = 0; i < str.length; i++) {
+            if (str[i] != null) {
+              hasil += "<a href=" + window.location.origin + "/file/fileSyaratSurat/" + str[i] + " target=_blank>" + str[i] + "</a><br>";
+            }
+          }
+          return hasil;
+        },
+      },
+    ],
     ajax: {
       url: "ambilData",
       type: "POST",
@@ -242,21 +257,27 @@ $("#perpajakan_form").on("submit", function (event) {
 $(".tombolTambahData").click(function () {
   $("#layananumum_form").val("");
   $("#judul").val("");
-  $("#keterangan").val("");
-  $("#tentang").val("");
+  $("#nohp").val("");
+  $("#usernameoremail").val("");
+  $("#file").val("");
   $(".modal-title").text("Add Data");
   $("#judul_error").text("");
-  $("#keterangan_error").text("");
+  $("#nohp_error").text("");
+  $("#usernameoremail_error").text("");
   $("#formModal").modal("show");
   $("#action").val("Add");
   $("#submit_button").val("Add");
 });
+
 $("#layananumum_form").on("submit", function (event) {
   event.preventDefault();
+  var formData = new FormData(this);
   $.ajax({
     url: "action",
     method: "POST",
-    data: $(this).serialize(),
+    processData: false,
+    contentType: false,
+    data: formData,
     dataType: "JSON",
     beforeSend: function () {
       $("#submit_button").val("loading...");
@@ -267,7 +288,8 @@ $("#layananumum_form").on("submit", function (event) {
       $("#submit_button").attr("disabled", false);
       if (data.error == "yes") {
         $("#judul_error").text(data.judul_error);
-        $("#keterangan_error").text(data.keterangan_error);
+        $("#nohp_error").text(data.nohp_error);
+        $("#usernameoremail_error").text(data.usernameoremail_error);
       } else {
         $("#formModal").modal("hide");
         const flashData = data.message;
@@ -451,11 +473,14 @@ $(document).on("click", ".edit3", function () {
     data: { id: id },
     dataType: "JSON",
     success: function (data) {
+      $("#file_lama").val(data.file);
       $("#judul").val(data.judul);
-      $("#keterangan").val(data.keterangan);
+      $("#nohp").val(data.nohp);
+      $("#usernameoremail").val(data.usernameoremail);
       $(".modal-header").text("Edit Data");
       $("#judul_error").text("");
-      $("#keterangan_error").text("");
+      $("#nohp_error").text("");
+      $("#usernameoremail_error").text("");
       $("#action").val("Edit");
       $("#submit_button").val("Edit");
       $("#formModal").modal("show");
@@ -487,7 +512,7 @@ $(document).on("click", ".edit4", function () {
       $("#action").val("Edit");
       $("#submit_button").val("Edit");
       $("#formModal").modal("show");
-      $("#id").val(id);
+      $("#hidden_id").val(id);
     },
   });
 });
