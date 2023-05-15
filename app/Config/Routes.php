@@ -104,8 +104,16 @@ $routes->post('/penerimaanPbbController/edit', 'perpajakan\penerimaanPbbControll
 $routes->delete('/penerimaanPbbController/delete', 'perpajakan\penerimaanPbbController::delete');
 $routes->delete('/penerimaanPbbController/deleteUser', 'perpajakan\penerimaanPbbController::deleteUser');
 $routes->delete('/penerimaanPbbController/ceklisDeleteButton', 'perpajakan\penerimaanPbbController::ceklisDeleteButton');
+//bantuan sosial
+$routes->get('/bantuanSosialController/index', 'bantuansosial\bantuanSosialController::index');
+$routes->post('/bantuanSosialController/ambilData', 'bantuansosial\bantuanSosialController::ambilData');
+$routes->post('/bantuanSosialController/action', 'bantuansosial\bantuanSosialController::action');
+$routes->post('/bantuanSosialController/edit', 'bantuansosial\bantuanSosialController::edit');
+$routes->delete('/bantuanSosialController/delete', 'bantuansosial\bantuanSosialController::delete');
+$routes->delete('/bantuanSosialController/deleteUser', 'bantuansosial\bantuanSosialController::deleteUser');
+$routes->delete('/bantuanSosialController/ceklisDeleteButton', 'bantuansosial\bantuanSosialController::ceklisDeleteButton');
 /*
- * --------------------------------------------------------------------
+* --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------
  *

@@ -46,6 +46,11 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
                         Penerimaaan Harian Pajak Bumi Dan Bangunan
                     </a>
+                    <div class="sb-sidenav-menu-heading">Bantuan Sosial</div>
+                    <a class="nav-link" href="/bantuanSosialController/index">
+                        <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
+                        Bantuan Sosial Desa
+                    </a>
                     <a class="nav-link" href="<?= base_url('logout'); ?>">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
                         Logout

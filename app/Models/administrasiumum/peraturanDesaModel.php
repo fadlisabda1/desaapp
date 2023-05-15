@@ -10,7 +10,7 @@ class peraturanDesaModel extends Model
     protected $primaryKey = 'id_peraturan_desa';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['nomor_tgl_peraturan', 'tentang', 'uraiansingkat'];
+    protected $allowedFields = ['nomor_tgl_peraturan', 'tentang', 'uraiansingkat', 'created_at', 'updated_at', 'deleted_at'];
     public function getDataNull()
     {
         return $this->db->table('peraturan_desa')->where('deleted_at', NULL);

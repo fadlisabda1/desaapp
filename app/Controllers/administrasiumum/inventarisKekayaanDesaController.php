@@ -124,10 +124,10 @@ class inventarisKekayaanDesaController extends BaseController
 
     public function edit()
     {
-        // if ($this->request->getVar('id')) {
-        $inventarisKekayaan_data = $this->inventarisKekayaanModel->where('id_inventaris_kekayaan_desa', $this->request->getVar('id'))->first();
-        echo json_encode($inventarisKekayaan_data);
-        // }
+        if ($this->request->getVar('id')) {
+            $inventarisKekayaan_data = $this->inventarisKekayaanModel->where('id_inventaris_kekayaan_desa', $this->request->getVar('id'))->first();
+            echo json_encode($inventarisKekayaan_data);
+        }
     }
 
     public function delete()

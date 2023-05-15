@@ -10,7 +10,7 @@ class inventarisKekayaanModel extends Model
     protected $primaryKey = 'id_inventaris_kekayaan_desa';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['jenis_barang', 'lokasi', 'jumlah', 'sumber_pembiayaan', 'keadaan_barang_bangunan_awal_tahun', 'keadaan_barang_bangunan_akhir_tahun', 'perkiraan_biaya', 'ket'];
+    protected $allowedFields = ['jenis_barang', 'lokasi', 'jumlah', 'sumber_pembiayaan', 'keadaan_barang_bangunan_awal_tahun', 'keadaan_barang_bangunan_akhir_tahun', 'perkiraan_biaya', 'ket', 'created_at', 'updated_at', 'deleted_at'];
 
     public function getDataNull()
     {

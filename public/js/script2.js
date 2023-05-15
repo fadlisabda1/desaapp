@@ -195,6 +195,108 @@ $(document).ready(function () {
       type: "POST",
     },
   });
+
+  $("#sample_table5").DataTable({
+    dom: "Bfrtip",
+    lengthMenu: [5, 10, 20, 50, 100, 200, 500],
+    buttons: [
+      "pageLength",
+      {
+        extend: "copyHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6, 7],
+        },
+      },
+      {
+        extend: "csvHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6, 7],
+        },
+      },
+      {
+        extend: "excelHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6, 7],
+        },
+      },
+      {
+        extend: "pdfHtml5",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6, 7],
+        },
+      },
+      {
+        extend: "print",
+        exportOptions: {
+          columns: [1, 2, 3, 4, 5, 6, 7],
+        },
+      },
+    ],
+    order: [],
+    serverSide: true,
+    ajax: {
+      url: "ambilData",
+      type: "POST",
+    },
+  });
+});
+
+$(".tombolTambahData").click(function () {
+  $("#bantuansosial_form").val("");
+  $("#nomorktp").val("");
+  $("#namapenerima").val("");
+  $("#jenisbantuan").prop("selectedIndex", 0);
+  $("#statuspenerimaan").prop("selectedIndex", 0);
+  $('input[id="pria"]').prop("checked", true);
+  $("#dusun").val("");
+  $("#rt").val("");
+  $(".modal-title").text("Add Data");
+  $("#nomorktp_error").text("");
+  $("#namapenerima_error").text("");
+  $("#jenisbantuan_error").text("");
+  $("#statuspenerimaan_error").text("");
+  $("#dusun_error").text("");
+  $("#rt_error").text("");
+  $("#formModal").modal("show");
+  $("#action").val("Add");
+  $("#submit_button").val("Add");
+});
+$("#bantuansosial_form").on("submit", function (event) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    url: "action",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    data: formData,
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      if (data.error == "yes") {
+        $("#nomorktp_error").text(data.nomorktp_error);
+        $("#namapenerima_error").text(data.namapenerima_error);
+        $("#dusun_error").text(data.dusun_error);
+        $("#rt_error").text(data.rt_error);
+      } else {
+        $("#formModal").modal("hide");
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Bantuan Sosial ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+        $("#sample_table5").DataTable().ajax.reload();
+      }
+    },
+  });
 });
 
 $(".tombolTambahData").click(function () {
@@ -517,6 +619,36 @@ $(document).on("click", ".edit4", function () {
   });
 });
 
+$(document).on("click", ".edit5", function () {
+  let id = $(this).data("id");
+  $.ajax({
+    url: "edit",
+    method: "POST",
+    data: { id: id },
+    dataType: "JSON",
+    success: function (data) {
+      $("#nomorktp").val(data.nomorktp);
+      $("#namapenerima").val(data.namapenerima);
+      $("#jenisbantuan").val(data.jenisbantuan);
+      $("#statuspenerimaan").val(data.statuspenerimaan);
+      $("input[name=jeniskelamin][value=" + data.jeniskelamin + "]").prop("checked", true);
+      $("#dusun").val(data.dusun);
+      $("#rt").val(data.rt);
+      $(".modal-header").text("Edit Data");
+      $("#nomorktp_error").text("");
+      $("#namapenerima_error").text("");
+      $("#jenisbantuan_error").text("");
+      $("#statuspenerimaan_error").text("");
+      $("#dusun_error").text("");
+      $("#rt_error").text("");
+      $("#action").val("Edit");
+      $("#submit_button").val("Edit");
+      $("#formModal").modal("show");
+      $("#hidden_id").val(id);
+    },
+  });
+});
+
 function previewImg() {
   const gambar = document.querySelector("#gambar");
   const imgPreview = document.querySelector(".img-preview");
@@ -767,6 +899,41 @@ $(document).on("click", ".delete4", function () {
   });
 });
 
+$(document).on("click", ".delete5", function () {
+  let id = $(this).data("id");
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data bantuan sosial akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      $.ajax({
+        type: "POST",
+        data: {
+          id: id,
+          _method: "DELETE",
+        },
+        url: "delete",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Bantuan Sosial ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table5").DataTable().ajax.reload();
+        },
+      });
+    }
+  });
+});
+
 $(document).on("click", ".delete4user", function () {
   let id = $(this).data("id");
   Swal.fire({
@@ -952,6 +1119,45 @@ $(document).on("click", ".deleteAllButton4", function () {
             });
           }
           $("#sample_table4").DataTable().ajax.reload();
+        },
+      });
+    }
+  });
+});
+
+$(document).on("click", ".deleteAllButton5", function () {
+  Swal.fire({
+    title: "Apakah anda yakin",
+    text: "data bantuan sosial akan dihapus",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Hapus Data!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let checkboxes = document.querySelectorAll('input[name="checkbox_value[]"]:checked');
+      var vals = [];
+      for (var i = 0, n = checkboxes.length; i < n; i++) {
+        vals.push(checkboxes[i].value);
+      }
+      $.ajax({
+        type: "POST",
+        data: {
+          id: vals,
+          _method: "DELETE",
+        },
+        url: "ceklisDeleteButton",
+        success: function (data) {
+          const flashData = data;
+          if (flashData) {
+            Swal.fire({
+              title: "Data Bantuan Sosial ",
+              text: "Berhasil " + flashData,
+              icon: "success",
+            });
+          }
+          $("#sample_table5").DataTable().ajax.reload();
         },
       });
     }
