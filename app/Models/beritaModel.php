@@ -10,7 +10,7 @@ class beritaModel extends Model
     protected $primaryKey = 'id_berita';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['judul', 'keterangan', 'gambar', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['judul', 'keterangan', 'file', 'created_at', 'updated_at', 'deleted_at'];
     public function getBerita($id = false)
     {
         if ($id == false) {

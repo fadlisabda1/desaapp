@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 <!-- Jumbotron -->
 <section class="jumbotron text-center" id="Home">
-    <img src="gambar/fotokades.jpeg" alt="kades" width="200" class="rounded-circle img-thumbnail" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Foto Kepala Desa Tanah Merah" />
+    <img src="gambar/profildesa/fotokades.jpeg" alt="kades" width="200" class="rounded-circle img-thumbnail" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="custom-tooltip" data-bs-title="Foto Kepala Desa Tanah Merah" />
     <h1 class="display-4" style="color: yellow;">Selamat Datang</h1>
     <p class="lead" style="color: yellow;"></p>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
@@ -22,7 +22,7 @@
         <div class="row row-cols-1 row-cols-md-2 g-4 text-left justify-content-center">
             <div class="col">
                 <div class="card text-bg-success">
-                    <img src="gambar/desadepan.jpeg" class="card-img-top" alt="desadepan">
+                    <img src="gambar/profildesa/desadepan.jpeg" class="card-img-top" alt="desadepan">
                     <div class="card-body" style="color: white;">
                         <h5 class="card-title">Sejarah Desa Tanah Merah</h5>
                         <p class="card-text">Desa Tanah Merah adalah nama suatu wilayah di Kecamatan Siak Hulu
@@ -337,11 +337,17 @@
             <?php endif; ?>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <?php foreach ($dataBerita as $db) : ?>
-                    <?php $str = explode('|', $db['gambar']); ?>
+                    <?php $str = explode('|', $db['file']); ?>
                     <div class="col">
                         <div class="berita-box">
                             <h4 class="berita-name">Publikasi Umum</h4>
-                            <img src="gambar/<?= $str[0] ?>" alt="fotoberita" class="berita-img" />
+                            <?php if (pathinfo($str[0], PATHINFO_EXTENSION) == 'mp4') : ?>
+                                <video width="320" height="240" controls>
+                                    <source src="file/berita/<?= $str[0] ?>" type="video/mp4">
+                                </video>
+                            <?php else : ?>
+                                <img src="file/berita/<?= $str[0] ?>" alt="fotoberita" class="berita-img" />
+                            <?php endif; ?>
                             <a href=" /beritaController/detail/<?= $db['id_berita'] ?>" class="btn btn-light berita-detail-button">Show Details</a>
                         </div>
                     </div>
@@ -362,7 +368,7 @@
             <div class="row row-cols-1 row-cols-md-2 g-4">
                 <div class="col">
                     <div class="card text-bg-success">
-                        <img src="gambar/labersa.jpg" class="card-img-top" alt="labersa">
+                        <img src="gambar/wisata/labersa.jpg" class="card-img-top" alt="labersa">
                         <div class="card-body">
                             <h5 class="card-title">Labersa Waterpark Riau Fantasi</h5>
                             <p class="card-text">Taman rekreasi keluarga dengan seluncuran air yang memacu adrenalin ke kolam percik & tubing di kolam arus.</p>
@@ -371,7 +377,7 @@
                 </div>
                 <div class="col">
                     <div class="card text-bg-success">
-                        <img src="gambar/borneowaterpark.jpg" class="card-img-top" alt="borneowaterpark">
+                        <img src="gambar/wisata/borneowaterpark.jpg" class="card-img-top" alt="borneowaterpark">
                         <div class="card-body">
                             <h5 class="card-title">Borneo Waterpark</h5>
                             <p class="card-text">Kabana piknik & tempat foto di kompleks rekreasi dengan kolam renang, kolam arus & seluncuran air.</p>
@@ -380,7 +386,7 @@
                 </div>
                 <div class="col">
                     <div class="card text-bg-success">
-                        <img src="gambar/kawahbiru.jpg" class="card-img-top" alt="kawahbiru">
+                        <img src="gambar/wisata/kawahbiru.jpg" class="card-img-top" alt="kawahbiru">
                         <div class="card-body">
                             <h5 class="card-title">Kawah Biru</h5>
                             <p class="card-text">pasir putih pada bekas galian yang akhirnya digenangi air hujan dan tampaklah airnya menjadi biru sehingga disebut Kawah Biru</p>
@@ -389,7 +395,7 @@
                 </div>
                 <div class="col">
                     <div class="card text-bg-success">
-                        <img src="gambar/paradutaswimmingpool.jpg" class="card-img-top" alt="paradutaswimmingpool">
+                        <img src="gambar/wisata/paradutaswimmingpool.jpg" class="card-img-top" alt="paradutaswimmingpool">
                         <div class="card-body">
                             <h5 class="card-title">Paraduta Swimming Pool</h5>
                             <p class="card-text">kolam renang atau lokasi berenang yang berlokasi di Tanah Merah, Siak Hulu, Kabupaten Kampar, Riau.</p>
@@ -398,7 +404,7 @@
                 </div>
                 <div class="col">
                     <div class="card text-bg-success">
-                        <img src="gambar/bukikbulek.jpg" class="card-img-top" alt="bukikbulek">
+                        <img src="gambar/wisata/bukikbulek.jpg" class="card-img-top" alt="bukikbulek">
                         <div class="card-body">
                             <h5 class="card-title">Objek Wisata Bukik Bulek Padang Asam</h5>
                             <p class="card-text">jalan utama bagi masyarakat yang memiliki usaha tani.</p>
@@ -430,7 +436,7 @@
                     <div class="col">
                         <div class="card">
                             <?php $str = explode('|', $br['gambar']); ?>
-                            <img src="gambar/<?= $str[0] ?>" class="card-img-top img-fluid" alt="fotoepasar">
+                            <img src="gambar/epasar/<?= $str[0] ?>" class="card-img-top img-fluid" alt="fotoepasar">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $br['nama'] ?></h5>
                                 <p class="card-text"><?= $br['harga'] ?>/Jumlah Barang</p>

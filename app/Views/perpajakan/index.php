@@ -15,6 +15,7 @@
                     <tr>
                         <th scope="col">Ceklis</th>
                         <th scope="col">Nomor Objek Pajak</th>
+                        <th scope="col">No Hp</th>
                         <th scope="col">Nama Wajib Pajak</th>
                         <th scope="col">Tahun</th>
                         <th scope="col">Total pbb yang dibayar</th>
@@ -44,6 +45,11 @@
                         <span id="nop_error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
+                        <label for="nohp" class="form-label">No Hp</label>
+                        <input type="number" class="form-control" id="nohp" name="nohp">
+                        <span id="nohp_error" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
                         <label for="nama" class="form-label">Username Atau Email</label>
                         <input type="text" class="form-control" id="nama" name="nama">
                         <span id="nama_error" class="text-danger"></span>
@@ -59,10 +65,10 @@
                         <span id="totalyangdibayar_error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="gambar" class="form-label">Gambar</label>
-                        <input type="file" class="form-control" name="gambar" id="gambar" onchange="previewImg()">
-                        <span id="gambar_error" class="text-danger"></span>
-                        <img src="" class="img-fluid img-preview mt-2 tampilangambar">
+                        <label for="file" class="form-label">File</label>
+                        <input type="file" class="form-control" name="file" id="file" onchange="previewFile()">
+                        <span id="file_error" class="text-danger"></span>
+                        <img src="" class="img-fluid file-preview mt-2 tampilanfile">
                     </div>
             </div>
             <div class="modal-footer">

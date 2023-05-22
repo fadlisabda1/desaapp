@@ -15,7 +15,7 @@
                         <?php $str = explode('|', $data['gambar']); ?>
                         <?php for ($i = 0; $i < count($str); $i++) : ?>
                             <div class="carousel-item active">
-                                <img src="<?= base_url('gambar/' . $str[$i]); ?>" class="d-block w-100" alt="fotobarang">
+                                <img src="<?= base_url('gambar/epasar/' . $str[$i]); ?>" class="d-block w-100" alt="fotobarang">
                             </div>
                         <?php endfor; ?>
                     </div>

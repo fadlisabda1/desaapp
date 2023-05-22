@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand page-scroll" href="/profil#Home"><img src="<?= base_url('gambar/LogoKampar.png'); ?>" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"><span class="text-wrap badge bg-success" style="width:15.8rem">Website Desa Tanah Merah Kec. Siak Hulu Kab. Kampar Prov. Riau</span></a>
+        <a class="navbar-brand page-scroll" href="/profil#Home"><img src="<?= base_url('gambar/profildesa/LogoKampar.png'); ?>" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"><span class="text-wrap badge bg-success" style="width:15.8rem">Website Desa Tanah Merah Kec. Siak Hulu Kab. Kampar Prov. Riau</span></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

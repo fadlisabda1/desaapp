@@ -10,15 +10,18 @@ class bantuanSosialModel extends Model
     protected $primaryKey = 'id_bantuansosial';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['nomorktp', 'namapenerima', 'jenisbantuan', 'statuspenerimaan', 'jeniskelamin', 'dusun', 'rt', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['nomorktp', 'namapenerima', 'jenisbantuan', 'statuspenerimaan', 'jeniskelamin', 'alamat', 'pekerjaan', 'tanggallahir', 'tanggalpenerimaan', 'gambar', 'created_at', 'updated_at', 'deleted_at'];
     public function getDataNull()
     {
         return $this->db->table('bantuansosial')->where('deleted_at', NULL);
     }
 
-    public function getDataAll()
+    public function getData($id = false)
     {
-        return $this->findAll();
+        if ($id == false) {
+            return $this->findAll();
+        }
+        return $this->where(['id_bantuansosial' => $id])->first();
     }
 
     public function ceklisDelete()

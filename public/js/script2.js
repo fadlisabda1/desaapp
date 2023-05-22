@@ -93,31 +93,31 @@ $(document).ready(function () {
       {
         extend: "copyHtml5",
         exportOptions: {
-          columns: [1, 2],
+          columns: [1, 2, 3],
         },
       },
       {
         extend: "csvHtml5",
         exportOptions: {
-          columns: [1, 2],
+          columns: [1, 2, 3],
         },
       },
       {
         extend: "excelHtml5",
         exportOptions: {
-          columns: [1, 2],
+          columns: [1, 2, 3],
         },
       },
       {
         extend: "pdfHtml5",
         exportOptions: {
-          columns: [1, 2],
+          columns: [1, 2, 3],
         },
       },
       {
         extend: "print",
         exportOptions: {
-          columns: [1, 2],
+          columns: [1, 2, 3],
         },
       },
     ],
@@ -127,12 +127,13 @@ $(document).ready(function () {
       {
         targets: 4,
         render: function (data) {
+          if (data == null) {
+            return null;
+          }
           let str = data.split("|");
           let hasil = "";
           for (let i = 0; i < str.length; i++) {
-            if (str[i] != null) {
-              hasil += "<a href=" + window.location.origin + "/file/fileSyaratSurat/" + str[i] + " target=_blank>" + str[i] + "</a><br>";
-            }
+            hasil += "<a href=" + window.location.origin + "/file/fileSyaratSurat/" + str[i] + " target=_blank>" + str[i] + "</a><br>";
           }
           return hasil;
         },
@@ -152,31 +153,31 @@ $(document).ready(function () {
       {
         extend: "copyHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3, 4, 5],
         },
       },
       {
         extend: "csvHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3, 4, 5],
         },
       },
       {
         extend: "excelHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3, 4, 5],
         },
       },
       {
         extend: "pdfHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3, 4, 5],
         },
       },
       {
         extend: "print",
         exportOptions: {
-          columns: [1, 2, 3, 4],
+          columns: [1, 2, 3, 4, 5],
         },
       },
     ],
@@ -184,9 +185,12 @@ $(document).ready(function () {
     serverSide: true,
     columnDefs: [
       {
-        targets: 5,
+        targets: 6,
         render: function (data) {
-          return "<img width=300 src=" + window.location.origin + "/gambar/buktipembayaran/" + data + ">";
+          if (data == null) {
+            return null;
+          }
+          return "<a href=" + window.location.origin + "/gambar/buktipembayaran/" + data + " target=_blank>" + data + "</a><br>";
         },
       },
     ],
@@ -204,36 +208,47 @@ $(document).ready(function () {
       {
         extend: "copyHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         },
       },
       {
         extend: "csvHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         },
       },
       {
         extend: "excelHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         },
       },
       {
         extend: "pdfHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         },
       },
       {
         extend: "print",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
         },
       },
     ],
     order: [],
     serverSide: true,
+    columnDefs: [
+      {
+        targets: 10,
+        render: function (data) {
+          if (data == null) {
+            return null;
+          }
+          return "<a href=" + window.location.origin + "/gambar/bantuansosial/" + data + " target=_blank>" + data + "</a><br>";
+        },
+      },
+    ],
     ajax: {
       url: "ambilData",
       type: "POST",
@@ -248,15 +263,21 @@ $(".tombolTambahData").click(function () {
   $("#jenisbantuan").prop("selectedIndex", 0);
   $("#statuspenerimaan").prop("selectedIndex", 0);
   $('input[id="pria"]').prop("checked", true);
-  $("#dusun").val("");
-  $("#rt").val("");
+  $("#alamat").val("");
+  $("#pekerjaan").val("");
+  $("#tgllahir").val("");
+  $("#tglpenerimaan").val("");
+  $("#file").val("");
   $(".modal-title").text("Add Data");
   $("#nomorktp_error").text("");
   $("#namapenerima_error").text("");
   $("#jenisbantuan_error").text("");
   $("#statuspenerimaan_error").text("");
-  $("#dusun_error").text("");
-  $("#rt_error").text("");
+  $("#alamat_error").text("");
+  $("#pekerjaan_error").text("");
+  $("#tgllahir_error").text("");
+  $("#tglpenerimaan_error").text("");
+  $("#file_error").text("");
   $("#formModal").modal("show");
   $("#action").val("Add");
   $("#submit_button").val("Add");
@@ -281,8 +302,11 @@ $("#bantuansosial_form").on("submit", function (event) {
       if (data.error == "yes") {
         $("#nomorktp_error").text(data.nomorktp_error);
         $("#namapenerima_error").text(data.namapenerima_error);
-        $("#dusun_error").text(data.dusun_error);
-        $("#rt_error").text(data.rt_error);
+        $("#alamat_error").text(data.alamat_error);
+        $("#pekerjaan_error").text(data.pekerjaan_error);
+        $("#tgllahir_error").text(data.tgllahir_error);
+        $("#tglpenerimaan_error").text(data.tglpenerimaan_error);
+        $("#file_error").text(data.file_error);
       } else {
         $("#formModal").modal("hide");
         const flashData = data.message;
@@ -302,17 +326,19 @@ $("#bantuansosial_form").on("submit", function (event) {
 $(".tombolTambahData").click(function () {
   $("#perpajakan_form").val("");
   $("#nop").val("");
+  $("#nohp").val("");
   $("#nama").val("");
   $("#tahun").val("");
   $("#totalyangdibayar").val("");
-  $(".tampilangambar").attr("src", "");
-  $("#gambar").val("");
+  $(".tampilanfile").attr("src", "");
+  $("#file").val("");
   $(".modal-title").text("Add Data");
   $("#nop_error").text("");
+  $("#nohp_error").text("");
   $("#nama_error").text("");
   $("#tahun_error").text("");
   $("#totalyangdibayar_error").text("");
-  $("#gambar_error").text("");
+  $("#file_error").text("");
   $("#formModal").modal("show");
   $("#action").val("Add");
   $("#submit_button").val("Add");
@@ -336,10 +362,11 @@ $("#perpajakan_form").on("submit", function (event) {
       $("#submit_button").attr("disabled", false);
       if (data.error == "yes") {
         $("#nop_error").text(data.nop_error);
+        $("#nohp_error").text(data.nohp_error);
         $("#nama_error").text(data.nama_error);
         $("#tahun_error").text(data.tahun_error);
         $("#totalyangdibayar_error").text(data.totalyangdibayar_error);
-        $("#gambar_error").text(data.gambar_error);
+        $("#file_error").text(data.file_error);
       } else {
         $("#formModal").modal("hide");
         const flashData = data.message;
@@ -599,18 +626,20 @@ $(document).on("click", ".edit4", function () {
     data: { id: id },
     dataType: "JSON",
     success: function (data) {
-      $(".tampilangambar").attr("src", window.location.origin + "/gambar/buktipembayaran/" + data.gambar);
+      $(".tampilanfile").attr("src", window.location.origin + "/gambar/buktipembayaran/" + data.gambar);
       $("#gambar_lama").val(data.gambar);
       $("#nop").val(data.nomor_objek_pajak);
+      $("#nohp").val(data.nohp);
       $("#nama").val(data.nama_wajib_pajak);
       $("#tahun").val(data.tahun);
       $("#totalyangdibayar").val(data.total_pbb_dibayar);
       $(".modal-header").text("Edit Data");
       $("#nop_error").text("");
+      $("#nohp_error").text("");
       $("#nama_error").text("");
       $("#tahun_error").text("");
       $("#totalyangdibayar_error").text("");
-      $("#gambar_error").text("");
+      $("#file_error").text("");
       $("#action").val("Edit");
       $("#submit_button").val("Edit");
       $("#formModal").modal("show");
@@ -627,20 +656,28 @@ $(document).on("click", ".edit5", function () {
     data: { id: id },
     dataType: "JSON",
     success: function (data) {
+      $(".tampilanfile").attr("src", window.location.origin + "/gambar/bantuansosial/" + data.gambar);
+      $("#gambar_lama").val(data.gambar);
       $("#nomorktp").val(data.nomorktp);
       $("#namapenerima").val(data.namapenerima);
       $("#jenisbantuan").val(data.jenisbantuan);
       $("#statuspenerimaan").val(data.statuspenerimaan);
       $("input[name=jeniskelamin][value=" + data.jeniskelamin + "]").prop("checked", true);
-      $("#dusun").val(data.dusun);
-      $("#rt").val(data.rt);
+      $("#alamat").val(data.alamat);
+      $("#pekerjaan").val(data.pekerjaan);
+      $("#tgllahir").val(data.tanggallahir);
+      $("#tglpenerimaan").val(data.tanggalpenerimaan);
+      $("#tglpenerimaan").val(data.tanggalpenerimaan);
       $(".modal-header").text("Edit Data");
       $("#nomorktp_error").text("");
       $("#namapenerima_error").text("");
       $("#jenisbantuan_error").text("");
       $("#statuspenerimaan_error").text("");
-      $("#dusun_error").text("");
-      $("#rt_error").text("");
+      $("#alamat_error").text("");
+      $("#pekerjaan_error").text("");
+      $("#tgllahir_error").text("");
+      $("#tglpenerimaan_error").text("");
+      $("#file_error").text("");
       $("#action").val("Edit");
       $("#submit_button").val("Edit");
       $("#formModal").modal("show");
@@ -649,15 +686,15 @@ $(document).on("click", ".edit5", function () {
   });
 });
 
-function previewImg() {
-  const gambar = document.querySelector("#gambar");
-  const imgPreview = document.querySelector(".img-preview");
+function previewFile() {
+  const file = document.querySelector("#file");
+  const filePreview = document.querySelector(".file-preview");
 
-  const fileGambar = new FileReader();
-  fileGambar.readAsDataURL(gambar.files[0]);
+  const file2 = new FileReader();
+  file2.readAsDataURL(file.files[0]);
 
-  fileGambar.onload = function (e) {
-    imgPreview.src = e.target.result;
+  file2.onload = function (e) {
+    filePreview.src = e.target.result;
   };
 }
 

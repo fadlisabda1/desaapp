@@ -46,7 +46,7 @@ class epasarController extends BaseController
         $i = 0;
         foreach ($files['file_upload'] as $file) {
             if ($file->getError() === 0) {
-                $file->move('gambar', str_replace(' ', '', $file->getName()));
+                $file->move('gambar/epasar', str_replace(' ', '', $file->getName()));
                 if ($i !== 0) {
                     $namaGambar .= '|';
                     $namaGambar .= $file->getName();
@@ -90,6 +90,14 @@ class epasarController extends BaseController
                     'required' => '{field} barang harus di isi.'
                 ]
             ],
+            'gambar' => [
+                'rules' => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]',
+                'errors' => [
+                    'max_size' => 'Ukuran gambar terlalu besar',
+                    'is_image' => 'Yang anda pilih bukan gambar',
+                    'mime_in' => 'Yang anda pilih bukan gambar'
+                ]
+            ]
         ])) {
             return redirect()->to('/epasarController/edit/' . $this->request->getVar('id_barang'))->withInput();
         }
@@ -100,7 +108,7 @@ class epasarController extends BaseController
             if ($file->getError() == 4) {
                 $namaGambar = $this->request->getVar('gambarLama');
             } else {
-                $file->move('gambar', str_replace(' ', '', $file->getName()));
+                $file->move('gambar/epasar', str_replace(' ', '', $file->getName()));
                 if ($i !== 0) {
                     $namaGambar .= '|';
                     $namaGambar .= $file->getName();
@@ -111,7 +119,9 @@ class epasarController extends BaseController
         if ($this->request->getVar('gambarLama') != null && $file->getError() != 4) {
             $str = explode('|', $this->request->getVar('gambarLama'));
             for ($j = 0; $j < count($str); $j++) {
-                unlink('gambar/' . $str[$j]);
+                if (file_exists('/xampp/htdocs/desaapp/public/gambar/epasar/' . $str[$i])) {
+                    unlink('gambar/epasar/' . $str[$j]);
+                }
             }
         }
         $this->epasarModel->save([
@@ -130,8 +140,8 @@ class epasarController extends BaseController
         $str = explode('|', $this->epasarModel->getEpasar($id)['gambar']);
 
         for ($i = 0; $i < count($str); $i++) {
-            if ($str[$i] != null) {
-                unlink('gambar/' . $str[$i]);
+            if (file_exists('/xampp/htdocs/desaapp/public/gambar/epasar/' . $str[$i]) && $str[$i] != null) {
+                unlink('gambar/epasar/' . $str[$i]);
             }
         }
         $this->epasarModel->delete($id);

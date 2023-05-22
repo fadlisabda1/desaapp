@@ -96,10 +96,12 @@ class layananUmumController extends BaseController
                         }
                         $i++;
                     }
+                    $str = explode('|', $this->request->getVar('file_lama'));
                     if ($this->request->getVar('file_lama') != null && $file->getError() != 4) {
-                        $str = explode('|', $this->request->getVar('file_lama'));
                         for ($j = 0; $j < count($str); $j++) {
-                            unlink('file/fileSyaratSurat/' . $str[$j]);
+                            if (file_exists('/xampp/htdocs/desaapp/public/file/fileSyaratSurat/' . $str[$j])) {
+                                unlink('file/fileSyaratSurat/' . $str[$j]);
+                            }
                         }
                     }
                     $data = [
@@ -140,7 +142,7 @@ class layananUmumController extends BaseController
             $str = explode('|', $this->layananUmumModel->getData($id)['file']);
 
             for ($i = 0; $i < count($str); $i++) {
-                if (file_exists('file/fileSyaratSurat/' . $str[$i]) && $str[$i] != null) {
+                if (file_exists('/xampp/htdocs/desaapp/public/file/fileSyaratSurat/' . $str[$i]) && $str[$i] != null) {
                     unlink('file/fileSyaratSurat/' . $str[$i]);
                 }
             }
@@ -156,7 +158,7 @@ class layananUmumController extends BaseController
         for ($i = 0; $i < count($id); $i++) {
             $str = explode('|', $this->layananUmumModel->getData($id[$i])['file']);
             for ($j = 0; $j < count($str); $j++) {
-                if (file_exists('file/fileSyaratSurat/' . $str[$j]) && $str[$j] != null) {
+                if (file_exists('/xampp/htdocs/desaapp/public/file/fileSyaratSurat/' . $str[$j]) && $str[$j] != null) {
                     unlink('file/fileSyaratSurat/' . $str[$j]);
                 }
             }

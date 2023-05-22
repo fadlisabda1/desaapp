@@ -19,8 +19,8 @@
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label" for="gambar">Pilih Gambar</label>
-            <input type="file" class="form-control <?= ($validation->hasError('gambar')) ? 'is-invalid' : ''; ?>" id="gambar" name="file_upload[]" multiple="true">
+            <label class="form-label" for="file">Pilih File</label>
+            <input type="file" class="form-control <?= ($validation->hasError('file')) ? 'is-invalid' : ''; ?>" id="file" name="file_upload[]" multiple="true">
         </div>
         <button type="submit" class="btn btn-primary">Tambah Data</button>
         <script>

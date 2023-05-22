@@ -21,9 +21,9 @@ class penerimaanPbbController extends BaseController
         $data_table = new TablesIgniter();
         $data_table->setTable($this->penerimaanPbbModel->getDataNull())
             ->setDefaultOrder('id_pbb', 'ESC')
-            ->setSearch(['nomor_objek_pajak', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar'])
-            ->setOrder(['nomor_objek_pajak', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar', 'gambar'])
-            ->setOutput([$this->penerimaanPbbModel->ceklisDelete(), 'nomor_objek_pajak', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar', 'gambar', $this->penerimaanPbbModel->button()]);
+            ->setSearch(['nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar'])
+            ->setOrder(['nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar', 'gambar'])
+            ->setOutput([$this->penerimaanPbbModel->ceklisDelete(), 'nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar', 'gambar', $this->penerimaanPbbModel->button()]);
         return $data_table->getDatatable();
     }
 
@@ -32,25 +32,30 @@ class penerimaanPbbController extends BaseController
         if ($this->request->getVar('action')) {
             helper(['form', 'url']);
             $nop_error = '';
+            $nohp_error = '';
             $nama_error = '';
             $tahun_error = '';
             $totalyangdibayar_error = '';
-            $gambar_error = '';
+            $file_error = '';
             $error = 'no';
             $success = 'no';
             $message = '';
             $error = $this->validate([
                 'nop' => 'required',
+                'nohp' => 'required',
                 'nama' => 'required',
                 'tahun' => 'required',
                 'totalyangdibayar' => 'required',
-                'gambar' => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]',
+                'file' => 'max_size[file,1024]|is_image[file]|mime_in[file,image/jpg,image/jpeg,image/png]',
             ]);
             if (!$error) {
                 $error = 'yes';
                 $validation = \Config\Services::validation();
                 if ($validation->getError('nop')) {
                     $nop_error = $validation->getError('nop');
+                }
+                if ($validation->getError('nohp')) {
+                    $nohp_error = $validation->getError('nohp');
                 }
                 if ($validation->getError('nama')) {
                     $nama_error = $validation->getError('nama');
@@ -61,19 +66,20 @@ class penerimaanPbbController extends BaseController
                 if ($validation->getError('totalyangdibayar')) {
                     $totalyangdibayar_error = $validation->getError('totalyangdibayar');
                 }
-                if ($validation->getError('gambar')) {
-                    $gambar_error = $validation->getError('gambar');
+                if ($validation->getError('file')) {
+                    $file_error = $validation->getError('file');
                 }
             } else {
                 $success = 'yes';
                 if ($this->request->getVar('action') == 'Add') {
-                    $filegambar = $this->request->getFile('gambar');
+                    $filegambar = $this->request->getFile('file');
                     $namagambar = $filegambar->getRandomName();
                     if ($filegambar->getError() === 0) {
                         $filegambar->move('gambar/buktipembayaran/', $namagambar);
                     }
                     $this->penerimaanPbbModel->save([
                         'nomor_objek_pajak' => $this->request->getVar('nop'),
+                        'nohp' => $this->request->getVar('nohp'),
                         'nama_wajib_pajak' => $this->request->getVar('nama'),
                         'tahun' => $this->request->getVar('tahun'),
                         'total_pbb_dibayar' => $this->request->getVar('totalyangdibayar'),
@@ -84,19 +90,20 @@ class penerimaanPbbController extends BaseController
                 }
                 if ($this->request->getVar('action') == 'Edit') {
                     $id = $this->request->getVar('hidden_id');
-                    $fileImage = $this->request->getFile('gambar');
+                    $fileImage = $this->request->getFile('file');
 
                     if ($fileImage->getError() == 4) {
                         $namaImage = $this->request->getVar('gambar_lama');
                     } else {
                         $namaImage = $fileImage->getRandomName();
                         $fileImage->move('gambar/buktipembayaran/', $namaImage);
-                        if (file_exists('/xampp/htdocs/desaapp/public/gambar/buktipembayaran' . $namaImage)) {
+                        if ($this->request->getVar('gambar_lama') != null && $fileImage->getError() != 4 && file_exists('/xampp/htdocs/desaapp/public/gambar/buktipembayaran/' . $namaImage)) {
                             unlink('gambar/buktipembayaran/' . $this->request->getVar('gambar_lama'));
                         }
                     }
                     $data = [
                         'nomor_objek_pajak' => $this->request->getVar('nop'),
+                        'nohp' => $this->request->getVar('nohp'),
                         'nama_wajib_pajak' => $this->request->getVar('nama'),
                         'tahun' => $this->request->getVar('tahun'),
                         'total_pbb_dibayar' => $this->request->getVar('totalyangdibayar'),
@@ -109,10 +116,11 @@ class penerimaanPbbController extends BaseController
             }
             $output = [
                 'nop_error' => $nop_error,
+                'nohp_error' => $nohp_error,
                 'nama_error' => $nama_error,
                 'tahun_error' => $tahun_error,
                 'totalyangdibayar_error' => $totalyangdibayar_error,
-                'gambar_error' => $gambar_error,
+                'file_error' => $file_error,
                 'error' => $error,
                 'success' => $success,
                 'message' => $message
@@ -134,7 +142,7 @@ class penerimaanPbbController extends BaseController
         if ($this->request->getVar('id')) {
             $id = $this->request->getVar('id');
             $gambar = $this->penerimaanPbbModel->getData($id)['gambar'];
-            if (file_exists('gambar/buktipembayaran/' . $gambar)) {
+            if (file_exists('/xampp/htdocs/desaapp/public/gambar/buktipembayaran/' . $gambar) && $gambar != null) {
                 unlink('gambar/buktipembayaran/' . $gambar);
             }
             $this->penerimaanPbbModel->delete($id);
@@ -148,7 +156,7 @@ class penerimaanPbbController extends BaseController
         if ($this->request->getVar('id')) {
             $id = $this->request->getVar('id');
             $gambar = $this->penerimaanPbbModel->getData($id)['gambar'];
-            if (file_exists('gambar/buktipembayaran/' . $gambar)) {
+            if (file_exists('/xampp/htdocs/desaapp/public/gambar/buktipembayaran/' . $gambar) && $gambar != null) {
                 unlink('gambar/buktipembayaran/' . $gambar);
             }
             session()->setFlashData('pesan', "dihapus.");
@@ -161,7 +169,7 @@ class penerimaanPbbController extends BaseController
         $id = $this->request->getVar('id');
         for ($i = 0; $i < count($id); $i++) {
             $gambar = $this->penerimaanPbbModel->getData($id[$i])['gambar'];
-            if (file_exists('gambar/buktipembayaran/' . $gambar)) {
+            if (file_exists('/xampp/htdocs/desaapp/public/gambar/buktipembayaran/' . $gambar) && $gambar != null) {
                 unlink('gambar/buktipembayaran/' . $gambar);
             }
         }

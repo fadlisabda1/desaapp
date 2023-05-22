@@ -5,7 +5,7 @@
     <form action="/beritaController/update/<?= $berita['id_berita']; ?>" method="post" enctype="multipart/form-data">
         <?= csrf_field(); ?>
         <input type="hidden" name="id_berita" value="<?= $berita['id_berita']; ?>">
-        <input type="hidden" name="gambarLama" value="<?= $berita['gambar']; ?>">
+        <input type="hidden" name="fileLama" value="<?= $berita['file']; ?>">
         <div class="mb-3">
             <label for="judul" class="form-label">Judul</label>
             <input type="text" class="form-control <?= ($validation->hasError('judul')) ? 'is-invalid' : ''; ?>" id="judul" name="judul" value="<?= (old('judul')) ? old('judul') : $berita['judul'] ?>">
@@ -21,10 +21,10 @@
             </div>
         </div>
         <div class="mb-3">
-            <label class="form-label labelGambar" for="gambar">Pilih Gambar</label>
-            <input type="file" class="form-control <?= ($validation->hasError('gambar')) ? 'is-invalid' : ''; ?>" id="gambar" name="file_upload[]" onchange="previewImg()" multiple="true">
+            <label class="form-label labelFile" for="file">Pilih File</label>
+            <input type="file" class="form-control <?= ($validation->hasError('file')) ? 'is-invalid' : ''; ?>" id="file" name="file_upload[]" onchange="previewFile()" multiple="true">
             <div class="invalid-feedback">
-                <?= $validation->getError('gambar'); ?>
+                <?= $validation->getError('file'); ?>
             </div>
         </div>
         <button type="submit" class="btn btn-primary">Ubah Data</button>

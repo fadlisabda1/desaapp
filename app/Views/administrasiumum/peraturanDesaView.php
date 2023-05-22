@@ -43,14 +43,14 @@
                         <input type="text" class="form-control" id="nomorTglPeraturanDesa" name="nomorTglPeraturanDesa">
                         <span id="nomorTglPeraturanDesa_error" class="text-danger"></span>
                     </div>
-                    <div class="mb-3">
-                        <label for="tentang" class="form-label">Tentang</label>
-                        <input type="text" class="form-control" id="tentang" name="tentang">
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="tentang" name="tentang"></textarea>
+                        <label for="tentang">Tentang</label>
                         <span id="tentang_error" class="text-danger"></span>
                     </div>
-                    <div class="mb-3">
-                        <label for="uraiansingkat" class="form-label">Uraian Singkat</label>
-                        <input type="text" class="form-control" id="uraiansingkat" name="uraiansingkat">
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="uraiansingkat" name="uraiansingkat"></textarea>
+                        <label for="uraiansingkat">Uraian Singkat</label>
                         <span id="uraiansingkat_error" class="text-danger"></span>
                     </div>
             </div>
