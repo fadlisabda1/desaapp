@@ -13,7 +13,7 @@ class layananUmumController extends BaseController
         $layananumum = [
             'title' => 'Layanan Umum | Syarat Pengurusan Desa'
         ];
-        return view('layananUmum\index', $layananumum);
+        return view('layananUmum\layananUmumView', $layananumum);
     }
 
     public function ambilData()
@@ -166,5 +166,47 @@ class layananUmumController extends BaseController
         $this->layananUmumModel->checkboxDelete($id);
         session()->setFlashData('pesan', 'dihapus.');
         echo session()->getFlashdata('pesan');
+    }
+
+    public function import()
+    {
+        if ($this->request->getVar('action')) {
+            helper(['form', 'url']);
+            $message = '';
+            $success = 'yes';
+            if ($this->request->getVar('action') == 'Add') {
+                $file = $this->request->getFile('file');
+                $extension = $file->getClientExtension();
+                if ($extension == 'xls' || $extension == 'csv' || $extension == 'xlsx') {
+                    if ($extension == 'xls') {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                    } else if ($extension == 'csv') {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+                    } else {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                    }
+                    $spreadsheet = $reader->load($file);
+                    $contacts = $spreadsheet->getActiveSheet()->toArray();
+                    foreach ($contacts as $key => $value) {
+                        if ($key == 0) {
+                            continue;
+                        }
+                        $data = [
+                            'judul' => $value[0],
+                            'nohp' => $value[1],
+                            'usernameoremail' => $value[2]
+                        ];
+                        $this->layananUmumModel->save($data);
+                    }
+                    session()->setFlashData('pesan', 'ditambahkan');
+                    $message = session()->getFlashdata('pesan');
+                }
+            }
+            $output = [
+                'success' => $success,
+                'message' => $message
+            ];
+            echo json_encode($output);
+        }
     }
 }

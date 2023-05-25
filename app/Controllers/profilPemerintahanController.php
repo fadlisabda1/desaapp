@@ -13,6 +13,6 @@ class profilPemerintahanController extends BaseController
             'dataLayananUmum' => $this->layananUmumModel->findAll(),
             'barang' => $this->epasarModel->getEpasar()
         ];
-        return view('profilView/index', $profilPemerintahan);
+        return view('profilView/profilDesaView', $profilPemerintahan);
     }
 }

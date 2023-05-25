@@ -4,7 +4,6 @@ ctrl+shift+[/]=tutup & buka baris
 shift+alt+a=membuat block komentar
 ctrl+f2=pengganti ctrl+d
 ctrl+shift+t=undo delete file
-ctrl+pgup+pgdn=pindah file
 alt+angka=pindah sesuai tab
 ctrl+panah bawah/atas=turun kebawah & atas
 

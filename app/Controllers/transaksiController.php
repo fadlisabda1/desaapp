@@ -22,7 +22,7 @@ class transaksiController extends BaseController
             'data' => $this->transaksiModel->findAll(),
             'barang' => $query->getResult()
         ];
-        return view('transaksiView/index', $transaksi);
+        return view('transaksiView/transaksiDetailView', $transaksi);
     }
 
     public function create($id)
@@ -33,7 +33,7 @@ class transaksiController extends BaseController
             'dataepasar' => $this->epasarModel->getEpasar($id)
         ];
 
-        return view('transaksiView/create', $data);
+        return view('transaksiView/transaksiCreateView', $data);
     }
 
     public function save()
@@ -81,7 +81,7 @@ class transaksiController extends BaseController
             'dataepasar' => $this->epasarModel->getEpasar($idBarang)
         ];
 
-        return view('transaksiView/edit', $data);
+        return view('transaksiView/transaksiEditView', $data);
     }
 
     public function update($id)

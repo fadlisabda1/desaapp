@@ -12,7 +12,8 @@
     "mpdf/mpdf": "^8.1",
     "dompdf/dompdf": "^2.0",
     "myth/auth": "^1.2",
-    "ckeditor/ckeditor": "^4.20"
+    "ckeditor/ckeditor": "^4.20",
+    "phpoffice/phpspreadsheet": "^1.28"
   },
   "require-dev": {
     "mikey179/vfsstream": "^1.6",

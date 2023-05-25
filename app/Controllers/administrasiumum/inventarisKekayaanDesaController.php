@@ -145,4 +145,51 @@ class inventarisKekayaanDesaController extends BaseController
             echo session()->getFlashdata('pesan');
         }
     }
+
+    public function import()
+    {
+        if ($this->request->getVar('action')) {
+            helper(['form', 'url']);
+            $message = '';
+            $success = 'yes';
+            if ($this->request->getVar('action') == 'Add') {
+                $file = $this->request->getFile('file');
+                $extension = $file->getClientExtension();
+                if ($extension == 'xls' || $extension == 'csv' || $extension == 'xlsx') {
+                    if ($extension == 'xls') {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                    } else if ($extension == 'csv') {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+                    } else {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                    }
+                    $spreadsheet = $reader->load($file);
+                    $contacts = $spreadsheet->getActiveSheet()->toArray();
+                    foreach ($contacts as $key => $value) {
+                        if ($key == 0) {
+                            continue;
+                        }
+                        $data = [
+                            'jenis_barang' => $value[0],
+                            'lokasi' => $value[1],
+                            'jumlah' => $value[2],
+                            'sumber_pembiayaan' => $value[3],
+                            'keadaan_barang_bangunan_awal_tahun' => $value[4],
+                            'keadaan_barang_bangunan_akhir_tahun' => $value[5],
+                            'perkiraan_biaya' => $value[6],
+                            'ket' => $value[7],
+                        ];
+                        $this->inventarisKekayaanModel->save($data);
+                    }
+                    session()->setFlashData('pesan', 'ditambahkan');
+                    $message = session()->getFlashdata('pesan');
+                }
+            }
+            $output = [
+                'success' => $success,
+                'message' => $message
+            ];
+            echo json_encode($output);
+        }
+    }
 }

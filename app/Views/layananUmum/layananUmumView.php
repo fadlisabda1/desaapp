@@ -5,6 +5,9 @@
         <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
             Tambah
         </button>
+        <button type="button" class="btn import" data-bs-toggle="modal" data-bs-target="#importModal" style="color:white;background-color: rgb(48,123,109);">
+            Import Xls-Csv-Xlsx
+        </button>
     </div>
     <ol class="list-group list-group-numbered">
         <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -105,6 +108,31 @@
                     </tr>
                 </thead>
             </table>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="judulModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="judulModalLabel"></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="layananImport_form" enctype="multipart/form-data">
+                    <?= csrf_field(); ?>
+                    <div class="mb-3">
+                        <label class="form-label" for="file">Pilih File</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="action" name="action" value="Add" />
+                <input type="submit" class="btn btn-success" name="submit" id="submit_button" value="Add"></input>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

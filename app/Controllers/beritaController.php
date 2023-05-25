@@ -10,7 +10,7 @@ class beritaController extends BaseController
             'title' => 'Detail Berita | Desa Tanah Merah',
             'data' => $this->beritaModel->getBerita($id)
         ];
-        return view('beritaView/detail', $berita);
+        return view('beritaView/beritaDetailView', $berita);
     }
 
     public function create()
@@ -20,7 +20,7 @@ class beritaController extends BaseController
             'validation' => \Config\Services::validation()
         ];
 
-        return view('beritaView/create', $data);
+        return view('beritaView/beritaCreateView', $data);
     }
 
     public function save()
@@ -71,7 +71,7 @@ class beritaController extends BaseController
             'berita' => $this->beritaModel->getBerita($id)
         ];
 
-        return view('beritaView/edit', $data);
+        return view('beritaView/beritaEditView', $data);
     }
 
     public function update($id)

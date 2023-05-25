@@ -10,7 +10,7 @@ class userController extends BaseController
             'title' => 'My Profile',
             'validation' => \Config\Services::validation()
         ];
-        return view('user/index', $data);
+        return view('user/myProfileView', $data);
     }
 
     public function edit()

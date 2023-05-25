@@ -256,6 +256,169 @@ $(document).ready(function () {
   });
 });
 
+$(".import").click(function () {
+  $(".modal-title").text("Add Data");
+  $("#importModal").modal("show");
+  $("#action").val("Add");
+  $("#submit_button").val("Add");
+});
+
+$("#peraturanImport_form").on("submit", function (event) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    url: "peraturanDesaController/import",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    data: formData,
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      $("#importModal").modal("hide");
+      if (data.message == "") {
+        Swal.fire({
+          title: "File Data Peraturan ",
+          text: "Tidak Sesuai!",
+          icon: "error",
+        });
+      } else {
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Peraturan ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+      }
+      $("#sample_table").DataTable().ajax.reload();
+    },
+  });
+});
+
+$("#inventarisImport_form").on("submit", function (event) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    url: "import",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    data: formData,
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      $("#importModal").modal("hide");
+      if (data.message == "") {
+        Swal.fire({
+          title: "File Data Inventaris ",
+          text: "Tidak Sesuai!",
+          icon: "error",
+        });
+      } else {
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Inventaris ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+      }
+      $("#sample_table2").DataTable().ajax.reload();
+    },
+  });
+});
+
+$("#layananImport_form").on("submit", function (event) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    url: "import",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    data: formData,
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      $("#importModal").modal("hide");
+      if (data.message == "") {
+        Swal.fire({
+          title: "File Data Layanan ",
+          text: "Tidak Sesuai!",
+          icon: "error",
+        });
+      } else {
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Layanan ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+      }
+      $("#sample_table3").DataTable().ajax.reload();
+    },
+  });
+});
+
+$("#perpajakanImport_form").on("submit", function (event) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    url: "import",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    data: formData,
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      $("#importModal").modal("hide");
+      if (data.message == "") {
+        Swal.fire({
+          title: "File Data Perpajakan ",
+          text: "Tidak Sesuai!",
+          icon: "error",
+        });
+      } else {
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Perpajakan ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+      }
+      $("#sample_table4").DataTable().ajax.reload();
+    },
+  });
+});
+
 $(".tombolTambahData").click(function () {
   $("#bantuansosial_form").val("");
   $("#nomorktp").val("");
@@ -282,6 +445,7 @@ $(".tombolTambahData").click(function () {
   $("#action").val("Add");
   $("#submit_button").val("Add");
 });
+
 $("#bantuansosial_form").on("submit", function (event) {
   event.preventDefault();
   var formData = new FormData(this);

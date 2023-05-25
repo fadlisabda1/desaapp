@@ -1,0 +1,5 @@
+Computational thinking
+1.abstraksi=kerjakan masalah yang penting dulu
+2.decomposisi=memecah masalah menjadi bagian kecil
+3.pattern recognition=sudah ada solusi jika mengulang masalah yang sudah selesai
+4.algoritma=urutkan semuanya menjadi sebuah algoritma

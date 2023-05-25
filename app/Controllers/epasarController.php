@@ -10,7 +10,7 @@ class epasarController extends BaseController
             'title' => 'Detail Barang | Desa Tanah Merah',
             'data' => $this->epasarModel->getEpasar($id)
         ];
-        return view('epasarView/detail', $berita);
+        return view('epasarView/epasarDetailView', $berita);
     }
 
     public function create()
@@ -20,7 +20,7 @@ class epasarController extends BaseController
             'validation' => \Config\Services::validation()
         ];
 
-        return view('epasarView/create', $data);
+        return view('epasarView/epasarCreateView', $data);
     }
 
     public function save()
@@ -72,7 +72,7 @@ class epasarController extends BaseController
             'barang' => $this->epasarModel->getEpasar($id)
         ];
 
-        return view('epasarView/edit', $data);
+        return view('epasarView/epasarEditView', $data);
     }
 
     public function update($id)

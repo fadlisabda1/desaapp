@@ -13,7 +13,7 @@ class penerimaanPbbController extends BaseController
         $perpajakan = [
             'title' => 'Perpajakan | Penerimaan Pajak Bumi & Bangunan',
         ];
-        return view('perpajakan\index', $perpajakan);
+        return view('perpajakan\perpajakanView', $perpajakan);
     }
 
     public function ambilData()
@@ -176,5 +176,49 @@ class penerimaanPbbController extends BaseController
         $this->penerimaanPbbModel->checkboxDelete($id);
         session()->setFlashData('pesan', "dihapus.");
         echo session()->getFlashdata('pesan');
+    }
+
+    public function import()
+    {
+        if ($this->request->getVar('action')) {
+            helper(['form', 'url']);
+            $message = '';
+            $success = 'yes';
+            if ($this->request->getVar('action') == 'Add') {
+                $file = $this->request->getFile('file');
+                $extension = $file->getClientExtension();
+                if ($extension == 'xls' || $extension == 'csv' || $extension == 'xlsx') {
+                    if ($extension == 'xls') {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                    } else if ($extension == 'csv') {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+                    } else {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                    }
+                    $spreadsheet = $reader->load($file);
+                    $contacts = $spreadsheet->getActiveSheet()->toArray();
+                    foreach ($contacts as $key => $value) {
+                        if ($key == 0) {
+                            continue;
+                        }
+                        $data = [
+                            'nomor_objek_pajak' => $value[0],
+                            'nohp' => $value[1],
+                            'nama_wajib_pajak' => $value[2],
+                            'tahun' => $value[3],
+                            'total_pbb_dibayar' => $value[4],
+                        ];
+                        $this->penerimaanPbbModel->save($data);
+                    }
+                    session()->setFlashData('pesan', 'ditambahkan');
+                    $message = session()->getFlashdata('pesan');
+                }
+            }
+            $output = [
+                'success' => $success,
+                'message' => $message
+            ];
+            echo json_encode($output);
+        }
     }
 }

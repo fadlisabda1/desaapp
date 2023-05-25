@@ -14,7 +14,7 @@ class bantuanSosialController extends BaseController
         $bantuanSosial = [
             'title' => 'Bantual Sosial'
         ];
-        return view('bantuansosial/index', $bantuanSosial);
+        return view('bantuansosial/bantuanSosialView', $bantuanSosial);
     }
 
     public function ambilData()

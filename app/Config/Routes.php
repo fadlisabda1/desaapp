@@ -82,7 +82,9 @@ $routes->post('/peraturanDesaController/action', 'administrasiumum\peraturanDesa
 $routes->delete('/peraturanDesaController/delete', 'administrasiumum\peraturanDesaController::delete');
 $routes->delete('/peraturanDesaController/ceklisDeleteButton', 'administrasiumum\peraturanDesaController::ceklisDeleteButton');
 $routes->post('/peraturanDesaController/edit', 'administrasiumum\peraturanDesaController::edit');
+$routes->post('/peraturanDesaController/import', 'administrasiumum\peraturanDesaController::import');
 //Inventaris dan Kekayaan Desa
+$routes->post('/inventarisKekayaanDesaController/import', 'administrasiumum\inventarisKekayaanDesaController::import');
 $routes->get('/inventarisKekayaanDesaController/index', 'administrasiumum\inventarisKekayaanDesaController::index');
 $routes->post('/inventarisKekayaanDesaController/ambilData', 'administrasiumum\inventarisKekayaanDesaController::ambilData');
 $routes->post('/inventarisKekayaanDesaController/action', 'administrasiumum\inventarisKekayaanDesaController::action');
@@ -90,6 +92,7 @@ $routes->post('/inventarisKekayaanDesaController/edit', 'administrasiumum\invent
 $routes->delete('/inventarisKekayaanDesaController/delete', 'administrasiumum\inventarisKekayaanDesaController::delete');
 $routes->delete('/inventarisKekayaanDesaController/ceklisDeleteButton', 'administrasiumum\inventarisKekayaanDesaController::ceklisDeleteButton');
 // pelayanan desa
+$routes->post('/layananUmumController/import', 'pelayanandesa\layananUmumController::import');
 $routes->get('/layananUmumController/index', 'pelayanandesa\layananUmumController::index');
 $routes->post('/layananUmumController/ambilData', 'pelayanandesa\layananUmumController::ambilData');
 $routes->post('/layananUmumController/action', 'pelayanandesa\layananUmumController::action');
@@ -97,6 +100,7 @@ $routes->post('/layananUmumController/edit', 'pelayanandesa\layananUmumControlle
 $routes->delete('/layananUmumController/delete', 'pelayanandesa\layananUmumController::delete');
 $routes->delete('/layananUmumController/ceklisDeleteButton', 'pelayanandesa\layananUmumController::ceklisDeleteButton');
 //perpajakan
+$routes->post('/penerimaanPbbController/import', 'perpajakan\penerimaanPbbController::import');
 $routes->get('/penerimaanPbbController/index', 'perpajakan\penerimaanPbbController::index');
 $routes->post('/penerimaanPbbController/ambilData', 'perpajakan\penerimaanPbbController::ambilData');
 $routes->post('/penerimaanPbbController/action', 'perpajakan\penerimaanPbbController::action');

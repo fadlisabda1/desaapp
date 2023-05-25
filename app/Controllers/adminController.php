@@ -22,7 +22,7 @@ class adminController extends BaseController
         $this->builder->where('deleted_at', NULL);
         $query = $this->builder->get();
         $data['users'] = $query->getResult();
-        return view('admin/index', $data);
+        return view('admin/userListView', $data);
     }
 
     public function detail($id)
@@ -36,7 +36,7 @@ class adminController extends BaseController
         $this->builder->where('users.id', $id);
         $query = $this->builder->get();
         $data['user'] = $query->getRow();
-        return view('admin/detail', $data);
+        return view('admin/userListDetailView', $data);
     }
     public function edit()
     {

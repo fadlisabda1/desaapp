@@ -6,7 +6,6 @@ use App\Controllers\BaseController;
 
 use monken\TablesIgniter;
 
-
 class peraturanDesaController extends BaseController
 {
     public function index()
@@ -114,5 +113,47 @@ class peraturanDesaController extends BaseController
         $this->peraturanDesaModel->checkboxDelete($id);
         session()->setFlashData('pesan', 'dihapus.');
         echo session()->getFlashdata('pesan');
+    }
+
+    public function import()
+    {
+        if ($this->request->getVar('action')) {
+            helper(['form', 'url']);
+            $message = '';
+            $success = 'yes';
+            if ($this->request->getVar('action') == 'Add') {
+                $file = $this->request->getFile('file');
+                $extension = $file->getClientExtension();
+                if ($extension == 'xls' || $extension == 'csv' || $extension == 'xlsx') {
+                    if ($extension == 'xls') {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+                    } else if ($extension == 'csv') {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+                    } else {
+                        $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+                    }
+                    $spreadsheet = $reader->load($file);
+                    $contacts = $spreadsheet->getActiveSheet()->toArray();
+                    foreach ($contacts as $key => $value) {
+                        if ($key == 0) {
+                            continue;
+                        }
+                        $data = [
+                            'nomor_tgl_peraturan' => $value[0],
+                            'tentang' => $value[1],
+                            'uraiansingkat' => $value[2],
+                        ];
+                        $this->peraturanDesaModel->save($data);
+                    }
+                    session()->setFlashData('pesan', 'ditambahkan');
+                    $message = session()->getFlashdata('pesan');
+                }
+            }
+            $output = [
+                'success' => $success,
+                'message' => $message
+            ];
+            echo json_encode($output);
+        }
     }
 }
