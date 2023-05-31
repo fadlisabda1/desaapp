@@ -153,31 +153,31 @@ $(document).ready(function () {
       {
         extend: "copyHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5],
+          columns: [1, 2, 3, 4, 5, 6],
         },
       },
       {
         extend: "csvHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5],
+          columns: [1, 2, 3, 4, 5, 6],
         },
       },
       {
         extend: "excelHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5],
+          columns: [1, 2, 3, 4, 5, 6],
         },
       },
       {
         extend: "pdfHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5],
+          columns: [1, 2, 3, 4, 5, 6],
         },
       },
       {
         extend: "print",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5],
+          columns: [1, 2, 3, 4, 5, 6],
         },
       },
     ],
@@ -208,31 +208,31 @@ $(document).ready(function () {
       {
         extend: "copyHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         },
       },
       {
         extend: "csvHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         },
       },
       {
         extend: "excelHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         },
       },
       {
         extend: "pdfHtml5",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         },
       },
       {
         extend: "print",
         exportOptions: {
-          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+          columns: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
         },
       },
     ],
@@ -240,12 +240,17 @@ $(document).ready(function () {
     serverSide: true,
     columnDefs: [
       {
-        targets: 10,
+        targets: 12,
         render: function (data) {
           if (data == null) {
             return null;
           }
-          return "<a href=" + window.location.origin + "/gambar/bantuansosial/" + data + " target=_blank>" + data + "</a><br>";
+          let str = data.split("|");
+          let hasil = "";
+          for (let i = 0; i < str.length; i++) {
+            hasil += "<a href=" + window.location.origin + "/file/bantuansosial/" + str[i] + " target=_blank>" + str[i] + "</a><br>";
+          }
+          return hasil;
         },
       },
     ],
@@ -259,8 +264,8 @@ $(document).ready(function () {
 $(".import").click(function () {
   $(".modal-title").text("Add Data");
   $("#importModal").modal("show");
-  $("#action").val("Add");
-  $("#submit_button").val("Add");
+  $("#actionn").val("Add");
+  $("#submit_buttonn").val("Add");
 });
 
 $("#peraturanImport_form").on("submit", function (event) {
@@ -274,12 +279,12 @@ $("#peraturanImport_form").on("submit", function (event) {
     data: formData,
     dataType: "JSON",
     beforeSend: function () {
-      $("#submit_button").val("loading...");
-      $("#submit_button").attr("disabled", "disabled");
+      $("#submit_buttonn").val("loading...");
+      $("#submit_buttonn").attr("disabled", "disabled");
     },
     success: function (data) {
-      $("#submit_button").val("Add");
-      $("#submit_button").attr("disabled", false);
+      $("#submit_buttonn").val("Add");
+      $("#submit_buttonn").attr("disabled", false);
       $("#importModal").modal("hide");
       if (data.message == "") {
         Swal.fire({
@@ -419,28 +424,70 @@ $("#perpajakanImport_form").on("submit", function (event) {
   });
 });
 
+$("#bantuanSosialImport_form").on("submit", function (event) {
+  event.preventDefault();
+  var formData = new FormData(this);
+  $.ajax({
+    url: "import",
+    method: "POST",
+    processData: false,
+    contentType: false,
+    data: formData,
+    dataType: "JSON",
+    beforeSend: function () {
+      $("#submit_button").val("loading...");
+      $("#submit_button").attr("disabled", "disabled");
+    },
+    success: function (data) {
+      $("#submit_button").val("Add");
+      $("#submit_button").attr("disabled", false);
+      $("#importModal").modal("hide");
+      if (data.message == "") {
+        Swal.fire({
+          title: "File Data Bantuan Sosial ",
+          text: "Tidak Sesuai!",
+          icon: "error",
+        });
+      } else {
+        const flashData = data.message;
+        if (flashData) {
+          Swal.fire({
+            title: "Data Bantuan Sosial ",
+            text: "Berhasil " + flashData,
+            icon: "success",
+          });
+        }
+      }
+      $("#sample_table5").DataTable().ajax.reload();
+    },
+  });
+});
+
 $(".tombolTambahData").click(function () {
   $("#bantuansosial_form").val("");
   $("#nomorktp").val("");
   $("#namapenerima").val("");
+  $("#nohp").val("");
   $("#jenisbantuan").prop("selectedIndex", 0);
   $("#statuspenerimaan").prop("selectedIndex", 0);
   $('input[id="pria"]').prop("checked", true);
   $("#alamat").val("");
   $("#pekerjaan").val("");
+  $("#norekening").val("");
   $("#tgllahir").val("");
   $("#tglpenerimaan").val("");
-  $("#file").val("");
+  $("#fileBantuan").val("");
   $(".modal-title").text("Add Data");
   $("#nomorktp_error").text("");
   $("#namapenerima_error").text("");
+  $("#nohp_error").text("");
   $("#jenisbantuan_error").text("");
   $("#statuspenerimaan_error").text("");
   $("#alamat_error").text("");
   $("#pekerjaan_error").text("");
+  $("#norekening_error").text("");
   $("#tgllahir_error").text("");
   $("#tglpenerimaan_error").text("");
-  $("#file_error").text("");
   $("#formModal").modal("show");
   $("#action").val("Add");
   $("#submit_button").val("Add");
@@ -466,11 +513,12 @@ $("#bantuansosial_form").on("submit", function (event) {
       if (data.error == "yes") {
         $("#nomorktp_error").text(data.nomorktp_error);
         $("#namapenerima_error").text(data.namapenerima_error);
+        $("#nohp_error").text(data.nohp_error);
         $("#alamat_error").text(data.alamat_error);
         $("#pekerjaan_error").text(data.pekerjaan_error);
+        $("#norekening_error").text(data.norekening_error);
         $("#tgllahir_error").text(data.tgllahir_error);
         $("#tglpenerimaan_error").text(data.tglpenerimaan_error);
-        $("#file_error").text(data.file_error);
       } else {
         $("#formModal").modal("hide");
         const flashData = data.message;
@@ -492,15 +540,12 @@ $(".tombolTambahData").click(function () {
   $("#nop").val("");
   $("#nohp").val("");
   $("#nama").val("");
-  $("#tahun").val("");
   $("#totalyangdibayar").val("");
-  $(".tampilanfile").attr("src", "");
-  $("#file").val("");
+  $("#filePajak").val("");
   $(".modal-title").text("Add Data");
   $("#nop_error").text("");
   $("#nohp_error").text("");
   $("#nama_error").text("");
-  $("#tahun_error").text("");
   $("#totalyangdibayar_error").text("");
   $("#file_error").text("");
   $("#formModal").modal("show");
@@ -528,7 +573,6 @@ $("#perpajakan_form").on("submit", function (event) {
         $("#nop_error").text(data.nop_error);
         $("#nohp_error").text(data.nohp_error);
         $("#nama_error").text(data.nama_error);
-        $("#tahun_error").text(data.tahun_error);
         $("#totalyangdibayar_error").text(data.totalyangdibayar_error);
         $("#file_error").text(data.file_error);
       } else {
@@ -552,7 +596,7 @@ $(".tombolTambahData").click(function () {
   $("#judul").val("");
   $("#nohp").val("");
   $("#usernameoremail").val("");
-  $("#file").val("");
+  $("#fileLayanan").val("");
   $(".modal-title").text("Add Data");
   $("#judul_error").text("");
   $("#nohp_error").text("");
@@ -715,7 +759,7 @@ $(document).on("click", ".edit", function () {
       $("#nomorTglPeraturanDesa").val(data.nomor_tgl_peraturan);
       $("#tentang").val(data.tentang);
       $("#uraiansingkat").val(data.uraiansingkat);
-      $(".modal-header").text("Edit Data");
+      $(".modal-title").text("Edit Data");
       $("#nomorTglPeraturanDesa_error").text("");
       $("#tentang_error").text("");
       $("#uraiansingkat_error").text("");
@@ -743,7 +787,7 @@ $(document).on("click", ".edit2", function () {
       $("#akhir").val(data.keadaan_barang_bangunan_akhir_tahun);
       $("#perkiraanbiaya").val(data.perkiraan_biaya);
       $("#ket").val(data.ket);
-      $(".modal-header").text("Edit Data");
+      $(".modal-title").text("Edit Data");
       $("#jenisbarang_error").text("");
       $("#lokasi_error").text("");
       $("#jumlah_error").text("");
@@ -770,7 +814,7 @@ $(document).on("click", ".edit3", function () {
       $("#judul").val(data.judul);
       $("#nohp").val(data.nohp);
       $("#usernameoremail").val(data.usernameoremail);
-      $(".modal-header").text("Edit Data");
+      $(".modal-title").text("Edit Data");
       $("#judul_error").text("");
       $("#nohp_error").text("");
       $("#usernameoremail_error").text("");
@@ -790,18 +834,15 @@ $(document).on("click", ".edit4", function () {
     data: { id: id },
     dataType: "JSON",
     success: function (data) {
-      $(".tampilanfile").attr("src", window.location.origin + "/gambar/buktipembayaran/" + data.gambar);
       $("#gambar_lama").val(data.gambar);
       $("#nop").val(data.nomor_objek_pajak);
       $("#nohp").val(data.nohp);
       $("#nama").val(data.nama_wajib_pajak);
-      $("#tahun").val(data.tahun);
       $("#totalyangdibayar").val(data.total_pbb_dibayar);
-      $(".modal-header").text("Edit Data");
+      $(".modal-title").text("Edit Data");
       $("#nop_error").text("");
       $("#nohp_error").text("");
       $("#nama_error").text("");
-      $("#tahun_error").text("");
       $("#totalyangdibayar_error").text("");
       $("#file_error").text("");
       $("#action").val("Edit");
@@ -820,28 +861,27 @@ $(document).on("click", ".edit5", function () {
     data: { id: id },
     dataType: "JSON",
     success: function (data) {
-      $(".tampilanfile").attr("src", window.location.origin + "/gambar/bantuansosial/" + data.gambar);
-      $("#gambar_lama").val(data.gambar);
+      $("#file_lama").val(data.file);
       $("#nomorktp").val(data.nomorktp);
       $("#namapenerima").val(data.namapenerima);
+      $("#nohp").val(data.nohp);
       $("#jenisbantuan").val(data.jenisbantuan);
       $("#statuspenerimaan").val(data.statuspenerimaan);
       $("input[name=jeniskelamin][value=" + data.jeniskelamin + "]").prop("checked", true);
       $("#alamat").val(data.alamat);
       $("#pekerjaan").val(data.pekerjaan);
+      $("#norekening").val(data.norekening);
       $("#tgllahir").val(data.tanggallahir);
       $("#tglpenerimaan").val(data.tanggalpenerimaan);
-      $("#tglpenerimaan").val(data.tanggalpenerimaan);
-      $(".modal-header").text("Edit Data");
+      $(".modal-title").text("Edit Data");
       $("#nomorktp_error").text("");
       $("#namapenerima_error").text("");
+      $("#nohp_error").text("");
       $("#jenisbantuan_error").text("");
       $("#statuspenerimaan_error").text("");
       $("#alamat_error").text("");
       $("#pekerjaan_error").text("");
-      $("#tgllahir_error").text("");
-      $("#tglpenerimaan_error").text("");
-      $("#file_error").text("");
+      $("#norekening_error").text("");
       $("#action").val("Edit");
       $("#submit_button").val("Edit");
       $("#formModal").modal("show");
@@ -849,18 +889,6 @@ $(document).on("click", ".edit5", function () {
     },
   });
 });
-
-function previewFile() {
-  const file = document.querySelector("#file");
-  const filePreview = document.querySelector(".file-preview");
-
-  const file2 = new FileReader();
-  file2.readAsDataURL(file.files[0]);
-
-  file2.onload = function (e) {
-    filePreview.src = e.target.result;
-  };
-}
 
 $("#user_form").on("submit", function (event) {
   event.preventDefault();
@@ -910,7 +938,7 @@ $(document).on("click", ".editUser", function () {
       $("#email").val(data.email);
       $("#username").val(data.username);
       $("#fullname").val(data.fullname);
-      $(".modal-header").text("Edit Data");
+      $(".modal-title").text("Edit Data");
       $("#email_error").text("");
       $("#username_error").text("");
       $("#user_image_error").text("");

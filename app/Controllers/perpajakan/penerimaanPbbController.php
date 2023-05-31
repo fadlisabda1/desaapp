@@ -21,9 +21,9 @@ class penerimaanPbbController extends BaseController
         $data_table = new TablesIgniter();
         $data_table->setTable($this->penerimaanPbbModel->getDataNull())
             ->setDefaultOrder('id_pbb', 'ESC')
-            ->setSearch(['nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar'])
-            ->setOrder(['nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar', 'gambar'])
-            ->setOutput([$this->penerimaanPbbModel->ceklisDelete(), 'nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar', 'gambar', $this->penerimaanPbbModel->button()]);
+            ->setSearch(['nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'updated_at', 'total_pbb_dibayar'])
+            ->setOrder(['nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'updated_at', 'total_pbb_dibayar', 'gambar'])
+            ->setOutput([$this->penerimaanPbbModel->ceklisDelete(), 'nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'updated_at', 'total_pbb_dibayar', 'gambar', $this->penerimaanPbbModel->button()]);
         return $data_table->getDatatable();
     }
 
@@ -34,7 +34,6 @@ class penerimaanPbbController extends BaseController
             $nop_error = '';
             $nohp_error = '';
             $nama_error = '';
-            $tahun_error = '';
             $totalyangdibayar_error = '';
             $file_error = '';
             $error = 'no';
@@ -44,7 +43,6 @@ class penerimaanPbbController extends BaseController
                 'nop' => 'required',
                 'nohp' => 'required',
                 'nama' => 'required',
-                'tahun' => 'required',
                 'totalyangdibayar' => 'required',
                 'file' => 'max_size[file,1024]|is_image[file]|mime_in[file,image/jpg,image/jpeg,image/png]',
             ]);
@@ -59,9 +57,6 @@ class penerimaanPbbController extends BaseController
                 }
                 if ($validation->getError('nama')) {
                     $nama_error = $validation->getError('nama');
-                }
-                if ($validation->getError('tahun')) {
-                    $tahun_error = $validation->getError('tahun');
                 }
                 if ($validation->getError('totalyangdibayar')) {
                     $totalyangdibayar_error = $validation->getError('totalyangdibayar');
@@ -81,7 +76,6 @@ class penerimaanPbbController extends BaseController
                         'nomor_objek_pajak' => $this->request->getVar('nop'),
                         'nohp' => $this->request->getVar('nohp'),
                         'nama_wajib_pajak' => $this->request->getVar('nama'),
-                        'tahun' => $this->request->getVar('tahun'),
                         'total_pbb_dibayar' => $this->request->getVar('totalyangdibayar'),
                         'gambar' => ($filegambar->getError() === 4) ?  '' : $namagambar
                     ]);
@@ -105,7 +99,6 @@ class penerimaanPbbController extends BaseController
                         'nomor_objek_pajak' => $this->request->getVar('nop'),
                         'nohp' => $this->request->getVar('nohp'),
                         'nama_wajib_pajak' => $this->request->getVar('nama'),
-                        'tahun' => $this->request->getVar('tahun'),
                         'total_pbb_dibayar' => $this->request->getVar('totalyangdibayar'),
                         'gambar' => $namaImage
                     ];
@@ -118,7 +111,6 @@ class penerimaanPbbController extends BaseController
                 'nop_error' => $nop_error,
                 'nohp_error' => $nohp_error,
                 'nama_error' => $nama_error,
-                'tahun_error' => $tahun_error,
                 'totalyangdibayar_error' => $totalyangdibayar_error,
                 'file_error' => $file_error,
                 'error' => $error,
@@ -180,11 +172,11 @@ class penerimaanPbbController extends BaseController
 
     public function import()
     {
-        if ($this->request->getVar('action')) {
+        if ($this->request->getVar('actionn')) {
             helper(['form', 'url']);
             $message = '';
             $success = 'yes';
-            if ($this->request->getVar('action') == 'Add') {
+            if ($this->request->getVar('actionn') == 'Add') {
                 $file = $this->request->getFile('file');
                 $extension = $file->getClientExtension();
                 if ($extension == 'xls' || $extension == 'csv' || $extension == 'xlsx') {
@@ -205,8 +197,7 @@ class penerimaanPbbController extends BaseController
                             'nomor_objek_pajak' => $value[0],
                             'nohp' => $value[1],
                             'nama_wajib_pajak' => $value[2],
-                            'tahun' => $value[3],
-                            'total_pbb_dibayar' => $value[4],
+                            'total_pbb_dibayar' => $value[3],
                         ];
                         $this->penerimaanPbbModel->save($data);
                     }

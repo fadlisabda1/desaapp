@@ -10,7 +10,7 @@ class penerimaanPbbModel extends Model
     protected $primaryKey = 'id_pbb';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'tahun', 'total_pbb_dibayar', 'gambar', 'created_at', 'updated_at', 'deleted_at'];
+    protected $allowedFields = ['nomor_objek_pajak', 'nohp', 'nama_wajib_pajak', 'total_pbb_dibayar', 'gambar', 'created_at', 'updated_at', 'deleted_at'];
     public function getData($id = false)
     {
         if ($id == false) {

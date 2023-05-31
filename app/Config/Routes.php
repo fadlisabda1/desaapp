@@ -109,6 +109,7 @@ $routes->delete('/penerimaanPbbController/delete', 'perpajakan\penerimaanPbbCont
 $routes->delete('/penerimaanPbbController/deleteUser', 'perpajakan\penerimaanPbbController::deleteUser');
 $routes->delete('/penerimaanPbbController/ceklisDeleteButton', 'perpajakan\penerimaanPbbController::ceklisDeleteButton');
 //bantuan sosial
+$routes->post('/bantuanSosialController/import', 'bantuansosial\bantuanSosialController::import');
 $routes->get('/bantuanSosialController/index', 'bantuansosial\bantuanSosialController::index');
 $routes->post('/bantuanSosialController/ambilData', 'bantuansosial\bantuanSosialController::ambilData');
 $routes->post('/bantuanSosialController/action', 'bantuansosial\bantuanSosialController::action');

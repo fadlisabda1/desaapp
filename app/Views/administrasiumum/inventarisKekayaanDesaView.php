@@ -38,7 +38,7 @@
 <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="judulModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-headerr">
                 <h1 class="modal-title fs-5" id="judulModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -51,8 +51,8 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" id="action" name="action" value="Add" />
-                <input type="submit" class="btn btn-success" name="submit" id="submit_button" value="Add"></input>
+                <input type="hidden" id="actionn" name="actionn" value="Add" />
+                <input type="submit" class="btn btn-success" name="submit" id="submit_buttonn" value="Add"></input>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </form>
             </div>
@@ -110,7 +110,7 @@
                         Keadaan Barang Bangunan Akhir Tahun
                     </label>
                     <select class="form-select mb-3" aria-label="Default select example" name="akhir" id="akhir">
-                        <option value="baik">Baik</option>
+                        <option selected value="baik">Baik</option>
                         <option value="rusak">Rusak</option>
                         <option value="belum">Belum</option>
                     </select>

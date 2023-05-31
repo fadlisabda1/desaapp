@@ -148,11 +148,11 @@ class inventarisKekayaanDesaController extends BaseController
 
     public function import()
     {
-        if ($this->request->getVar('action')) {
+        if ($this->request->getVar('actionn')) {
             helper(['form', 'url']);
             $message = '';
             $success = 'yes';
-            if ($this->request->getVar('action') == 'Add') {
+            if ($this->request->getVar('actionn') == 'Add') {
                 $file = $this->request->getFile('file');
                 $extension = $file->getClientExtension();
                 if ($extension == 'xls' || $extension == 'csv' || $extension == 'xlsx') {

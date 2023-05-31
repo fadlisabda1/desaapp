@@ -22,7 +22,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label labelFile" for="file">Pilih File</label>
-            <input type="file" class="form-control <?= ($validation->hasError('file')) ? 'is-invalid' : ''; ?>" id="file" name="file_upload[]" onchange="previewFile()" multiple="true">
+            <input type="file" class="form-control <?= ($validation->hasError('file')) ? 'is-invalid' : ''; ?>" id="file" name="file_upload[]" multiple="true">
             <div class="invalid-feedback">
                 <?= $validation->getError('file'); ?>
             </div>

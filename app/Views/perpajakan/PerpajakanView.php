@@ -9,6 +9,7 @@
             <button type="button" class="btn import" data-bs-toggle="modal" data-bs-target="#importModal" style="color:white;background-color: rgb(48,123,109);">
                 Import Xls-Csv-Xlsx
             </button>
+            <h1>Jangan Lupa Pembayaran Terakhir Pajak 24 September Setiap Tahun Mau Denda?</h1>
         </div>
     <?php endif; ?>
     <div class="card-body">
@@ -20,7 +21,7 @@
                         <th scope="col">Nomor Objek Pajak</th>
                         <th scope="col">No Hp</th>
                         <th scope="col">Nama Wajib Pajak</th>
-                        <th scope="col">Tahun</th>
+                        <th scope="col">Tanggal Pengiriman Bukti Bayar</th>
                         <th scope="col">Total pbb yang dibayar</th>
                         <th scope="col">Bukti Bayar</th>
                         <th scope="col">Tindakan</th>
@@ -34,7 +35,7 @@
 <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="judulModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-headerr">
                 <h1 class="modal-title fs-5" id="judulModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -47,8 +48,8 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" id="action" name="action" value="Add" />
-                <input type="submit" class="btn btn-success" name="submit" id="submit_button" value="Add"></input>
+                <input type="hidden" id="actionn" name="actionn" value="Add" />
+                <input type="submit" class="btn btn-success" name="submit" id="submit_buttonn" value="Add"></input>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </form>
             </div>
@@ -83,20 +84,14 @@
                         <span id="nama_error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="tahun" class="form-label">tahun</label>
-                        <input type="number" class="form-control" id="tahun" name="tahun">
-                        <span id="tahun_error" class="text-danger"></span>
-                    </div>
-                    <div class="mb-3">
                         <label for="totalyangdibayar" class="form-label">Total Yang Dibayar</label>
                         <input type="number" class="form-control" id="totalyangdibayar" name="totalyangdibayar">
                         <span id="totalyangdibayar_error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="file" class="form-label">File</label>
-                        <input type="file" class="form-control" name="file" id="file" onchange="previewFile()">
+                        <label for="filePajak" class="form-label">File</label>
+                        <input type="file" class="form-control" name="file" id="filePajak">
                         <span id="file_error" class="text-danger"></span>
-                        <img src="" class="img-fluid file-preview mt-2 tampilanfile">
                     </div>
             </div>
             <div class="modal-footer">

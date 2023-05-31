@@ -1,14 +1,6 @@
 <?= $this->extend('templates/index'); ?>
 <?= $this->section('page-content'); ?>
 <div class="card shadow mb-4 mt-4">
-    <div class="card-header py-3">
-        <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
-            Tambah
-        </button>
-        <button type="button" class="btn import" data-bs-toggle="modal" data-bs-target="#importModal" style="color:white;background-color: rgb(48,123,109);">
-            Import Xls-Csv-Xlsx
-        </button>
-    </div>
     <ol class="list-group list-group-numbered">
         <li class="list-group-item d-flex justify-content-between align-items-start">
             <div class="ms-2 me-auto">
@@ -94,6 +86,14 @@
             </div>
         </li>
     </ol>
+    <div class="card-header py-3">
+        <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
+            Tambah
+        </button>
+        <button type="button" class="btn import" data-bs-toggle="modal" data-bs-target="#importModal" style="color:white;background-color: rgb(48,123,109);">
+            Import Xls-Csv-Xlsx
+        </button>
+    </div>
     <div class="card-body">
         <div class="table-responsive mt-2">
             <table id="sample_table3" class="table table-bordered table-hover">
@@ -115,7 +115,7 @@
 <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="judulModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-headerr">
                 <h1 class="modal-title fs-5" id="judulModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -128,8 +128,8 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" id="action" name="action" value="Add" />
-                <input type="submit" class="btn btn-success" name="submit" id="submit_button" value="Add"></input>
+                <input type="hidden" id="actionn" name="actionn" value="Add" />
+                <input type="submit" class="btn btn-success" name="submit" id="submit_buttonn" value="Add"></input>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </form>
             </div>
@@ -152,7 +152,7 @@
                         Surat
                     </label>
                     <select class="form-select mb-3" aria-label="Default select example" name="judul" id="judul">
-                        <option value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
+                        <option selected value="Surat Keterangan Domisili">Surat Keterangan Domisili</option>
                         <option value="Surat Keterangan Campuran">Surat Keterangan Campuran</option>
                         <option value="Surat Keterangan Usaha">Surat Keterangan Usaha</option>
                         <option value="Surat Pengantar KK">Surat Keterangan Pengantar KK</option>
@@ -173,8 +173,8 @@
                         <span id="usernameoremail_error" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="file">Pilih File</label>
-                        <input type="file" class="form-control" id="file" name="file_upload[]" multiple="true">
+                        <label class="form-label" for="fileLayanan">Pilih File</label>
+                        <input type="file" class="form-control" id="fileLayanan" name="file_upload[]" multiple="true">
                     </div>
             </div>
             <div class="modal-footer">
