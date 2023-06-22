@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class adminController extends BaseController
+class userListController extends BaseController
 {
     protected $db, $builder;
 
@@ -22,7 +22,7 @@ class adminController extends BaseController
         $this->builder->where('deleted_at', NULL);
         $query = $this->builder->get();
         $data['users'] = $query->getResult();
-        return view('admin/userListView', $data);
+        return view('userlist/userListView', $data);
     }
 
     public function detail($id)
@@ -36,7 +36,7 @@ class adminController extends BaseController
         $this->builder->where('users.id', $id);
         $query = $this->builder->get();
         $data['user'] = $query->getRow();
-        return view('admin/userListDetailView', $data);
+        return view('userlist/userListDetailView', $data);
     }
     public function edit()
     {
@@ -51,11 +51,11 @@ class adminController extends BaseController
             $id = $this->request->getVar('id');
             $user = $this->builder->getWhere(['id' => $id]);
             foreach ($user->getResult() as $userr) {
-                if ($userr->user_image != 'default.svg') {
-                    unlink('gambar/' . $userr->user_image);
+                if (file_exists('/xampp/htdocs/desaapp/public/gambar/myprofile/' . $userr->user_image) && $userr->user_image != null) {
+                    unlink('gambar/myprofile/' . $userr->user_image);
                 }
             }
-            $this->builder->delete(['id' => $id]);
+            $this->userModel->delete($id);
             session()->setFlashData('pesan', 'dihapus.');
             echo session()->getFlashdata('pesan');
         }
@@ -67,8 +67,8 @@ class adminController extends BaseController
             $id = $this->request->getVar('id');
             foreach ($id as $i) {
                 $data = $this->userModel->where('id', $i)->first();
-                if ($data['user_image'] != 'default.svg') {
-                    unlink('gambar/' . $data['user_image']);
+                if (file_exists('/xampp/htdocs/desaapp/public/gambar/myprofile/' . $data['user_image']) && $data['user_image'] != null) {
+                    unlink('gambar/myprofile/' . $data['user_image']);
                 }
             }
             $this->userModel->checkboxDelete($id);

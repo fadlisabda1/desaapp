@@ -87,16 +87,18 @@
         </li>
     </ol>
     <div class="card-header py-3">
-        <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
+        <button type="button" class="btn tambahLayananUmum" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
             Tambah
         </button>
-        <button type="button" class="btn import" data-bs-toggle="modal" data-bs-target="#importModal" style="color:white;background-color: rgb(48,123,109);">
-            Import Xls-Csv-Xlsx
-        </button>
+        <?php if (in_groups('admin')) : ?>
+            <button type="button" class="btn import" data-bs-toggle="modal" data-bs-target="#importModal" style="color:white;background-color: rgb(48,123,109);">
+                Import Xls-Csv-Xlsx
+            </button>
+        <?php endif; ?>
     </div>
     <div class="card-body">
         <div class="table-responsive mt-2">
-            <table id="sample_table3" class="table table-bordered table-hover">
+            <table id="tableLayananUmum" class="table table-bordered table-hover">
                 <thead class="table-light">
                     <tr>
                         <th scope="col">Ceklis</th>
@@ -115,12 +117,12 @@
 <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="judulModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-headerr">
+            <div class="modal-header">
                 <h1 class="modal-title fs-5" id="judulModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" id="layananImport_form" enctype="multipart/form-data">
+                <form method="post" id="formImportLayananUmum" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="mb-3">
                         <label class="form-label" for="file">Pilih File</label>
@@ -145,7 +147,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" id="layananumum_form" enctype="multipart/form-data">
+                <form method="post" id="formLayananUmum" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="file_lama" id="file_lama">
                     <label class="form-check-label" for="judul">

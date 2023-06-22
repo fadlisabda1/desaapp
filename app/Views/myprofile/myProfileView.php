@@ -8,7 +8,7 @@
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="<?= base_url('/gambar/' . user()->user_image); ?>" class="img-fluid rounded-start" alt="<?= user()->username ?>">
+                        <img src="gambar/myprofile/<?= user()->user_image; ?>" class="img-fluid rounded-start" alt="<?= user()->username ?>">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -37,10 +37,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" id="user_form" enctype="multipart/form-data">
+                <form method="post" id="formMyProfile" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="id" id="id">
-                    <input type="hidden" name="user_image_lama" value="<?= user()->user_image; ?>">
+                    <input type="hidden" id="user_image_lama" name="user_image_lama" value="<?= user()->user_image; ?>">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="email" class="form-control" id="email" name="email">
@@ -57,9 +57,8 @@
                     </div>
                     <div class="mb-3">
                         <label for="user_image" class="form-label userImageLabel">User Image</label>
-                        <input type="file" class="form-control" name="user_image" id="gambar" onchange="previewImg()">
+                        <input type="file" class="form-control" name="user_image">
                         <span id="user_image_error" class="text-danger"></span>
-                        <img src="<?= base_url('/gambar/' . user()->user_image); ?>" class="img-fluid img-preview mt-2">
                     </div>
             </div>
             <div class="modal-footer">

@@ -3,7 +3,7 @@
 <div class="card shadow mb-4 mt-4">
     <?php if (in_groups('admin')) : ?>
         <div class="card-header py-3">
-            <button type="button" class="btn tombolTambahData2" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
+            <button type="button" class="btn tambahInventaris" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
                 Tambah
             </button>
             <button type="button" class="btn import" data-bs-toggle="modal" data-bs-target="#importModal" style="color:white;background-color: rgb(48,123,109);">
@@ -13,7 +13,7 @@
     <?php endif; ?>
     <div class="card-body">
         <div class="table-responsive mt-2">
-            <table id="sample_table2" class="table table-bordered table-hover">
+            <table id="tableInventaris" class="table table-bordered table-hover">
                 <thead class="table-light">
                     <tr>
                         <th scope="col">Jenis Barang</th>
@@ -38,12 +38,12 @@
 <div class="modal fade" id="importModal" tabindex="-1" aria-labelledby="judulModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-headerr">
+            <div class="modal-header">
                 <h1 class="modal-title fs-5" id="judulModalLabel"></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" id="inventarisImport_form" enctype="multipart/form-data">
+                <form method="post" id="formImportInventaris" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <div class="mb-3">
                         <label class="form-label" for="file">Pilih File</label>
@@ -68,7 +68,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" id="inventarisKekayaan_form">
+                <form method="post" id="formInventaris">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="id" id="id">
                     <div class="mb-3">

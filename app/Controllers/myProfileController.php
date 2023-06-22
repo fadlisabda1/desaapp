@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class userController extends BaseController
+class myProfileController extends BaseController
 {
     public function index()
     {
@@ -10,7 +10,7 @@ class userController extends BaseController
             'title' => 'My Profile',
             'validation' => \Config\Services::validation()
         ];
-        return view('user/myProfileView', $data);
+        return view('myprofile/myProfileView', $data);
     }
 
     public function edit()
@@ -58,9 +58,9 @@ class userController extends BaseController
                         $namaUserImage = $this->request->getVar('user_image_lama');
                     } else {
                         $namaUserImage = $fileUserImage->getRandomName();
-                        $fileUserImage->move('gambar', $namaUserImage);
-                        if ($this->request->getVar('user_image_lama') != 'default.svg') {
-                            unlink('gambar/' . $this->request->getVar('user_image_lama'));
+                        $fileUserImage->move('gambar/myprofile', $namaUserImage);
+                        if ($this->request->getVar('user_image_lama') != null && $fileUserImage->getError() != 4 && file_exists('/xampp/htdocs/desaapp/public/gambar/myprofile/' . $this->request->getVar('user_image_lama'))) {
+                            unlink('gambar/myprofile/' . $this->request->getVar('user_image_lama'));
                         }
                     }
                     $data = [

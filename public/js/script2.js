@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  $("#sample_table").DataTable({
+  $("#tablePeraturan").DataTable({
     dom: "Bfrtip",
     lengthMenu: [5, 10, 20, 50, 100, 200, 500],
     buttons: [
@@ -42,7 +42,7 @@ $(document).ready(function () {
       type: "POST",
     },
   });
-  $("#sample_table2").DataTable({
+  $("#tableInventaris").DataTable({
     dom: "Bfrtip",
     lengthMenu: [5, 10, 20, 50, 100, 200, 500],
     buttons: [
@@ -85,7 +85,7 @@ $(document).ready(function () {
       type: "POST",
     },
   });
-  $("#sample_table3").DataTable({
+  $("#tableLayananUmum").DataTable({
     dom: "Bfrtip",
     lengthMenu: [5, 10, 20, 50, 100, 200, 500],
     buttons: [
@@ -145,7 +145,7 @@ $(document).ready(function () {
     },
   });
 
-  $("#sample_table4").DataTable({
+  $("#tablePenerimaanPbb").DataTable({
     dom: "Bfrtip",
     lengthMenu: [5, 10, 20, 50, 100, 200, 500],
     buttons: [
@@ -200,7 +200,7 @@ $(document).ready(function () {
     },
   });
 
-  $("#sample_table5").DataTable({
+  $("#tableBantuansosial").DataTable({
     dom: "Bfrtip",
     lengthMenu: [5, 10, 20, 50, 100, 200, 500],
     buttons: [
@@ -268,7 +268,7 @@ $(".import").click(function () {
   $("#submit_buttonn").val("Add");
 });
 
-$("#peraturanImport_form").on("submit", function (event) {
+$("#formImportPeraturan").on("submit", function (event) {
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
@@ -302,12 +302,12 @@ $("#peraturanImport_form").on("submit", function (event) {
           });
         }
       }
-      $("#sample_table").DataTable().ajax.reload();
+      $("#tablePeraturan").DataTable().ajax.reload();
     },
   });
 });
 
-$("#inventarisImport_form").on("submit", function (event) {
+$("#formImportInventaris").on("submit", function (event) {
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
@@ -341,12 +341,12 @@ $("#inventarisImport_form").on("submit", function (event) {
           });
         }
       }
-      $("#sample_table2").DataTable().ajax.reload();
+      $("#tableInventarisKekayaanDesa").DataTable().ajax.reload();
     },
   });
 });
 
-$("#layananImport_form").on("submit", function (event) {
+$("#formImportLayananUmum").on("submit", function (event) {
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
@@ -380,12 +380,12 @@ $("#layananImport_form").on("submit", function (event) {
           });
         }
       }
-      $("#sample_table3").DataTable().ajax.reload();
+      $("#tableLayananUmum").DataTable().ajax.reload();
     },
   });
 });
 
-$("#perpajakanImport_form").on("submit", function (event) {
+$("#formImportPenerimaanPbb").on("submit", function (event) {
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
@@ -419,7 +419,7 @@ $("#perpajakanImport_form").on("submit", function (event) {
           });
         }
       }
-      $("#sample_table4").DataTable().ajax.reload();
+      $("#tablePenerimaanPbb").DataTable().ajax.reload();
     },
   });
 });
@@ -458,13 +458,13 @@ $("#bantuanSosialImport_form").on("submit", function (event) {
           });
         }
       }
-      $("#sample_table5").DataTable().ajax.reload();
+      $("#tableBantuanSosial").DataTable().ajax.reload();
     },
   });
 });
 
-$(".tombolTambahData").click(function () {
-  $("#bantuansosial_form").val("");
+$(".tambahBantuanSosial").click(function () {
+  $("#formBantuanSosial").val("");
   $("#nomorktp").val("");
   $("#namapenerima").val("");
   $("#nohp").val("");
@@ -493,7 +493,7 @@ $(".tombolTambahData").click(function () {
   $("#submit_button").val("Add");
 });
 
-$("#bantuansosial_form").on("submit", function (event) {
+$("#formBantuanSosial").on("submit", function (event) {
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
@@ -529,14 +529,14 @@ $("#bantuansosial_form").on("submit", function (event) {
             icon: "success",
           });
         }
-        $("#sample_table5").DataTable().ajax.reload();
+        $("#tableBantuanSosial").DataTable().ajax.reload();
       }
     },
   });
 });
 
-$(".tombolTambahData").click(function () {
-  $("#perpajakan_form").val("");
+$(".tambahPenerimaanPbb").click(function () {
+  $("#formPenerimaanPbb").val("");
   $("#nop").val("");
   $("#nohp").val("");
   $("#nama").val("");
@@ -552,7 +552,7 @@ $(".tombolTambahData").click(function () {
   $("#action").val("Add");
   $("#submit_button").val("Add");
 });
-$("#perpajakan_form").on("submit", function (event) {
+$("#formPenerimaanPbb").on("submit", function (event) {
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
@@ -585,14 +585,14 @@ $("#perpajakan_form").on("submit", function (event) {
             icon: "success",
           });
         }
-        $("#sample_table4").DataTable().ajax.reload();
+        $("#tablePenerimaanPbb").DataTable().ajax.reload();
       }
     },
   });
 });
 
-$(".tombolTambahData").click(function () {
-  $("#layananumum_form").val("");
+$(".tambahLayananUmum").click(function () {
+  $("#formLayananUmum").val("");
   $("#judul").val("");
   $("#nohp").val("");
   $("#usernameoremail").val("");
@@ -606,7 +606,7 @@ $(".tombolTambahData").click(function () {
   $("#submit_button").val("Add");
 });
 
-$("#layananumum_form").on("submit", function (event) {
+$("#formLayananUmum").on("submit", function (event) {
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
@@ -637,14 +637,14 @@ $("#layananumum_form").on("submit", function (event) {
             icon: "success",
           });
         }
-        $("#sample_table3").DataTable().ajax.reload();
+        $("#tableLayananUmum").DataTable().ajax.reload();
       }
     },
   });
 });
 
-$(".tombolTambahData").click(function () {
-  $("#peraturan_form").val("");
+$(".tambahPeraturan").click(function () {
+  $("#formPeraturan").val("");
   $("#nomorTglPeraturanDesa").val("");
   $("#tentang").val("");
   $("#uraiansingkat").val("");
@@ -656,7 +656,7 @@ $(".tombolTambahData").click(function () {
   $("#action").val("Add");
   $("#submit_button").val("Add");
 });
-$("#peraturan_form").on("submit", function (event) {
+$("#formPeraturan").on("submit", function (event) {
   event.preventDefault();
   $.ajax({
     url: "peraturanDesaController/action",
@@ -684,14 +684,14 @@ $("#peraturan_form").on("submit", function (event) {
             icon: "success",
           });
         }
-        $("#sample_table").DataTable().ajax.reload();
+        $("#tablePeraturan").DataTable().ajax.reload();
       }
     },
   });
 });
 
-$(".tombolTambahData2").click(function () {
-  $("#inventarisKekayaan_form").val("");
+$(".tambahInventaris").click(function () {
+  $("#formInventaris").val("");
   $("#jenisbarang").val("");
   $("#lokasi").val("");
   $("#jumlah").val("");
@@ -711,7 +711,7 @@ $(".tombolTambahData2").click(function () {
   $("#action").val("Add");
   $("#submit_button").val("Add");
 });
-$("#inventarisKekayaan_form").on("submit", function (event) {
+$("#formInventaris").on("submit", function (event) {
   event.preventDefault();
   $.ajax({
     url: "action",
@@ -742,13 +742,13 @@ $("#inventarisKekayaan_form").on("submit", function (event) {
             icon: "success",
           });
         }
-        $("#sample_table2").DataTable().ajax.reload();
+        $("#tableInventaris").DataTable().ajax.reload();
       }
     },
   });
 });
 
-$(document).on("click", ".edit", function () {
+$(document).on("click", ".editPeraturan", function () {
   let id = $(this).data("id");
   $.ajax({
     url: "peraturanDesaController/edit",
@@ -771,7 +771,7 @@ $(document).on("click", ".edit", function () {
   });
 });
 
-$(document).on("click", ".edit2", function () {
+$(document).on("click", ".editInventaris", function () {
   let id = $(this).data("id");
   $.ajax({
     url: "edit",
@@ -802,7 +802,7 @@ $(document).on("click", ".edit2", function () {
   });
 });
 
-$(document).on("click", ".edit3", function () {
+$(document).on("click", ".editLayananUmum", function () {
   let id = $(this).data("id");
   $.ajax({
     url: "edit",
@@ -826,7 +826,7 @@ $(document).on("click", ".edit3", function () {
   });
 });
 
-$(document).on("click", ".edit4", function () {
+$(document).on("click", ".editPenerimaanPbb", function () {
   let id = $(this).data("id");
   $.ajax({
     url: "edit",
@@ -853,7 +853,7 @@ $(document).on("click", ".edit4", function () {
   });
 });
 
-$(document).on("click", ".edit5", function () {
+$(document).on("click", ".editBantuanSosial", function () {
   let id = $(this).data("id");
   $.ajax({
     url: "edit",
@@ -890,11 +890,11 @@ $(document).on("click", ".edit5", function () {
   });
 });
 
-$("#user_form").on("submit", function (event) {
+$("#formMyProfile").on("submit", function (event) {
   event.preventDefault();
   var formData = new FormData(this);
   $.ajax({
-    url: "user/action",
+    url: "myProfile/action",
     processData: false,
     contentType: false,
     method: "POST",
@@ -927,10 +927,10 @@ $("#user_form").on("submit", function (event) {
   });
 });
 
-$(document).on("click", ".editUser", function () {
+$(document).on("click", ".editMyProfile", function () {
   let id = $(this).data("id").replace(/\D/g, "");
   $.ajax({
-    url: "user/edit",
+    url: "myProfile/edit",
     method: "POST",
     data: { id: id },
     dataType: "JSON",
@@ -948,7 +948,7 @@ $(document).on("click", ".editUser", function () {
   });
 });
 
-$(document).on("click", ".deleteUser", function () {
+$(document).on("click", ".deleteUserList", function () {
   let id = $(this).data("id");
   Swal.fire({
     title: "Apakah anda yakin",
@@ -966,7 +966,7 @@ $(document).on("click", ".deleteUser", function () {
           id: id,
           _method: "DELETE",
         },
-        url: "adminController/delete",
+        url: "userListController/delete",
         success: function (data) {
           console.log(data);
           const flashData = data;
@@ -984,7 +984,7 @@ $(document).on("click", ".deleteUser", function () {
   });
 });
 
-$(document).on("click", ".delete", function () {
+$(document).on("click", ".deletePeraturan", function () {
   let id = $(this).data("id");
   Swal.fire({
     title: "Apakah anda yakin",
@@ -1012,14 +1012,14 @@ $(document).on("click", ".delete", function () {
               icon: "success",
             });
           }
-          $("#sample_table").DataTable().ajax.reload();
+          $("#tablePeraturan").DataTable().ajax.reload();
         },
       });
     }
   });
 });
 
-$(document).on("click", ".delete2", function () {
+$(document).on("click", ".deleteInventaris", function () {
   let penyebabdihapus = prompt("Kenapa Dihapus ?");
   if (penyebabdihapus != null) {
     let id = $(this).data("id");
@@ -1050,7 +1050,7 @@ $(document).on("click", ".delete2", function () {
                 icon: "success",
               });
             }
-            $("#sample_table2").DataTable().ajax.reload();
+            $("#tableInventaris").DataTable().ajax.reload();
           },
         });
       }
@@ -1058,7 +1058,7 @@ $(document).on("click", ".delete2", function () {
   }
 });
 
-$(document).on("click", ".delete3", function () {
+$(document).on("click", ".deleteLayananUmum", function () {
   let id = $(this).data("id");
   Swal.fire({
     title: "Apakah anda yakin",
@@ -1086,14 +1086,14 @@ $(document).on("click", ".delete3", function () {
               icon: "success",
             });
           }
-          $("#sample_table3").DataTable().ajax.reload();
+          $("#tableLayananUmum").DataTable().ajax.reload();
         },
       });
     }
   });
 });
 
-$(document).on("click", ".delete4", function () {
+$(document).on("click", ".deletePenerimaanPbb", function () {
   let id = $(this).data("id");
   Swal.fire({
     title: "Apakah anda yakin",
@@ -1121,14 +1121,14 @@ $(document).on("click", ".delete4", function () {
               icon: "success",
             });
           }
-          $("#sample_table4").DataTable().ajax.reload();
+          $("#tablePenerimaanPbb").DataTable().ajax.reload();
         },
       });
     }
   });
 });
 
-$(document).on("click", ".delete5", function () {
+$(document).on("click", ".deleteBantuanSosial", function () {
   let id = $(this).data("id");
   Swal.fire({
     title: "Apakah anda yakin",
@@ -1156,14 +1156,14 @@ $(document).on("click", ".delete5", function () {
               icon: "success",
             });
           }
-          $("#sample_table5").DataTable().ajax.reload();
+          $("#tableBantuanSosial").DataTable().ajax.reload();
         },
       });
     }
   });
 });
 
-$(document).on("click", ".delete4user", function () {
+$(document).on("click", ".deletePenerimaanPbbUser", function () {
   let id = $(this).data("id");
   Swal.fire({
     title: "Apakah anda yakin",
@@ -1198,7 +1198,7 @@ $(document).on("click", ".delete4user", function () {
   });
 });
 
-$(document).on("click", ".deleteAllButton", function () {
+$(document).on("click", ".deleteAllPeraturan", function () {
   Swal.fire({
     title: "Apakah anda yakin",
     text: "data peraturan akan dihapus",
@@ -1230,53 +1230,14 @@ $(document).on("click", ".deleteAllButton", function () {
               icon: "success",
             });
           }
-          $("#sample_table").DataTable().ajax.reload();
+          $("#tablePeraturan").DataTable().ajax.reload();
         },
       });
     }
   });
 });
 
-$(document).on("click", ".deleteAllButton2", function () {
-  Swal.fire({
-    title: "Apakah anda yakin",
-    text: "data inventaris kekayaan akan dihapus",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Hapus Data!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      let checkboxes = document.querySelectorAll('input[name="checkbox_value[]"]:checked');
-      var vals = [];
-      for (var i = 0, n = checkboxes.length; i < n; i++) {
-        vals.push(checkboxes[i].value);
-      }
-      $.ajax({
-        type: "POST",
-        data: {
-          id: vals,
-          _method: "DELETE",
-        },
-        url: "ceklisDeleteButton",
-        success: function (data) {
-          const flashData = data;
-          if (flashData) {
-            Swal.fire({
-              title: "Data Inventaris Kekayaan ",
-              text: "Berhasil " + flashData,
-              icon: "success",
-            });
-          }
-          $("#sample_table2").DataTable().ajax.reload();
-        },
-      });
-    }
-  });
-});
-
-$(document).on("click", ".deleteAllButton3", function () {
+$(document).on("click", ".deleteAllLayanan", function () {
   Swal.fire({
     title: "Apakah anda yakin",
     text: "data layanan umum akan dihapus",
@@ -1308,14 +1269,14 @@ $(document).on("click", ".deleteAllButton3", function () {
               icon: "success",
             });
           }
-          $("#sample_table3").DataTable().ajax.reload();
+          $("#tableLayananUmum").DataTable().ajax.reload();
         },
       });
     }
   });
 });
 
-$(document).on("click", ".deleteAllButton4", function () {
+$(document).on("click", ".deleteAllPenerimaan", function () {
   Swal.fire({
     title: "Apakah anda yakin",
     text: "data perpajakan akan dihapus",
@@ -1347,14 +1308,14 @@ $(document).on("click", ".deleteAllButton4", function () {
               icon: "success",
             });
           }
-          $("#sample_table4").DataTable().ajax.reload();
+          $("#tablePenerimaan").DataTable().ajax.reload();
         },
       });
     }
   });
 });
 
-$(document).on("click", ".deleteAllButton5", function () {
+$(document).on("click", ".deleteAllBantuanSosial", function () {
   Swal.fire({
     title: "Apakah anda yakin",
     text: "data bantuan sosial akan dihapus",
@@ -1386,14 +1347,14 @@ $(document).on("click", ".deleteAllButton5", function () {
               icon: "success",
             });
           }
-          $("#sample_table5").DataTable().ajax.reload();
+          $("#tableBantuanSosial").DataTable().ajax.reload();
         },
       });
     }
   });
 });
 
-$(document).on("click", ".deleteAllUser", function () {
+$(document).on("click", ".deleteAllUserList", function () {
   Swal.fire({
     title: "Apakah anda yakin",
     text: "data user akan dihapus",
@@ -1415,7 +1376,7 @@ $(document).on("click", ".deleteAllUser", function () {
           id: vals,
           _method: "DELETE",
         },
-        url: "adminController/ceklisDeleteButton",
+        url: "userListController/ceklisDeleteButton",
         success: function (data) {
           const flashData = data;
           if (flashData) {

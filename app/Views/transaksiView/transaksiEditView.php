@@ -26,9 +26,9 @@
             <label for="pambayaran" class="form-label">Pembayaran</label>
             <select class="form-select" id="pembayaran" name="pembayaran" aria-describedby="pembayaranHelp">
                 <option <?= ($transaksi['pembayaran'] == "cod") ? "selected" : "" ?> value="cod">cod</option>
-                <option <?= ($transaksi['pembayaran'] == "antar") ? "selected" : "" ?> value="antar">antar</option>
+                <option <?= ($transaksi['pembayaran'] == "online") ? "selected" : "" ?> value="online">online</option>
             </select>
-            <div id="pembayaranHelp" class="form-text">Jika Diantar Ongkir 10000</div>
+            <div id="pembayaranHelp" class="form-text">Ongkir 10000</div>
         </div>
         <button type="submit" class="btn btn-primary">Ubah</button>
 </div>

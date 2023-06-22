@@ -46,12 +46,14 @@
                     <h5 class="card-title"><?= $data['judul']; ?></h5>
                     <p class="card-text" style="text-align: justify;"><?= $data['keterangan']; ?></p>
                     <p class="card-text"><small class="text-muted"><?= $data['created_at']; ?></small></p>
-                    <a href="/beritaController/edit/<?= $data['id_berita']; ?>" class="btn btn-warning mb-1">Edit</a>
-                    <form action="/beritaController/delete/<?= $data['id_berita']; ?>" method="post" class="d-inline tombol-hapus" id="tombol-hapus">
-                        <?= csrf_field(); ?>
-                        <input type="hidden" name="_method" value="DELETE">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <?php if (in_groups('admin')) : ?>
+                        <a href="/beritaController/edit/<?= $data['id_berita']; ?>" class="btn btn-warning mb-1">Edit</a>
+                        <form action="/beritaController/delete/<?= $data['id_berita']; ?>" method="post" class="d-inline tombol-hapus" id="tombol-hapus">
+                            <?= csrf_field(); ?>
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

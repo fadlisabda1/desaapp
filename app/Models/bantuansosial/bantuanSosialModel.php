@@ -39,8 +39,8 @@ class bantuanSosialModel extends Model
         $aksi_button = function ($row) {
             if (in_groups('admin')) {
                 return '
-                <button type="button" name="edit" class="btn btn-warning btn-sm edit5" data-id="' . $row["id_bantuansosial"] . '">Edit</button>&nbsp;
-                <button type="button" class="btn btn-danger btn-sm delete5" data-id="' . $row["id_bantuansosial"] . '">Delete</button>&nbsp;<button type="button" class="btn btn-danger btn-sm deleteAllButton5">Delete All</button>&nbsp;<button type="button" onclick="selects()" class="btn btn-primary btn-sm">Ceklis All</button>
+                <button type="button" name="edit" class="btn btn-warning btn-sm editBantuanSosial" data-id="' . $row["id_bantuansosial"] . '">Edit</button>&nbsp;
+                <button type="button" class="btn btn-danger btn-sm deleteBantuanSosial" data-id="' . $row["id_bantuansosial"] . '">Delete</button>&nbsp;<button type="button" class="btn btn-danger btn-sm deleteAllBantuanSosial">Delete All</button>&nbsp;<button type="button" onclick="selects()" class="btn btn-primary btn-sm">Ceklis All</button>
                 ';
             }
         };

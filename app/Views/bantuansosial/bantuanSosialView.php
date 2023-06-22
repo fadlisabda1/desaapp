@@ -25,7 +25,7 @@
                 </div>
             </li>
         </ol>
-        <button type="button" class="btn tombolTambahData" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
+        <button type="button" class="btn tambahBantuanSosial" data-bs-toggle="modal" data-bs-target="#formModal" style="color:white;background-color: rgb(48,123,109);">
             Tambah
         </button>
         <?php if (in_groups('admin')) : ?>
@@ -36,7 +36,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive mt-2">
-            <table id="sample_table5" class="table table-bordered table-hover">
+            <table id="tableBantuansosial" class="table table-bordered table-hover">
                 <thead class="table-light">
                     <tr>
                         <th scope="col">Ceklis</th>
@@ -95,7 +95,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="post" id="bantuansosial_form" enctype="multipart/form-data">
+                <form method="post" id="formBantuanSosial" enctype="multipart/form-data">
                     <?= csrf_field(); ?>
                     <input type="hidden" name="file_lama" id="file_lama">
                     <div class="mb-3">

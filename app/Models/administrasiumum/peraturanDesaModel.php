@@ -36,8 +36,8 @@ class peraturanDesaModel extends Model
         $aksi_button = function ($row) {
             if (in_groups('admin')) {
                 return '
-                <button type="button" name="edit" class="btn btn-warning btn-sm edit" data-id="' . $row["id_peraturan_desa"] . '">Edit</button>&nbsp;
-                <button type="button" class="btn btn-danger btn-sm delete" data-id="' . $row["id_peraturan_desa"] . '">Delete</button>&nbsp;<button type="button" class="btn btn-danger btn-sm deleteAllButton">Delete All</button>&nbsp;<button type="button" onclick="selects()" class="btn btn-primary btn-sm">Ceklis All</button>
+                <button type="button" name="edit" class="btn btn-warning btn-sm editPeraturan" data-id="' . $row["id_peraturan_desa"] . '">Edit</button>&nbsp;
+                <button type="button" class="btn btn-danger btn-sm deletePeraturan" data-id="' . $row["id_peraturan_desa"] . '">Delete</button>&nbsp;<button type="button" class="btn btn-danger btn-sm deleteAllPeraturan">Delete All</button>&nbsp;<button type="button" onclick="selects()" class="btn btn-primary btn-sm">Ceklis All</button>
                 ';
             }
         };

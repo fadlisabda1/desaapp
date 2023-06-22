@@ -15,12 +15,12 @@
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-tree-city"></i></div>
                         Profile Desa
                     </a>
-                    <a class="nav-link" href="<?= base_url('user'); ?>">
+                    <a class="nav-link" href="<?= base_url('myprofile'); ?>">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-user"></i></div>
                         My Profile
                     </a>
                     <?php if ($title == 'My Profile') : ?>
-                        <a role="link" aria-disabled="true" name="edit" class="nav-link btn editUser" data-id="' . <?= user()->id ?> . '">
+                        <a role="link" aria-disabled="true" name="edit" class="nav-link btn editMyProfile" data-id="' . <?= user()->id ?> . '">
                             <div class="sb-nav-link-icon"><i class="fa-solid fa-user-pen"></i></div>Edit Profile
                         </a>
                     <?php endif; ?>
@@ -44,7 +44,7 @@
                     <div class="sb-sidenav-menu-heading">Perpajakan Desa</div>
                     <a class="nav-link" href="/penerimaanPbbController/index">
                         <div class="sb-nav-link-icon"><i class="fa-solid fa-pen"></i></div>
-                        Penerimaaan Harian Pajak Bumi Dan Bangunan
+                        Penerimaaan Pajak Bumi Dan Bangunan
                     </a>
                     <div class="sb-sidenav-menu-heading">Bantuan Sosial</div>
                     <a class="nav-link" href="/bantuanSosialController/index">

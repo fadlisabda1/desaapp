@@ -10,7 +10,7 @@ class userrModel extends Model
     protected $primaryKey = 'id';
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
-    protected $allowedFields = ['email', 'username', 'fullname', 'user_image'];
+    protected $allowedFields = ['email', 'username', 'fullname', 'user_image', 'created_at', 'updated_at', 'deleted_at'];
     public function checkboxDelete($id)
     {
         return $this->whereIn('id', $id)->delete();

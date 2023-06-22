@@ -13,7 +13,7 @@ class penerimaanPbbController extends BaseController
         $perpajakan = [
             'title' => 'Perpajakan | Penerimaan Pajak Bumi & Bangunan',
         ];
-        return view('perpajakan\perpajakanView', $perpajakan);
+        return view('perpajakan\penerimaanPbbView', $perpajakan);
     }
 
     public function ambilData()

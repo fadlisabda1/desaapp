@@ -28,8 +28,8 @@
                                 <td><?= $user->name; ?></td>
                                 <td>
                                     <a href="<?= base_url('admin/' . $user->userid) ?>" class="btn btn-info">Detail</a>
-                                    <button type="button" class="btn btn-danger deleteUser" data-id="<?= $user->userid; ?>">Delete</button>
-                                    <button type="button" class="btn btn-danger deleteAllUser">Delete All</button>
+                                    <button type="button" class="btn btn-danger deleteUserList" data-id="<?= $user->userid; ?>">Delete</button>
+                                    <button type="button" class="btn btn-danger deleteAllUserList">Delete All</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

@@ -43,7 +43,7 @@ $routes->get('/register', 'homeController::register');
 $routes->get('/forgot', 'homeController::forgot');
 $routes->get('/reset-password', 'homeController::reset');
 //profil desa
-$routes->get('/profil', 'profilPemerintahanController::index');
+$routes->get('/profil', 'profilDesaController::index');
 //berita
 $routes->get('/beritaController/detail/(:segment)', 'beritaController::detail/$1');
 $routes->get('/beritaController/create', 'beritaController::create');
@@ -66,16 +66,16 @@ $routes->get('/transaksiController/edit/(:segment)/(:segment)', 'transaksiContro
 $routes->post('/transaksiController/update/(:segment)', 'transaksiController::update/$1');
 $routes->delete('/transaksiController/delete/(:num)', 'transaksiController::delete/$1');
 //User List
-$routes->get('/admin', 'adminController::index', ['filter' => 'role:admin']);
-$routes->get('/admin/index', 'adminController::index', ['filter' => 'role:admin']);
-$routes->get('/admin/(:num)', 'adminController::detail/$1', ['filter' => 'role:admin']);
-$routes->match(['post', 'get'], '/user', 'userController::index');
+$routes->get('/admin', 'userListController::index', ['filter' => 'role:admin']);
+$routes->get('/admin/index', 'userListController::index', ['filter' => 'role:admin']);
+$routes->get('/admin/(:num)', 'userListController::detail/$1', ['filter' => 'role:admin']);
+$routes->match(['post', 'get'], '/myprofile', 'myProfileController::index');
 //delete user list
-$routes->delete('/adminController/delete', 'adminController::delete');
-$routes->delete('/adminController/ceklisDeleteButton', 'adminController::ceklisDeleteButton');
+$routes->delete('/userListController/delete', 'userListController::delete');
+$routes->delete('/userListController/ceklisDeleteButton', 'userListController::ceklisDeleteButton');
 //my profile
-$routes->post('/user/edit', 'userController::edit');
-$routes->post('/user/action', 'userController::action');
+$routes->post('/myProfile/edit', 'myProfileController::edit');
+$routes->post('/myProfile/action', 'myProfileController::action');
 //peraturan desa 
 $routes->post('/peraturanDesaController/ambilData', 'administrasiumum\peraturanDesaController::ambilData');
 $routes->post('/peraturanDesaController/action', 'administrasiumum\peraturanDesaController::action');

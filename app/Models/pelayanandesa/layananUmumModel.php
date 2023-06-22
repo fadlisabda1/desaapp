@@ -35,14 +35,14 @@ class layananUmumModel extends Model
     {
         $aksi_button = function ($row) {
             if (in_groups('user') && user()->username == $row["usernameoremail"]) {
-                return '<button type="button" name="edit" class="btn btn-warning btn-sm edit3" data-id="' . $row["id_layananumum"] . '">Edit</button>&nbsp;
-                <button type="button" class="btn btn-danger btn-sm delete3" data-id="' . $row["id_layananumum"] . '">Delete</button>&nbsp;
+                return '<button type="button" name="edit" class="btn btn-warning btn-sm editLayananUmum" data-id="' . $row["id_layananumum"] . '">Edit</button>&nbsp;
+                <button type="button" class="btn btn-danger btn-sm deleteLayananUmum" data-id="' . $row["id_layananumum"] . '">Delete</button>&nbsp;
                 ';
             }
             if (in_groups('admin')) {
                 return '
-                <button type="button" name="edit" class="btn btn-warning btn-sm edit3" data-id="' . $row["id_layananumum"] . '">Edit</button>&nbsp;
-                <button type="button" class="btn btn-danger btn-sm delete3" data-id="' . $row["id_layananumum"] . '">Delete</button>&nbsp;<button type="button" class="btn btn-danger btn-sm deleteAllButton3">Delete All</button>&nbsp;<button type="button" onclick="selects()" class="btn btn-primary btn-sm">Ceklis All</button>
+                <button type="button" name="edit" class="btn btn-warning btn-sm editLayananUmum" data-id="' . $row["id_layananumum"] . '">Edit</button>&nbsp;
+                <button type="button" class="btn btn-danger btn-sm deleteLayananUmum" data-id="' . $row["id_layananumum"] . '">Delete</button>&nbsp;<button type="button" class="btn btn-danger btn-sm deleteAllLayanan">Delete All</button>&nbsp;<button type="button" onclick="selects()" class="btn btn-primary btn-sm">Ceklis All</button>
                 ';
             }
         };

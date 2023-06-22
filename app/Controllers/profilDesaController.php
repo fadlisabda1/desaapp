@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-class profilPemerintahanController extends BaseController
+class profilDesaController extends BaseController
 {
     public function index()
     {

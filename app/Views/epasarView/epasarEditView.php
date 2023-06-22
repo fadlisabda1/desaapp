@@ -1,7 +1,7 @@
 <?= $this->extend('layout/template'); ?>
 <?= $this->section('content'); ?>
 <div class="container">
-    <h2 class="my-3 text-center">Form Ubah Data Berita</h2>
+    <h2 class="my-3 text-center">Form Ubah Data Barang</h2>
     <form action="/epasarController/update/<?= $barang['id_barang']; ?>" method="post" enctype="multipart/form-data">
         <?= csrf_field(); ?>
         <input type="hidden" name="id_barang" value="<?= $barang['id_barang']; ?>">

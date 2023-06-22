@@ -27,8 +27,8 @@ class inventarisKekayaanModel extends Model
         $aksi_button = function ($row) {
             if (in_groups('admin')) {
                 return '
-                <button type="button" name="edit" class="btn btn-warning btn-sm edit2" data-id="' . $row["id_inventaris_kekayaan_desa"] . '">Edit</button>&nbsp;
-                <button type="button" class="btn btn-danger btn-sm delete2" data-id="' . $row["id_inventaris_kekayaan_desa"] . '">Delete</button>&nbsp;
+                <button type="button" name="edit" class="btn btn-warning btn-sm editInventaris" data-id="' . $row["id_inventaris_kekayaan_desa"] . '">Edit</button>&nbsp;
+                <button type="button" class="btn btn-danger btn-sm deleteInventaris" data-id="' . $row["id_inventaris_kekayaan_desa"] . '">Delete</button>&nbsp;
                 ';
             }
         };
